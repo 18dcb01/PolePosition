@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 #include <vector>
+#include <SFML/Graphics.hpp>
 class Car :
 	public Object
 {
