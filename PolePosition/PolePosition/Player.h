@@ -1,5 +1,7 @@
 #pragma once
 #include "Car.h"
+#include <vector>
+#include <SFML/Audio.hpp>
 class Player :
 	public Object
 {
@@ -11,5 +13,5 @@ public:
 	void drawDashboard();
 
 private:
-	vector<Sound>;
+	std::vector<sf::Sound> sounds;
 };
