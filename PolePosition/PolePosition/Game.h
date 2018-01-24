@@ -23,5 +23,4 @@ private:
 	void render();
 	void drawMap();
 	void drawBackground();
-
 };
