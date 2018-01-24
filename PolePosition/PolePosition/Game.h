@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Racer.h"
 #include <vector>
+#include "Direction.h"
 
 class Game
 {

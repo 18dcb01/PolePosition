@@ -10,3 +10,7 @@ Car::Car()
 Car::~Car()
 {
 }
+
+void Car::render(int)
+{
+}

@@ -4,6 +4,8 @@
 class Object
 {
 public:
+	Object();
+	~Object();
 	virtual void render(int);
 private:
 	sf::Sprite sprite;
