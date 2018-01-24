@@ -10,6 +10,7 @@ public:
 	void setPos(int, int);
 	int getPosx();
 	int getPosy();
+
 protected:
 	sf::Sprite sprite;
 	int position[2];
