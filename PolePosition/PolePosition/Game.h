@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Racer.h"
 #include <vector>
 
 class Game
