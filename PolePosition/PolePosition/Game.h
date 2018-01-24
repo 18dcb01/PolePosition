@@ -3,6 +3,7 @@
 #include "Racer.h"
 #include <vector>
 #include "Direction.h"
+#include <SFML\Graphics.hpp>
 
 class Game
 {
@@ -20,8 +21,8 @@ private:
 	time_t startTime;
 	void race();
 	void tick();
-	void render();
-	void drawMap();
+	void render(sf::RenderWindow*);
+	void drawMap(sf::RenderWindow*);
 	void drawBackground();
 
 };

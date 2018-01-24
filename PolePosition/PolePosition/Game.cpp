@@ -32,17 +32,29 @@ void Game::tick()
 }
 
 
-void Game::render()
+void Game::render(sf::RenderWindow *window)
 {
 	//First, drawBackground
+	drawBackground();
 	//Then, drawMap
+	drawMap(window);
 	//Then signs, racers, and the player
+
 }
 
 
-void Game::drawMap()
+void Game::drawMap(sf::RenderWindow *window)
 {
-
+	//this all needs to go into a vector dummy
+	sf::Vector2u windowSize = window->getSize();
+	int width = windowSize.x;
+	int height = windowSize.y;
+	//Draw the grass
+	sf::RectangleShape grass(width, height / 2);
+	//Set grass position and color
+	grass.setPosition(0, 112);
+	grass.setFillColor(sf::Color::Green);
+	window->draw(grass);
 }
 
 
