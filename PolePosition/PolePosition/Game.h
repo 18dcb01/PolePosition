@@ -23,4 +23,5 @@ private:
 	void render();
 	void drawMap();
 	void drawBackground();
+	sf::RenderWindow window;
 };

@@ -6,6 +6,5 @@ public:
 	Racer();
 	~Racer();
 	void tick();
-
 private:
 };
