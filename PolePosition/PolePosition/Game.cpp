@@ -28,12 +28,13 @@ void Game::race()
 
 void Game::tick()
 {
+	//Update player, then racers
 	p.tick();
 	for (int i = 0; i < 7; i++)
 	{
 		r[i].tick();
 	}
-	//Calls render, updates player and racers
+	render()
 }
 
 

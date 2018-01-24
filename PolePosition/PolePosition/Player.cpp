@@ -64,6 +64,8 @@ void Player::tick()
 	position[0] += speed[0];
 	position[1] += speed[1];
 
+	//Update score based on speed
+
 	drawDashboard();
 }
 
