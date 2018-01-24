@@ -51,7 +51,6 @@ void Game::tick()
 			r[i].tick();
 	}
 	render();
-	//Calls render, updates player and racers
 }
 
 
@@ -63,7 +62,9 @@ void Game::render()
 	window.draw(shape);
 	window.display();
 	//First, drawBackground
+	drawBackground();
 	//Then, drawMap
+	drawMap();
 	//Then signs, racers, and the player
 }
 

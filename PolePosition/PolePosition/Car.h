@@ -9,7 +9,7 @@ public:
 	Car();
 	~Car();
 	virtual void render(int);
-private:
+protected:
 	std::vector<sf::Sprite> sprites;
 	int speed[2];
 };
