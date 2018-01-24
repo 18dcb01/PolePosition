@@ -3,15 +3,16 @@
 #include <vector>
 #include <SFML/Audio.hpp>
 class Player :
-	public Object
+	public Car
 {
 public:
+	void drawDashboard();
 	Player();
 	~Player();
-
 	void tick();
-	void drawDashboard();
 
 private:
 	std::vector<sf::Sound> sounds;
+	bool clutchHeld;
+	bool clutch;
 };

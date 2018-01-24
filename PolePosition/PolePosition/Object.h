@@ -7,7 +7,7 @@ public:
 	Object();
 	~Object();
 	virtual void render(int);
-private:
+protected:
 	sf::Sprite sprite;
 	int position[2];
 };

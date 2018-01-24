@@ -28,27 +28,27 @@ void Player::tick()
 		if (!clutch)
 		{
 			//Accel faster if slow
-			if (speed[2] <= 50)
-				speed[2] += 2;
+			if (speed[1] <= 50)
+				speed[1] += 2;
 			else
-				speed[2] += 1;
+				speed[1] += 1;
 		}
 		else
 		{
 			//Accel faster if fast
-			if (speed[2] > 50)
-				speed[2] += 2;
+			if (speed[1] > 50)
+				speed[1] += 2;
 			else
-				speed[2] += 1;
+				speed[1] += 1;
 		}
 	}
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		if (speed[2] >= 2)
-			speed[2] -= 2;
-		else if (speed[2] > 0)
-			speed[2] = 0;
+		if (speed[1] >= 2)
+			speed[1] -= 2;
+		else if (speed[1] > 0)
+			speed[1] = 0;
 	}
 	//Clutch
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
@@ -60,11 +60,11 @@ void Player::tick()
 	else if (clutchHeld)
 		clutchHeld = false;
 
-
-	//the rest of it
-
 	//Update position
-	//Draw Dashboard
+	position[0] += speed[0];
+	position[1] += speed[1];
+
+	drawDashboard();
 }
 
 

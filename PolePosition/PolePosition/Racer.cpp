@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Racer.h"
 
-Racer::Racer()
+Racer::Racer() : Car()
 {
 
 }
