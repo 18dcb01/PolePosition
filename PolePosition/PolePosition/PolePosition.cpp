@@ -6,7 +6,7 @@
 
 int main()
 {
-	sf::Sound testing;
+	
     return 0;
 }
 

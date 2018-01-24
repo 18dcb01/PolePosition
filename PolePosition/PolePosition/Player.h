@@ -8,4 +8,6 @@ class Player : public Car
 public:
 
 private:
+	//TODO;
+	vector<sf::Sound> sounds;
 };
