@@ -1,19 +1,15 @@
 #include "stdafx.h"
 #include "Racer.h"
 
-Racer::Racer() : Car()
+Racer::Racer()
 {
-
 }
-
 
 Racer::~Racer()
 {
 
 }
 
-
 void Racer::tick()
 {
-
 }
