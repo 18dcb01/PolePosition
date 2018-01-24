@@ -2,10 +2,11 @@
 //
 
 #include "stdafx.h"
-
+#include <SFML\Audio.hpp>
 
 int main()
 {
+	sf::Sound testing;
     return 0;
 }
 
