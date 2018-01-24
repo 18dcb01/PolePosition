@@ -15,41 +15,56 @@ Player::~Player()
 
 void Player::tick()
 {
+	//Controls
+	//Turn left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		//turn left
-	}
+		speed[0] -= 1;
+	//Turn right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		//turn right
-	}
+		speed[0] += 1;
+	//Accelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (!clutch)
 		{
 			//Accel faster if slow
+			if (speed[2] <= 50)
+				speed[2] += 2;
+			else
+				speed[2] += 1;
 		}
 		else
 		{
 			//Accel faster if fast
+			if (speed[2] > 50)
+				speed[2] += 2;
+			else
+				speed[2] += 1;
 		}
 	}
+	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		//Decelerate
+		if (speed[2] >= 2)
+			speed[2] -= 2;
+		else if (speed[2] > 0)
+			speed[2] = 0;
 	}
+	//Clutch
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
 	{
 		if (!clutchHeld)
-		{
-			//Clutch
-		}
+			clutch = !clutch;
 		clutchHeld = true;
 	}
 	else if (clutchHeld)
-	{
 		clutchHeld = false;
-	}
+
+
+	//the rest of it
+
+	//Update position
+	//Draw Dashboard
 }
 
 
