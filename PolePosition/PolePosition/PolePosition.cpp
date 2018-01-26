@@ -3,6 +3,10 @@
 
 #include "stdafx.h"
 #include <SFML\Graphics.hpp>
+#include "Player.h"
+#include <iostream>
+
+using namespace std;
 
 
 int main()
@@ -19,12 +23,10 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
 		window.clear();
 		window.draw(shape);
 		window.display();
 	}
-
 	return 0;
 }
 
