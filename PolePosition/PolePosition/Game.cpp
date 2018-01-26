@@ -4,7 +4,9 @@
 
 Game::Game()
 {
-
+	//Map is initialized to all straight for now.
+	for (int i = 0; i < 50; i++)
+		map.push_back(forward);
 }
 
 
@@ -45,17 +47,25 @@ void Game::render(sf::RenderWindow *window)
 
 void Game::drawMap(sf::RenderWindow *window)
 {
-	//this all needs to go into a vector dummy
 	sf::Vector2u windowSize = window->getSize();
 	int width = windowSize.x;
 	int height = windowSize.y;
+
 	//Draw the grass
 	sf::Vector2f pos(width, height / 2);
 	sf::RectangleShape grass(pos);
+
 	//Set grass position and color
 	grass.setPosition(0, 112);
 	grass.setFillColor(sf::Color::Green);
 	window->draw(grass);
+
+	//Draw track pieces 5 at a time so user can see ahead.
+
+	//3 possible track pieces.
+	sf::ConvexShape straight();
+	sf::ConvexShape veerRight();
+	sf::ConvexShape veerLeft();
 }
 
 

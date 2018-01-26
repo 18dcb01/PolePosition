@@ -2,13 +2,10 @@
 //
 
 #include "stdafx.h"
+#include "Game.h"
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
 #include <vector>
-
-void render();
-//Called by render, draws the track on the ground.
-void drawMap();
 
 int main()
 {
