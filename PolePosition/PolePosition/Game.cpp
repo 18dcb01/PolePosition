@@ -4,6 +4,7 @@
 
 Game::Game()
 {
+	//Probably something else we should be doing here
 }
 
 
@@ -17,6 +18,15 @@ void Game::play()
 {
 <<<<<<< HEAD
 =======
+	//qualifying round
+	race();
+	if (window.isOpen())
+	{
+		//second race
+		for (int i = 0; i < 7; i++)
+			r[i] = Racer(i);
+		race();
+	}
 >>>>>>> overhead
 	//Calls race (twice bc two races)
 }
@@ -26,6 +36,18 @@ void Game::race()
 {
 <<<<<<< HEAD
 =======
+	while (window.isOpen())
+	{
+		//sfml overhead
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+		//should maybe get more complicated?
+		tick();
+	}
 >>>>>>> overhead
 	//A loop - continually calls tick
 }
@@ -35,6 +57,13 @@ void Game::tick()
 {
 <<<<<<< HEAD
 =======
+	p.tick();
+	if (r[0].getPosy() > -1000)
+	{
+		for (int i = 0; i < 7; i++)
+			r[i].tick();
+	}
+	render();
 >>>>>>> overhead
 	//Calls render, updates player and racers
 }

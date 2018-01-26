@@ -26,6 +26,9 @@ int main()
 		window.display();
 	}
 =======
+	//basic game run
+	Game game;
+	game.play();
 >>>>>>> overhead
 
 	return 0;

@@ -5,6 +5,10 @@ class Racer : public Car
 public:
 <<<<<<< HEAD
 =======
+	Racer();
+	Racer(int);
+	~Racer();
+	void tick();
 >>>>>>> overhead
 private:
 };
