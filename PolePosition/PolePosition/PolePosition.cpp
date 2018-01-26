@@ -2,12 +2,12 @@
 //
 
 #include "stdafx.h"
+#include "Game.h"
 #include <SFML\Graphics.hpp>
 
 
 int main()
 {
-<<<<<<< HEAD
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
@@ -25,11 +25,9 @@ int main()
 		window.draw(shape);
 		window.display();
 	}
-=======
 	//basic game run
 	Game game;
 	game.play();
->>>>>>> overhead
 
 	return 0;
 }

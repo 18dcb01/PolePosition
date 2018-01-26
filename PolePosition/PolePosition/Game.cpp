@@ -16,8 +16,6 @@ Game::~Game()
 
 void Game::play()
 {
-<<<<<<< HEAD
-=======
 	//qualifying round
 	race();
 	if (window.isOpen())
@@ -27,15 +25,12 @@ void Game::play()
 			r[i] = Racer(i);
 		race();
 	}
->>>>>>> overhead
 	//Calls race (twice bc two races)
 }
 
 
 void Game::race()
 {
-<<<<<<< HEAD
-=======
 	while (window.isOpen())
 	{
 		//sfml overhead
@@ -48,15 +43,12 @@ void Game::race()
 		//should maybe get more complicated?
 		tick();
 	}
->>>>>>> overhead
 	//A loop - continually calls tick
 }
 
 
 void Game::tick()
 {
-<<<<<<< HEAD
-=======
 	p.tick();
 	if (r[0].getPosy() > -1000)
 	{
@@ -64,7 +56,6 @@ void Game::tick()
 			r[i].tick();
 	}
 	render();
->>>>>>> overhead
 	//Calls render, updates player and racers
 }
 
@@ -87,7 +78,7 @@ void Game::drawMap(sf::RenderWindow *window)
 	int width = windowSize.x;
 	int height = windowSize.y;
 	//Draw the grass
-	sf::RectangleShape grass(width, height / 2);
+	sf::RectangleShape grass(sf::Vector2f(width, height / 2));
 	//Set grass position and color
 	grass.setPosition(0, 112);
 	grass.setFillColor(sf::Color::Green);
