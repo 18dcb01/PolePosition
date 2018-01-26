@@ -3,5 +3,8 @@
 class Racer : public Car
 {
 public:
+<<<<<<< HEAD
+=======
+>>>>>>> overhead
 private:
 };

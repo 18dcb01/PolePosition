@@ -4,7 +4,6 @@
 
 Game::Game()
 {
-
 }
 
 
@@ -16,18 +15,27 @@ Game::~Game()
 
 void Game::play()
 {
+<<<<<<< HEAD
+=======
+>>>>>>> overhead
 	//Calls race (twice bc two races)
 }
 
 
 void Game::race()
 {
+<<<<<<< HEAD
+=======
+>>>>>>> overhead
 	//A loop - continually calls tick
 }
 
 
 void Game::tick()
 {
+<<<<<<< HEAD
+=======
+>>>>>>> overhead
 	//Calls render, updates player and racers
 }
 
