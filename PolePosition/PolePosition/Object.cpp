@@ -3,6 +3,9 @@
 
 Object::Object()
 {
+	//TODO: get texture from either stream or file.
+	sf::Texture texture;
+
 }
 
 Object::~Object()

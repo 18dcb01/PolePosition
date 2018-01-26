@@ -25,4 +25,5 @@ private:
 	void drawMap(sf::RenderWindow*);
 	void drawBackground();
 
+
 };

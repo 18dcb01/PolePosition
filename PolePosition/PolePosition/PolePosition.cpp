@@ -3,13 +3,21 @@
 
 #include "stdafx.h"
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
+#include <vector>
 
+void render();
+//Called by render, draws the track on the ground.
+void drawMap();
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
+
+	//Vector of sounds.
+	std::vector <sf::Sound> sounds;
 
 	while (window.isOpen())
 	{

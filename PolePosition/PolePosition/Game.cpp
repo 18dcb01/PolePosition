@@ -50,7 +50,8 @@ void Game::drawMap(sf::RenderWindow *window)
 	int width = windowSize.x;
 	int height = windowSize.y;
 	//Draw the grass
-	sf::RectangleShape grass(width, height / 2);
+	sf::Vector2f pos(width, height / 2);
+	sf::RectangleShape grass(pos);
 	//Set grass position and color
 	grass.setPosition(0, 112);
 	grass.setFillColor(sf::Color::Green);
