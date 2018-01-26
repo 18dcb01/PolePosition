@@ -2,9 +2,9 @@
 #include "stdafx.h"
 #include "Game.h"
 
-Game::Game()
+Game::Game(sf::RenderWindow *tempWindow)
 {
-
+	window = tempWindow;
 }
 
 
@@ -17,6 +17,7 @@ Game::~Game()
 void Game::play()
 {
 	//Calls race (twice bc two races)
+	tick();
 }
 
 
@@ -29,31 +30,31 @@ void Game::race()
 void Game::tick()
 {
 	//Calls render, updates player and racers
+	render();
 }
 
 
-void Game::render(sf::RenderWindow *window)
+void Game::render()
 {
 	//First, drawBackground
 	drawBackground();
 	//Then, drawMap
-	drawMap(window);
+	drawMap();
 	//Then signs, racers, and the player
 
 }
 
 
-void Game::drawMap(sf::RenderWindow *window)
+void Game::drawMap()
 {
 	//this all needs to go into a vector dummy
-	sf::Vector2u windowSize = window->getSize();
-	int width = windowSize.x;
-	int height = windowSize.y;
+	sf::Vector2u tempSize = window->getSize();
+	sf::Vector2f windowSize(tempSize.x, tempSize.y);
 	//Draw the grass
-	sf::RectangleShape grass(width, height / 2);
+	sf::RectangleShape grass(windowSize);
 	//Set grass position and color
 	grass.setPosition(0, 112);
-	grass.setFillColor(sf::Color::Green);
+	grass.setFillColor(sf::Color::Color(67, 157, 14, 255));
 	window->draw(grass);
 }
 

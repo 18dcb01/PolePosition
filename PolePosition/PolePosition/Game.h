@@ -8,11 +8,12 @@
 class Game
 {
 public:
-	Game();
+	Game(sf::RenderWindow*);
 	~Game();
 	void play();
 
 private:
+	sf::RenderWindow *window;
 	Player p;
 	Racer r[7];
 	std::vector<Direction> map;
@@ -21,8 +22,8 @@ private:
 	time_t startTime;
 	void race();
 	void tick();
-	void render(sf::RenderWindow*);
-	void drawMap(sf::RenderWindow*);
+	void render();
+	void drawMap();
 	void drawBackground();
 
 };

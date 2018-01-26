@@ -2,14 +2,15 @@
 //
 
 #include "stdafx.h"
+#include "Game.h"
 #include <SFML\Graphics.hpp>
 
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow *windowPtr = &window;
+	Game game(windowPtr);
 
 	while (window.isOpen())
 	{
@@ -21,7 +22,7 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+		game.play();
 		window.display();
 	}
 
