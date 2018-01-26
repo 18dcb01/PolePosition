@@ -4,6 +4,7 @@
 #include <vector>
 #include "Direction.h"
 #include <SFML\Graphics.hpp>
+#include <SFML\Graphics\Texture.hpp>
 
 class Game
 {
@@ -13,7 +14,11 @@ public:
 	void play();
 
 private:
+	//Variables for rendering
 	sf::RenderWindow *window;
+	sf::Sprite background;
+
+	//
 	Player p;
 	Racer r[7];
 	std::vector<Direction> map;

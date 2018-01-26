@@ -5,6 +5,11 @@
 Game::Game(sf::RenderWindow *tempWindow)
 {
 	window = tempWindow;
+
+	//creating background
+	sf::Texture backgroundTexture;
+	backgroundTexture.loadFromFile("background.png");
+	background.setTexture(backgroundTexture);
 }
 
 
@@ -64,5 +69,8 @@ void Game::drawMap()
 
 void Game::drawBackground()
 {
-	//
+	//Find sprite
+	//pan to right part of 
+	//draw sprite
+	window->draw(background);
 }
