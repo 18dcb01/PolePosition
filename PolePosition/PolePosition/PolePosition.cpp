@@ -8,6 +8,7 @@
 
 int main()
 {
+	//basic game run
 	Game game;
 	game.play();
 
