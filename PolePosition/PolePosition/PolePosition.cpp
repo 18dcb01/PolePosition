@@ -4,9 +4,16 @@
 #include "stdafx.h"
 #include "Game.h"
 #include <SFML\Graphics.hpp>
+<<<<<<< HEAD
 #include <SFML\Audio.hpp>
 #include <Windows.h>
 #include <iostream>
+=======
+#include "Player.h"
+#include <iostream>
+
+using namespace std;
+>>>>>>> 74fef943cb8d50f8de8e45ae904277b1a6f29050
 
 
 int main()
@@ -42,15 +49,17 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
 		window.clear();
 		window.draw(s);
 		window.display();
 	}
+<<<<<<< HEAD
 	//basic game run
 	Game game;
 	game.play();
 
+=======
+>>>>>>> 74fef943cb8d50f8de8e45ae904277b1a6f29050
 	return 0;
 }
 
