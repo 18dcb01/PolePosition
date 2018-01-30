@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "stdafx.h"
-#include "Game.h"
 
 Game::Game()
 {
@@ -45,7 +44,6 @@ void Game::render(sf::RenderWindow *window)
 
 void Game::drawMap(sf::RenderWindow *window)
 {
-	/*
 	//this all needs to go into a vector dummy
 	sf::Vector2u windowSize = window->getSize();
 	int width = windowSize.x;
@@ -56,7 +54,6 @@ void Game::drawMap(sf::RenderWindow *window)
 	grass.setPosition(0, 112);
 	grass.setFillColor(sf::Color::Green);
 	window->draw(grass);
-	*/
 }
 
 
