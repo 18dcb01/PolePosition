@@ -1,4 +1,8 @@
 ﻿  Game.cpp
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(58): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(65): warning C4930: 'sf::ConvexShape veerRight(void)': prototyped function not called (was a variable definition intended?)
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(66): warning C4930: 'sf::ConvexShape veerLeft(void)': prototyped function not called (was a variable definition intended?)
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(64): warning C4930: 'sf::ConvexShape straight(void)': prototyped function not called (was a variable definition intended?)
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(75): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(83): warning C4305: 'argument': truncation from 'double' to 'float'
   PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

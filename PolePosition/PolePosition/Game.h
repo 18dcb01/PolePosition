@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Racer.h"
 #include <vector>
+#include <iostream>
 #include "Direction.h"
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Texture.hpp>
@@ -16,7 +17,8 @@ public:
 private:
 	//Variables for rendering
 	sf::RenderWindow *window;
-	sf::Sprite background;
+	sf::Sprite backgroundSprite;
+	sf::Texture background;
 
 	//
 	Player p;
