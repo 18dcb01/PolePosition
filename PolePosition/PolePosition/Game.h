@@ -21,7 +21,11 @@ private:
 	//
 	Player p;
 	Racer r[7];
+
+	//vector that contains all of the the directions that
+	//the track is going to turn.
 	std::vector<Direction> map;
+
 	std::vector<Object> signs;
 	int score;
 	time_t startTime;
@@ -30,5 +34,7 @@ private:
 	void render();
 	void drawMap();
 	void drawBackground();
+
+
 
 };

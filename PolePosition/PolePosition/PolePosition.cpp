@@ -4,13 +4,17 @@
 #include "stdafx.h"
 #include "Game.h"
 #include <SFML\Graphics.hpp>
-
+#include <SFML\Audio.hpp>
+#include <vector>
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::RenderWindow *windowPtr = &window;
 	Game game(windowPtr);
+
+	//Vector of sounds.
+	std::vector <sf::Sound> sounds;
 
 	while (window.isOpen())
 	{
