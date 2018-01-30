@@ -5,12 +5,17 @@
 #include <SFML\Graphics.hpp>
 #include "Player.h"
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 
 
 int main()
 {
+	Player p;
+	clock_t t;
+	t = clock();
+
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
@@ -25,7 +30,13 @@ int main()
 		}
 		window.clear();
 		window.draw(shape);
-		window.display();
+		//window.display();
+
+		p.tick();
+		cout << "X speed: " << p.getSpdx() << endl;
+		cout << "Y speed: " << p.getSpdy() << endl;
+		while (t > clock() - 10) {};
+		t = clock();
 	}
 	return 0;
 }
