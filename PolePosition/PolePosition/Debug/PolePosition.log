@@ -1,13 +1,5 @@
-﻿  stdafx.cpp
-  Racer.cpp
-  PolePosition.cpp
-  Player.cpp
-  Object.cpp
-  Game.cpp
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(53): error C2248: 'Object::getPosy': cannot access private member declared in class 'Object'
-  c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.h(13): note: see declaration of 'Object::getPosy'
-  c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.h(5): note: see declaration of 'Object'
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(58): error C2660: 'Game::render': function does not take 0 arguments
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Car.cpp
-  Generating Code...
+﻿  PolePosition.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\poleposition.cpp(24): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\poleposition.cpp(26): warning C4305: '-=': truncation from 'double' to 'float'
+  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
+  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

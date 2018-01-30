@@ -60,12 +60,12 @@ void Game::tick()
 }
 
 
-void Game::render(sf::RenderWindow *window)
+void Game::render()
 {
 	//First, drawBackground
 	drawBackground();
 	//Then, drawMap
-	drawMap(window);
+	drawMap(&window);
 	//Then signs, racers, and the player
 
 }

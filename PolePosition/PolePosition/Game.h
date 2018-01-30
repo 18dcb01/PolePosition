@@ -21,7 +21,7 @@ private:
 	time_t startTime;
 	void race();
 	void tick();
-	void render(sf::RenderWindow*);
+	void render();
 	void drawMap(sf::RenderWindow*);
 	void drawBackground();
 	sf::RenderWindow window;
