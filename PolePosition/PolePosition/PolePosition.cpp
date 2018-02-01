@@ -8,28 +8,17 @@
 #include <Windows.h>
 #include <iostream>
 #include "Player.h"
+#include <time.h>
 
 using namespace std;
 
 
 int main()
 {
-	sf::Sound sound;
-	sf::SoundBuffer buffer;
-	buffer.loadFromFile("CarVroom.wav");
-	sound.setBuffer(buffer);
-	float soundPitch = 1;
-	sound.setLoop(true);
-	sound.play();
-	while (true)
-	{
-		if (GetKeyState(38)<-5&&soundPitch<5)
-			soundPitch += 0.00005;
-		if (GetKeyState(40)<-5&&soundPitch>=0.00005)
-			soundPitch -= 0.00005;
-		std::cout << soundPitch << std::endl;
-		sound.setPitch(soundPitch);
-	}
+	Player p;
+	clock_t time;
+	time = clock();
+
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
@@ -48,6 +37,13 @@ int main()
 		window.clear();
 		window.draw(s);
 		window.display();
+		window.draw(shape);
+		window.display();
+
+		p.tick();
+
+		while (time > clock() - 10) {};
+		time = clock();
 	}
 	//basic game run
 	Game game;

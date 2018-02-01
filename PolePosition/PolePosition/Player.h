@@ -10,9 +10,12 @@ public:
 	~Player();
 	void tick();
 	void drawDashboard();
+	void updateSound(double);
 
 private:
-	std::vector<sf::Sound> sounds;
+	sf::Sound vroom;
+	sf::SoundBuffer buffer;
+	float soundPitch;
 	bool clutchHeld;
 	bool clutch;
 };

@@ -1,11 +1,19 @@
 #include "stdafx.h"
 #include "Player.h"
 #include <math.h>
+#include <SFML\Audio.hpp>
+#include <iostream>
+
+using namespace std;
 
 
 Player::Player() : Car()
 {
 	clutchHeld = false;
+	buffer.loadFromFile("CarVroom.wav");
+	vroom.setBuffer(buffer);
+	vroom.setLoop(true);
+	vroom.play();
 }
 
 
@@ -29,7 +37,7 @@ void Player::tick()
 		//crash
 	}
 	//Accelerate
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1])
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 300)
 	{
 		double accel = 0;
 		double num = exp(-.04*(speed[1]-150));
@@ -44,6 +52,7 @@ void Player::tick()
 			accel = (2 / (1 + num)) * (1.5 - (1.5 / (1 + num)));
 		}
 		speed[1] += accel;
+		updateSound(speed[1]);
 	}
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -52,6 +61,7 @@ void Player::tick()
 			speed[1] -= 2;
 		else if (speed[1] > 0)
 			speed[1] = 0;
+		updateSound(speed[1]);
 	}
 	//Clutch
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
@@ -68,6 +78,15 @@ void Player::tick()
 	position[1] += speed[1];
 
 	//Draw dashboard
+}
+
+
+void Player::updateSound(double speed)
+{
+	soundPitch = (.4 * (speed / 300)) + .8;
+	if (clutch)
+		soundPitch -= .1;
+	vroom.setPitch(soundPitch);
 }
 
 
