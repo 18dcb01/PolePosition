@@ -10,7 +10,7 @@ public:
 	~Player();
 	void tick();
 	void drawDashboard();
-	void updateSound(double);
+	void updateSound();
 
 private:
 	sf::Sound vroom;

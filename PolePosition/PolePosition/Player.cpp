@@ -52,7 +52,7 @@ void Player::tick()
 			accel = (2 / (1 + num)) * (1.5 - (1.5 / (1 + num)));
 		}
 		speed[1] += accel;
-		updateSound(speed[1]);
+		updateSound();
 	}
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -61,7 +61,7 @@ void Player::tick()
 			speed[1] -= 2;
 		else if (speed[1] > 0)
 			speed[1] = 0;
-		updateSound(speed[1]);
+		updateSound();
 	}
 	//Clutch
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
@@ -81,9 +81,9 @@ void Player::tick()
 }
 
 
-void Player::updateSound(double speed)
+void Player::updateSound()
 {
-	soundPitch = (.4 * (speed / 300)) + .8;
+	soundPitch = (.4 * (speed[1] / 300)) + .8;
 	if (clutch)
 		soundPitch -= .1;
 	vroom.setPitch(soundPitch);
