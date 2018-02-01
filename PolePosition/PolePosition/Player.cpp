@@ -81,6 +81,7 @@ void Player::tick()
 }
 
 
+//Updates pitch of engine noise based on player's speed
 void Player::updateSound()
 {
 	soundPitch = (.4 * (speed[1] / 300)) + .8;
