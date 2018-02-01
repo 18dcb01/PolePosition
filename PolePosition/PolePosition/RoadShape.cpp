@@ -23,23 +23,53 @@ RoadShape::RoadShape(sf::RenderWindow  *window)
 
 	//Second point will be at bottom right of screen.
 	this->setPoint(1, sf::Vector2f(windowSize.x,windowSize.y));
-	//Third point will be a point with x coordnate equal to 
-	// L/tan(45 degrees) where L is the height of the trapezoid or 1/10
-	//The area of the screen and  is just L
 
+	//Denominator of trapezoid height is dependent on how many road pieces
+	//are on the screen.
 	double trapezoidHeight = windowSize.x / 10.;
 	double topPointOffset = trapezoidHeight / std::tan(45 * 3.14 / 180.0);
-	this->setPoint(2,sf::Vector2f(topPointOffset, trapezoidHeight));
-	//Point 4 is the same except it takes our previous values
+
+
+	//Point 3 is the same as below except it takes our previous values
 	//minus overall screen dimensions.
-	this->setPoint(3,sf::Vector2f(windowSize.x - topPointOffset, trapezoidHeight));
+	this->setPoint(2, sf::Vector2f(windowSize.x - topPointOffset, trapezoidHeight));
+
+	/*
+	Fourth point will be a point with x coordnate equal to 
+	L/tan(45 degrees) where L is the height of the trapezoid or 
+	1/( 2 times number of road pieces on screen).
+	The area of the screen and  is just L.
+	*/
+	this->setPoint(3,sf::Vector2f(topPointOffset, trapezoidHeight));
+	
 }
 
-RoadShape::RoadShape(sf::Vector2f)
+RoadShape::RoadShape(sf::Vector2f topLeftPrevious, sf::Vector2f topRightPrevious, sf::RenderWindow *window)
 {
 	//This is the same except it takes top of previous
 	//trapezoid as base.
 	this->setPointCount(4);
+
+	//First point should be top left of previous.
+	this->setPoint(0, topLeftPrevious);
+	//Second point should be top right of previous.
+	this->setPoint(1, topRightPrevious);
+
+	sf::Vector2u windowSize = window->getSize();
+
+	//Trapezoid height
+	double trapezoidHeight = (windowSize.x / 10.);
+	double topPointOffset = trapezoidHeight / std::tan(45 * 3.14 / 180);
+	//Point 3
+	this->setPoint(2, sf::Vector2f(topRightPrevious.x - topPointOffset, trapezoidHeight + topRightPrevious.y));
+
+	/*
+	Fourth point will be a point with x coordnate equal to
+	L/tan(45 degrees) where L is the height of the trapezoid or
+	1/( 2 times number of road pieces on screen).
+	The area of the screen and  is just L.
+	*/
+	this->setPoint(3,sf::Vector2f(topPointOffset,trapezoidHeight + topRightPrevious.y));
 }
 
 

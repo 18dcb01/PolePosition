@@ -7,8 +7,10 @@ Game::Game(sf::RenderWindow *tempWindow)
 	window = tempWindow;
 
 	//creating background texture
-	if (!background.loadFromFile("PolePositionMtFuji.png")
-		cout << "Error loading background texture\n";
+	if (!background.loadFromFile("PolePositionMtFuji.png"))
+	{
+		std::cout << "Error loading background texture\n";
+	}
 	//applying texture to background sprite
 	backgroundSprite.setTexture(background);
 	backgroundSprite.setScale(.5, .5);
