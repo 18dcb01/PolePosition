@@ -1,8 +1,5 @@
 #include "stdafx.h"
-<<<<<<< HEAD
 #include "Racer.h"
-=======
->>>>>>> 74fef943cb8d50f8de8e45ae904277b1a6f29050
 #include "Racer.h"
 
 Racer::Racer() : Car()
@@ -25,9 +22,4 @@ Racer::Racer(int pos)
 
 void Racer::tick()
 {
-<<<<<<< HEAD
 }
-=======
-
-}
->>>>>>> 74fef943cb8d50f8de8e45ae904277b1a6f29050

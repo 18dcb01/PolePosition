@@ -1,10 +1,4 @@
-﻿  PolePosition.cpp
-<<<<<<< HEAD
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\poleposition.cpp(24): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\poleposition.cpp(26): warning C4305: '-=': truncation from 'double' to 'float'
+﻿  Object.cpp
+  LINK : C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe not found or not built by the last incremental link; performing full link
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
-=======
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.exe
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
->>>>>>> 74fef943cb8d50f8de8e45ae904277b1a6f29050
