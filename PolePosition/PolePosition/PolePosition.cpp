@@ -32,9 +32,6 @@ int main()
 		window.draw(shape);
 		//window.display();
 
-		p.tick();
-		cout << "X speed: " << p.getSpdx() << endl;
-		cout << "Y speed: " << p.getSpdy() << endl;
 		while (t > clock() - 10) {};
 		t = clock();
 	}

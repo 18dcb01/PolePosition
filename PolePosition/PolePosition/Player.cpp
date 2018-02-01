@@ -29,10 +29,10 @@ void Player::tick()
 		//crash
 	}
 	//Accelerate
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1])
 	{
-		double accel;
-		double num = exp(-.04*speed[0]);
+		double accel = 0;
+		double num = exp(-.04*(speed[1]-150));
 		if (!clutch)
 		{
 			//Accel faster if slow
