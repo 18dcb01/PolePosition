@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include <math.h>
 
 
 Player::Player() : Car()
@@ -22,25 +23,27 @@ void Player::tick()
 	//Turn right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		speed[0] += .25;
-	//Accelerate
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	//If overturned, crash
+	if (speed[0] <= -14 || speed[0] >= 14)
 	{
+		//crash
+	}
+	//Accelerate
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1])
+	{
+		double accel = 0;
+		double num = exp(-.04*(speed[1]-150));
 		if (!clutch)
 		{
 			//Accel faster if slow
-			if (speed[1] <= 100)
-				speed[1] += .75;
-			else
-				speed[1] += .25;
+			accel = .75 - (.75 / (1 + (.25 * num)));
 		}
 		else
 		{
-			//Accel faster if fast
-			if (speed[1] > 100)
-				speed[1] += .75;
-			else
-				speed[1] += .25;
+			//Accel faster if fast, with a limit near max speed
+			accel = (2 / (1 + num)) * (1.5 - (1.5 / (1 + num)));
 		}
+		speed[1] += accel;
 	}
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
