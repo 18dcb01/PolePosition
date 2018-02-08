@@ -42,9 +42,6 @@
     <ClInclude Include="Direction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RoadShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Road.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,9 +66,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RoadShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Road.cpp">
