@@ -9,8 +9,11 @@ public:
 	Car();
 	~Car();
 	virtual void render(int);
-private:
+	double getSpdx();
+	double getSpdy();
+
+protected:
 	std::vector<sf::Sprite> sprites;
-	int speed[2];
+	double speed[2];
 };
 

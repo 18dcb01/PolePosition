@@ -8,10 +8,10 @@ public:
 	~Object();
 	virtual void render(int);
 	void setPos(int, int);
-	int getPosx();
-	int getPosy();
+	double getPosx();
+	double getPosy();
 
 protected:
 	sf::Sprite sprite;
-	int position[2];
+	double position[2];
 };

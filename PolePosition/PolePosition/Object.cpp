@@ -3,8 +3,6 @@
 
 Object::Object()
 {
-	position[0] = -1001;
-	position[1] = -1001;
 }
 
 Object::~Object()
@@ -15,19 +13,17 @@ void Object::render(int)
 {
 }
 
-void Object::setPos(int x, int y)
+void Object::setPos(int, int)
 {
-	position[0] = x;
-	position[1] = y;
-
 }
 
-int Object::getPosx()
+double Object::getPosx()
 {
 	return position[0];
 }
 
-int Object::getPosy()
+
+double Object::getPosy()
 {
 	return position[1];
 }
