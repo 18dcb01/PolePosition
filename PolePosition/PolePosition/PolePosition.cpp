@@ -15,17 +15,18 @@ using namespace std;
 
 int main()
 {
-	Player p;
-	clock_t time;
-	time = clock();
-
+	FreeConsole();
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-	sf::Texture t;
-	t.loadFromFile("10-dithering-opt.jpg");
-	sf::Sprite s;
-	s.setTexture(t);
+	sf::Font aClassic;
+	if (!aClassic.loadFromFile("Arcade Classic.ttf"))
+	{
+		cout << "Didn't work dude" << endl;
+	}
+	sf::Text text;
+	text.setFont(aClassic);
+	text.setCharacterSize(16);
+	text.setFillColor(sf::Color::White);
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -35,20 +36,14 @@ int main()
 				window.close();
 		}
 		window.clear();
-		window.draw(s);
+		text.setString("   Top 47700  Time    Lap  0\"47");
+		text.setPosition(0, 16);
+		window.draw(text);
+		text.setString(" Score 40570  Time  Speed 113");
+		text.setPosition(0, 48);
+		window.draw(text);
 		window.display();
-		window.draw(shape);
-		window.display();
-
-		p.tick();
-
-		while (time > clock() - 10) {};
-		time = clock();
 	}
-	//basic game run
-	Game game;
-	game.play();
-
 	return 0;
 }
 
