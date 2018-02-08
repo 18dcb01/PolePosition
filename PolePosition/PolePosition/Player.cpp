@@ -34,7 +34,11 @@ void Player::tick()
 	//If overturned, crash
 	if (speed[0] <= -14 || speed[0] >= 14)
 	{
-		//crash
+		//crash, maybe noise, different set of sprites
+	}
+	else if (speed[0] <= -12 || speed[0] >= 12)
+	{
+		//Slow down, maybe skidding noise
 	}
 	//Accelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 300)

@@ -19,11 +19,10 @@ private:
 	std::vector<Object> signs;
 	int score;
 	time_t startTime;
+	sf::RenderWindow window;
 	void race();
 	void tick();
 	void render();
 	void drawMap(sf::RenderWindow*);
 	void drawBackground();
-	sf::RenderWindow window;
-
 };
