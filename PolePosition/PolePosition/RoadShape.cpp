@@ -2,7 +2,7 @@
 #include "RoadShape.h"
 
 
-RoadShape::RoadShape(sf::RenderWindow  *window)
+RoadShape::RoadShape(sf::RenderWindow  *window, int screenNum)
 {
 	this->setPointCount(4);
 	//Define points.
@@ -26,7 +26,7 @@ RoadShape::RoadShape(sf::RenderWindow  *window)
 
 	//Denominator of trapezoid height is dependent on how many road pieces
 	//are on the screen.
-	double trapezoidHeight = windowSize.x / 10.;
+	double trapezoidHeight = windowSize.x / (2 * screenNum);
 	double topPointOffset = trapezoidHeight / std::tan(45 * 3.14 / 180.0);
 
 
@@ -44,11 +44,15 @@ RoadShape::RoadShape(sf::RenderWindow  *window)
 	
 }
 
-RoadShape::RoadShape(sf::Vector2f topLeftPrevious, sf::Vector2f topRightPrevious, sf::RenderWindow *window)
+RoadShape::RoadShape(RoadShape previous, sf::RenderWindow *window, int screenNum)
 {
 	//This is the same except it takes top of previous
 	//trapezoid as base.
 	this->setPointCount(4);
+
+	sf::Vector2f topLeftPrevious = previous.getPoint(3);
+	sf::Vector2f topRightPrevious = previous.getPoint(2);
+
 
 	//First point should be top left of previous.
 	this->setPoint(0, topLeftPrevious);
@@ -58,7 +62,7 @@ RoadShape::RoadShape(sf::Vector2f topLeftPrevious, sf::Vector2f topRightPrevious
 	sf::Vector2u windowSize = window->getSize();
 
 	//Trapezoid height
-	double trapezoidHeight = (windowSize.x / 10.);
+	double trapezoidHeight = (windowSize.x / (2 * screenNum));
 	double topPointOffset = trapezoidHeight / std::tan(45 * 3.14 / 180);
 	//Point 3
 	this->setPoint(2, sf::Vector2f(topRightPrevious.x - topPointOffset, trapezoidHeight + topRightPrevious.y));
@@ -77,6 +81,13 @@ RoadShape::~RoadShape()
 {
 }
 
-void RoadShape::setLean(int)
+void RoadShape::setLean(Direction)
 {
+	//Points...
+	//Bottom left = 0
+	//Bottom Right = 1
+	//TopRight = 3
+	//TopLeft = 2
+
 }
+
