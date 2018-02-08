@@ -6,6 +6,7 @@
 //We need math lib for trig functions.
 
 /*
+<<<<<<< HEAD
 	Defines the shape of the road and should provide scaling
 	instances of itself to provide the illusion of distance.
 
@@ -15,6 +16,10 @@
 
 	should be able to build base on either bottom of the screen
 	or another RoadShape.
+=======
+	Should be a piece of the larger road that maps itself to lines
+	drawn previously in Road.
+>>>>>>> e5772607f5f4d9e82af927df6779aff65f382d0f
 */
 class RoadShape :
 	public sf::ConvexShape

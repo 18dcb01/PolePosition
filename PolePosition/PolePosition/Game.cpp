@@ -8,12 +8,9 @@ Game::Game(sf::RenderWindow *tempWindow)
 
 	//creating background texture
 	if (!background.loadFromFile("PolePositionMtFuji.png"))
-	{
 		std::cout << "Error loading background texture\n";
-	}
 	//applying texture to background sprite
 	backgroundSprite.setTexture(background);
-	backgroundSprite.setScale(.5, .5);
 
 	//Map is initialized to all straight for now.
 	for (int i = 0; i < 50; i++)
@@ -80,10 +77,10 @@ void Game::drawBackground()
 
 	//create background sprite
 	backgroundSprite.setTexture(background);
-	backgroundSprite.setScale(.5, .5);
+	backgroundSprite.setScale(1, 1.75);
 
 	//rotate sprite to correct angle
-	backgroundSprite.move(.1, 0);
+	backgroundSprite.move(-.1, 0);
 	if (backgroundSprite.getPosition().x < -windowSize.x)
 		backgroundSprite.setPosition(sf::Vector2f(0, 0));
 	if (backgroundSprite.getPosition().x > 0)

@@ -162,6 +162,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Racer.h" />
+    <ClInclude Include="Road.h" />
     <ClInclude Include="RoadShape.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PolePosition.cpp" />
     <ClCompile Include="Racer.cpp" />
+    <ClCompile Include="Road.cpp" />
     <ClCompile Include="RoadShape.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
