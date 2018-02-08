@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
-Game::Game()
+Game::Game():window(sf::VideoMode(512,448), "Pole Position")
 {
 	//Probably something else we should be doing here
 }
@@ -15,11 +15,41 @@ Game::~Game()
 
 void Game::play()
 {
+	//menu
+	sf::Texture t;
+	t.loadFromFile("OpeningMenu.jpg");
+	sf::Sprite s;
+	s.setTexture(t);
+	s.setScale(sf::Vector2f(.8, .8));
+	sf::Sprite s2;
+	s2.setTexture(t);
+	s2.setScale(.8, .8);
+	s2.setTextureRect(sf::IntRect(0, 0, 640, 80));
+	s2.setPosition(0, 384);
+	bool menuClosed = false;
+	while (window.isOpen()&&!menuClosed)
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+			if (event.type == sf::Event::KeyPressed)
+				menuClosed = true;
+		}
+		window.clear();
+		window.draw(s);
+		window.draw(s2);
+		window.display();
+	}
+	p.playSound();
 	//qualifying round
-	race();
+	if (window.isOpen())
+		race();
+
+	//second race
 	if (window.isOpen())
 	{
-		//second race
 		for (int i = 0; i < 7; i++)
 			r[i] = Racer(i);
 		race();
@@ -66,6 +96,7 @@ void Game::render()
 	//Then, drawMap
 	drawMap(&window);
 	//Then signs, racers, and the player
+	window.display();
 
 }
 
@@ -79,7 +110,7 @@ void Game::drawMap(sf::RenderWindow *window)
 	//Draw the grass
 	sf::RectangleShape grass(sf::Vector2f(width, height / 2));
 	//Set grass position and color
-	grass.setPosition(0, 112);
+	grass.setPosition(0, height);
 	grass.setFillColor(sf::Color::Green);
 	window->draw(grass);
 }

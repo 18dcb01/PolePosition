@@ -13,12 +13,23 @@ Player::Player() : Car()
 	buffer.loadFromFile("CarVroom.wav");
 	vroom.setBuffer(buffer);
 	vroom.setLoop(true);
-	vroom.play();
 }
 
 
 Player::~Player()
 {
+}
+
+
+void Player::playSound()
+{
+	vroom.play();
+}
+
+
+void Player::pauseSound()
+{
+	vroom.pause();
 }
 
 

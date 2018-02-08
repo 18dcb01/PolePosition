@@ -13,6 +13,10 @@ void Object::render(int)
 {
 }
 
+void Object::setPos(int, int)
+{
+}
+
 double Object::getPosx()
 {
 	return position[0];

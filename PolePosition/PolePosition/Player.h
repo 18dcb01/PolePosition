@@ -11,6 +11,8 @@ public:
 	void tick();
 	void drawDashboard();
 	void updateSound();
+	void playSound();
+	void pauseSound();
 
 private:
 	sf::Sound vroom;
