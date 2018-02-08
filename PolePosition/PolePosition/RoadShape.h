@@ -5,15 +5,8 @@
 //We need math lib for trig functions.
 
 /*
-	Defines the shape of the road and should provide scaling
-	instances of itself to provide the illusion of distance.
-
-	Should be an example of a trapezoid if road is straight.
-	will default to being straigh will curve with functions.
-	shoould lean one way or another if track is curving
-
-	should be able to build base on either bottom of the screen
-	or another RoadShape.
+	Should be a piece of the larger road that maps itself to lines
+	drawn previously in Road.
 */
 class RoadShape :
 	public sf::ConvexShape
