@@ -16,16 +16,19 @@ Game::~Game()
 void Game::play()
 {
 	//menu
-	sf::Texture t;
-	t.loadFromFile("OpeningMenu.jpg");
-	sf::Sprite s;
-	s.setTexture(t);
-	s.setScale(sf::Vector2f(.8, .8));
-	sf::Sprite s2;
-	s2.setTexture(t);
-	s2.setScale(.8, .8);
-	s2.setTextureRect(sf::IntRect(0, 0, 640, 80));
-	s2.setPosition(0, 384);
+	sf::Texture menuTexture;
+	menuTexture.loadFromFile("OpeningMenu.jpg");
+
+	sf::Sprite menu;
+	menu.setTexture(menuTexture);
+	menu.setScale(sf::Vector2f(.8, .8));
+
+	sf::Sprite bar;//the bar at the bottom, is naturally not filled in
+	bar.setTexture(menuTexture);
+	bar.setScale(.8, .8);
+	bar.setTextureRect(sf::IntRect(0, 0, 640, 80));//a part of the texture that is pure tan
+	bar.setPosition(0, 384);
+
 	bool menuClosed = false;
 	while (window.isOpen()&&!menuClosed)
 	{
@@ -38,11 +41,15 @@ void Game::play()
 				menuClosed = true;
 		}
 		window.clear();
-		window.draw(s);
-		window.draw(s2);
+
+		window.draw(menu);
+		window.draw(bar);
+
 		window.display();
 	}
-	p.playSound();
+
+	//proceed to game
+	p.playSound();//vroom
 	//qualifying round
 	if (window.isOpen())
 		race();
