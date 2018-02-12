@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include <math.h>
+#include <SFML/Graphics.hpp>
 #include <SFML\Audio.hpp>
 #include <iostream>
 
@@ -14,6 +15,13 @@ Player::Player() : Car()
 	vroom.setBuffer(buffer);
 	vroom.setLoop(true);
 	vroom.play();
+
+	if (!aClassic.loadFromFile("Arcade Classic.ttf"))
+	{
+		cout << "Didn't work dude" << endl;
+	}
+	sf::Text tTop, tScore, tTime, tLap, tSpeed;
+	dashboard = {tTop, tScore, tTime, tLap, tSpeed};
 }
 
 
@@ -97,4 +105,5 @@ void Player::updateSound()
 
 void Player::drawDashboard()
 {
+
 }

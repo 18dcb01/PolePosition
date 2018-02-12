@@ -18,4 +18,6 @@ private:
 	float soundPitch;
 	bool clutchHeld;
 	bool clutch;
+	vector<sf::Text> dashboard;
+	sf::Folt aClassic;
 };

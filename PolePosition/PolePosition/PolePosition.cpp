@@ -17,15 +17,7 @@ int main()
 {
 	FreeConsole();
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
-	sf::Font aClassic;
-	if (!aClassic.loadFromFile("Arcade Classic.ttf"))
-	{
-		cout << "Didn't work dude" << endl;
-	}
-	sf::Text text;
-	text.setFont(aClassic);
-	text.setCharacterSize(16);
-	text.setFillColor(sf::Color::White);
+	Player p;
 
 	while (window.isOpen())
 	{
@@ -36,12 +28,7 @@ int main()
 				window.close();
 		}
 		window.clear();
-		text.setString("   Top 47700  Time    Lap  0\"47");
-		text.setPosition(0, 16);
-		window.draw(text);
-		text.setString(" Score 40570  Time  Speed 113");
-		text.setPosition(0, 48);
-		window.draw(text);
+		p.drawDashboard();
 		window.display();
 	}
 	return 0;

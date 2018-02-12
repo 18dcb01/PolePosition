@@ -1,3 +1,39 @@
 ﻿  PolePosition.cpp
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.exe
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C2143: syntax error: missing ';' before '<'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C2238: unexpected token(s) preceding ';'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C2039: 'Folt': is not a member of 'sf'
+  c:\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp(35): note: see declaration of 'sf'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C3646: 'aClassic': unknown override specifier
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  Player.cpp
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C2143: syntax error: missing ';' before '<'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C2238: unexpected token(s) preceding ';'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C2039: 'Folt': is not a member of 'sf'
+  c:\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp(35): note: see declaration of 'sf'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C3646: 'aClassic': unknown override specifier
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(19): error C2065: 'aClassic': undeclared identifier
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(19): error C2228: left of '.loadFromFile' must have class/struct/union
+  c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(19): note: type is 'unknown-type'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(23): error C2065: 'dashboard': undeclared identifier
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(23): error C2275: 'sf::Text': illegal use of this type as an expression
+  c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(23): note: see declaration of 'sf::Text'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(23): error C2146: syntax error: missing ')' before identifier 'tTop'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(24): error C2059: syntax error: '}'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(24): error C2143: syntax error: missing ';' before '}'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(28): error C2143: syntax error: missing ';' before '{'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(28): error C2447: '{': missing function header (old-style formal list?)
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(98): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(100): warning C4305: '-=': truncation from 'double' to 'float'
+  Game.cpp
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C2143: syntax error: missing ';' before '<'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(21): error C2238: unexpected token(s) preceding ';'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C2039: 'Folt': is not a member of 'sf'
+  c:\sfml-2.4.2\include\sfml\audio\soundfilewriter.hpp(35): note: see declaration of 'sf'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C3646: 'aClassic': unknown override specifier
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
