@@ -28,7 +28,7 @@ int main()
 				window.close();
 		}
 		window.clear();
-		p.drawDashboard();
+		p.tick();
 		window.display();
 	}
 	return 0;

@@ -118,6 +118,7 @@ void Player::tick()
 	position[1] += speed[1];
 
 	//Draw dashboard
+	drawDashboard();
 }
 
 
