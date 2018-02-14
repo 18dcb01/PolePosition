@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
+#include <iostream>
+#include <Windows.h>
 
 Game::Game():window(sf::VideoMode(512,448), "Pole Position")
 {
@@ -47,6 +49,9 @@ void Game::play()
 
 		window.display();
 	}
+	origPState = GetKeyState(80);//check what state the P is in
+	if (origPState < -5)//if p was pressed
+		origPState += 128;//get what will happen when it is unpressed
 
 	//proceed to game
 	p.playSound();//vroom
@@ -61,7 +66,6 @@ void Game::play()
 			r[i] = Racer(i);
 		race();
 	}
-	//Calls race (twice bc two races)
 }
 
 
@@ -77,7 +81,13 @@ void Game::race()
 				window.close();
 		}
 		//should maybe get more complicated?
-		tick();
+		if(GetKeyState(80)==origPState)//if not paused
+			tick();
+		else
+		{
+			int i;//looks like it just says pause
+		}
+
 	}
 	//A loop - continually calls tick
 }
@@ -98,6 +108,7 @@ void Game::tick()
 
 void Game::render()
 {
+	window.clear();
 	//First, drawBackground
 	drawBackground();
 	//Then, drawMap
@@ -115,9 +126,9 @@ void Game::drawMap(sf::RenderWindow *window)
 	int width = windowSize.x;
 	int height = windowSize.y;
 	//Draw the grass
-	sf::RectangleShape grass(sf::Vector2f(width, height / 2));
+	sf::RectangleShape grass(sf::Vector2f(width, rand()%(height / 2)));//random for testing
 	//Set grass position and color
-	grass.setPosition(0, height);
+	grass.setPosition(0, height/2);
 	grass.setFillColor(sf::Color::Green);
 	window->draw(grass);
 }

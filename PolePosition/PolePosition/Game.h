@@ -25,5 +25,6 @@ private:
 	void drawMap(sf::RenderWindow*);
 	void drawBackground();
 	sf::RenderWindow window;
+	int origPState;//used for pause menu
 
 };
