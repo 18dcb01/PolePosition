@@ -6,7 +6,7 @@ class Car :
 	public Object
 {
 public:
-	Car();
+	Car(sf::RenderWindow*);
 	~Car();
 	virtual void render(int);
 	double getSpdx();

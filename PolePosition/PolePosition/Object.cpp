@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Object.h"
 
-Object::Object()
+Object::Object(sf::RenderWindow* win)
 {
+	w = win;
 }
 
 Object::~Object()

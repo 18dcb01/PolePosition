@@ -2,7 +2,7 @@
 #include "Car.h"
 
 
-Car::Car() : Object()
+Car::Car(sf::RenderWindow* w) : Object(sf::RenderWindow* w)
 {
 }
 

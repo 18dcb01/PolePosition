@@ -8,20 +8,33 @@
 using namespace std;
 
 
-Player::Player() : Car()
+Player::Player(sf::RenderWindow* w) : Car(sf::RenderWindow* w)
 {
+	//Load engine noise
 	clutchHeld = false;
 	buffer.loadFromFile("CarVroom.wav");
 	vroom.setBuffer(buffer);
 	vroom.setLoop(true);
 	vroom.play();
-
+	//Initialize dashboard text
 	if (!aClassic.loadFromFile("Arcade Classic.ttf"))
 	{
 		cout << "Didn't work dude" << endl;
 	}
-	sf::Text tTop, tScore, tTime, tLap, tSpeed;
-	dashboard = {tTop, tScore, tTime, tLap, tSpeed};
+	sf::Text tTop, tScore, tTime, tLap, tSpeed,
+		topScore, score, time, lap, speed;
+	dashboard = {tTop, tScore, tTime, tLap, tSpeed,
+		topScore, score, time, lap, speed};
+	for (int i = 0; i < 10; i++)
+	{
+		dashboard.at(i).setFont(aClassic);
+		dashboard.at(i).setCharacterSize(16);
+	}
+	dashboard.at(0).setString("TOP");
+	dashboard.at(1).setString("SCORE");
+	dashboard.at(2).setString("TIME");
+	dashboard.at(3).setString("LAP");
+	dashboard.at(4).setString("SPEED");
 }
 
 
@@ -105,5 +118,7 @@ void Player::updateSound()
 
 void Player::drawDashboard()
 {
-
+	//Set the strings for the second half
+	for (int i = 0; i < 10; i++)
+		w.draw(dashboard.at(i));
 }

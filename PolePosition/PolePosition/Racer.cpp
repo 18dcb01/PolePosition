@@ -2,7 +2,7 @@
 #include "Racer.h"
 #include "Racer.h"
 
-Racer::Racer() : Car()
+Racer::Racer(sf::RenderWindow* w) : Car(sf::RenderWindow* w)
 {
 }
 

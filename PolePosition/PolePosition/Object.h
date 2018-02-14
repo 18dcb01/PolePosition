@@ -4,7 +4,7 @@
 class Object
 {
 public:
-	Object();
+	Object(sf::RenderWindow*);
 	~Object();
 	virtual void render(int);
 	void setPos(int, int);
@@ -14,4 +14,5 @@ public:
 protected:
 	sf::Sprite sprite;
 	double position[2];
+	sf::RenderWindow* w
 };
