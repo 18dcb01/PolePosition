@@ -2,7 +2,12 @@
 #include "Car.h"
 
 
-Car::Car(sf::RenderWindow* w) : Object(sf::RenderWindow* w)
+Car::Car() : Object()
+{
+}
+
+
+Car::Car(sf::RenderWindow* w) : Object(w)
 {
 }
 
@@ -10,6 +15,7 @@ Car::Car(sf::RenderWindow* w) : Object(sf::RenderWindow* w)
 Car::~Car()
 {
 }
+
 
 void Car::render(int)
 {

@@ -17,7 +17,7 @@ int main()
 {
 	FreeConsole();
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
-	Player p;
+	Player p(&window);
 
 	while (window.isOpen())
 	{
@@ -33,4 +33,3 @@ int main()
 	}
 	return 0;
 }
-

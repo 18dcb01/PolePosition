@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "Game.h"
 
+
 Game::Game()
 {
-	//Probably something else we should be doing here
+
 }
 
 
@@ -21,7 +22,7 @@ void Game::play()
 	{
 		//second race
 		for (int i = 0; i < 7; i++)
-			r[i] = Racer(i);
+			r[i] = Racer(&window);
 		race();
 	}
 	//Calls race (twice bc two races)

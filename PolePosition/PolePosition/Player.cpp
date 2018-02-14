@@ -8,7 +8,12 @@
 using namespace std;
 
 
-Player::Player(sf::RenderWindow* w) : Car(sf::RenderWindow* w)
+Player::Player() : Car()
+{
+}
+
+
+Player::Player(sf::RenderWindow* w) : Car(w)
 {
 	//Load engine noise
 	clutchHeld = false;
@@ -31,10 +36,20 @@ Player::Player(sf::RenderWindow* w) : Car(sf::RenderWindow* w)
 		dashboard.at(i).setCharacterSize(16);
 	}
 	dashboard.at(0).setString("TOP");
+	dashboard.at(0).setPosition(48, 16);
 	dashboard.at(1).setString("SCORE");
+	dashboard.at(1).setPosition(16, 48);
 	dashboard.at(2).setString("TIME");
+	dashboard.at(2).setPosition(224, 16);
 	dashboard.at(3).setString("LAP");
+	dashboard.at(3).setPosition(352, 16);
 	dashboard.at(4).setString("SPEED");
+	dashboard.at(4).setPosition(320, 48);
+	dashboard.at(5).setPosition(192, 16);
+	dashboard.at(6).setPosition(192, 48);
+	dashboard.at(7).setPosition(272, 48);
+	dashboard.at(8).setPosition(496, 16);
+	dashboard.at(9).setPosition(464, 48);
 }
 
 
@@ -119,6 +134,16 @@ void Player::updateSound()
 void Player::drawDashboard()
 {
 	//Set the strings for the second half
+	dashboard.at(5).setString("99999");
+	dashboard.at(6).setString("99999");
+	dashboard.at(7).setString("999");
+	dashboard.at(8).setString("99\"99");
+	int ySpeed = speed[1];
+	dashboard.at(9).setString(to_string(ySpeed));
+	for (int i = 5; i < 10; i++)
+	{
+		dashboard.at(i).setOrigin(dashboard.at(i).getLocalBounds().width, 0);
+	}
 	for (int i = 0; i < 10; i++)
-		w.draw(dashboard.at(i));
+		window->draw(dashboard.at(i));
 }

@@ -1,22 +1,33 @@
 #include "stdafx.h"
 #include "Object.h"
 
+
+Object::Object()
+{
+	//Maybe grab a pointer to the render window
+}
+
+
 Object::Object(sf::RenderWindow* win)
 {
-	w = win;
+	window = win;
 }
+
 
 Object::~Object()
 {
 }
 
+
 void Object::render(int)
 {
 }
 
+
 void Object::setPos(int, int)
 {
 }
+
 
 double Object::getPosx()
 {

@@ -8,6 +8,7 @@ class Player :
 	public Car
 {
 public:
+	Player();
 	Player(sf::RenderWindow*);
 	~Player();
 	void tick();
@@ -22,5 +23,4 @@ private:
 	bool clutch;
 	std::vector<sf::Text> dashboard;
 	sf::Font aClassic;
-
 };

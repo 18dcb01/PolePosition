@@ -3,6 +3,7 @@
 class Racer : public Car
 {
 public:
+	Racer();
 	Racer(sf::RenderWindow*);
 	Racer(int);
 	~Racer();
