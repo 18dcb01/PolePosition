@@ -1,7 +1,8 @@
 #pragma once
 #include <vector>
-#include<SFML\Graphics.hpp>
-#include "RoadShape.h"
+#include <math.h>
+#include <SFML\Graphics.hpp>
+#include <SFML\Graphics\VertexArray.hpp>
 
 class Road
 {
@@ -17,10 +18,13 @@ curvature of the road.
 
 
 public:
-	Road();
-	~Road();
+	Road(sf::RenderWindow*);
+	void drawCurve();
+	void drawRoad();
 
 private:
-	std::vector<RoadShape> roadShapes;
+	std::vector<double> road;
+	sf::VertexArray roadSide;
+	std::vector<sf::ConvexShape> roadShapes;
 };
 
