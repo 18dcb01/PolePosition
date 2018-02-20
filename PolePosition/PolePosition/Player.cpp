@@ -171,7 +171,7 @@ void Player::initializeDashboard()
 	dashboard.at(6).setPosition(192, 48);
 
 	dashboard.at(7).setPosition(272, 48);
-	dashboard.at(0).setFillColor(sf::Color(255, 250, 103));
+	dashboard.at(7).setFillColor(sf::Color(255, 250, 103));
 
 	dashboard.at(8).setPosition(496, 16);
 	dashboard.at(8).setFillColor(sf::Color(141, 238, 105));
