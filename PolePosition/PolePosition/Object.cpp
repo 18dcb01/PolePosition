@@ -23,18 +23,12 @@ void Object::render(int)
 {
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/Words
 void Object::setPos(int, int)
 {
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/Words
 double Object::getPosx()
 {
 	return position[0];

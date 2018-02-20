@@ -8,9 +8,6 @@ public:
 	Racer(int);
 	~Racer();
 	void tick();
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/Words
 private:
 };

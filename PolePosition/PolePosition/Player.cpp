@@ -20,9 +20,6 @@ Player::Player(sf::RenderWindow* w) : Car(w)
 	buffer.loadFromFile("CarVroom.wav");
 	vroom.setBuffer(buffer);
 	vroom.setLoop(true);
-<<<<<<< HEAD
-=======
-	vroom.play();
 	//Initialize dashboard text
 	if (!aClassic.loadFromFile("Arcade Classic.ttf"))
 	{
@@ -32,27 +29,7 @@ Player::Player(sf::RenderWindow* w) : Car(w)
 		topScore, score, time, lap, speed;
 	dashboard = {tTop, tScore, tTime, tLap, tSpeed,
 		topScore, score, time, lap, speed};
-	for (int i = 0; i < 10; i++)
-	{
-		dashboard.at(i).setFont(aClassic);
-		dashboard.at(i).setCharacterSize(16);
-	}
-	dashboard.at(0).setString("TOP");
-	dashboard.at(0).setPosition(48, 16);
-	dashboard.at(1).setString("SCORE");
-	dashboard.at(1).setPosition(16, 48);
-	dashboard.at(2).setString("TIME");
-	dashboard.at(2).setPosition(224, 16);
-	dashboard.at(3).setString("LAP");
-	dashboard.at(3).setPosition(352, 16);
-	dashboard.at(4).setString("SPEED");
-	dashboard.at(4).setPosition(320, 48);
-	dashboard.at(5).setPosition(192, 16);
-	dashboard.at(6).setPosition(192, 48);
-	dashboard.at(7).setPosition(272, 48);
-	dashboard.at(8).setPosition(496, 16);
-	dashboard.at(9).setPosition(464, 48);
->>>>>>> origin/Words
+	initializeDashboard();
 }
 
 
@@ -63,6 +40,7 @@ Player::~Player()
 
 void Player::playSound()
 {
+	
 	vroom.play();
 }
 
@@ -107,7 +85,6 @@ void Player::tick()
 			accel = (2 / (1 + num)) * (1.5 - (1.5 / (1 + num)));
 		}
 		speed[1] += accel;
-		updateSound();
 	}
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -116,7 +93,6 @@ void Player::tick()
 			speed[1] -= 2;
 		else if (speed[1] > 0)
 			speed[1] = 0;
-		updateSound();
 	}
 	//Clutch
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
@@ -131,9 +107,7 @@ void Player::tick()
 	//Update pos
 	position[0] += speed[0];
 	position[1] += speed[1];
-
-	//Draw dashboard
-	drawDashboard();
+	updateSound();
 }
 
 
@@ -162,4 +136,45 @@ void Player::drawDashboard()
 	}
 	for (int i = 0; i < 10; i++)
 		window->draw(dashboard.at(i));
+}
+
+
+void Player::initializeDashboard()
+{
+
+	for (int i = 0; i < 10; i++)
+	{
+		dashboard.at(i).setFont(aClassic);
+		dashboard.at(i).setCharacterSize(16);
+	}
+	dashboard.at(0).setString("TOP");
+	dashboard.at(0).setPosition(48, 16);
+	dashboard.at(0).setFillColor(sf::Color(255, 151, 173));
+
+	dashboard.at(1).setString("SCORE");
+	dashboard.at(1).setPosition(16, 48);
+
+	dashboard.at(2).setString("TIME");
+	dashboard.at(2).setPosition(224, 16);
+	dashboard.at(2).setFillColor(sf::Color(255, 250, 103));
+
+	dashboard.at(3).setString("LAP");
+	dashboard.at(3).setPosition(352, 16);
+	dashboard.at(3).setFillColor(sf::Color(141, 238, 105));
+
+	dashboard.at(4).setString("SPEED");
+	dashboard.at(4).setPosition(320, 48);
+
+	dashboard.at(5).setPosition(192, 16);
+	dashboard.at(5).setFillColor(sf::Color(255, 151, 173));
+
+	dashboard.at(6).setPosition(192, 48);
+
+	dashboard.at(7).setPosition(272, 48);
+	dashboard.at(0).setFillColor(sf::Color(255, 250, 103));
+
+	dashboard.at(8).setPosition(496, 16);
+	dashboard.at(8).setFillColor(sf::Color(141, 238, 105));
+
+	dashboard.at(9).setPosition(464, 48);
 }

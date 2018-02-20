@@ -15,11 +15,9 @@ using namespace std;
 
 int main()
 {
-<<<<<<< HEAD
 	//basic game run
 	Game game;
 	game.play();
-=======
 	FreeConsole();
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	Player p(&window);
@@ -36,6 +34,5 @@ int main()
 		p.tick();
 		window.display();
 	}
->>>>>>> origin/Words
 	return 0;
 }
