@@ -62,8 +62,9 @@ void Game::tick()
 
 void Game::render()
 {
-	//First, drawBackground
+	//First, drawBackground and drawDashboard
 	drawBackground();
+	p.drawDashboard();
 	//Then, drawMap
 	drawMap(&window);
 	//Then signs, racers, and the player
