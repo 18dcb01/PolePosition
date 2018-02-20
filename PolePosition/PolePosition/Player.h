@@ -12,6 +12,7 @@ public:
 	Player(sf::RenderWindow*);
 	~Player();
 	void tick();
+	void initializeDashboard();
 	void drawDashboard();
 	void updateSound();
 
