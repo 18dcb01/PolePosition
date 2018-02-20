@@ -7,6 +7,7 @@ class Car :
 {
 public:
 	Car();
+	Car(sf::RenderWindow*);
 	~Car();
 	virtual void render(int);
 	double getSpdx();
@@ -16,4 +17,3 @@ protected:
 	std::vector<sf::Sprite> sprites;
 	double speed[2];
 };
-

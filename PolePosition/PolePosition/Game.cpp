@@ -1,9 +1,14 @@
 #include "stdafx.h"
 #include "Game.h"
 
+<<<<<<< HEAD
 Game::Game():window(sf::VideoMode(512,448), "Pole Position")
+=======
+
+Game::Game()
+>>>>>>> origin/Words
 {
-	//Probably something else we should be doing here
+
 }
 
 
@@ -51,7 +56,7 @@ void Game::play()
 	if (window.isOpen())
 	{
 		for (int i = 0; i < 7; i++)
-			r[i] = Racer(i);
+			r[i] = Racer(&window);
 		race();
 	}
 	//Calls race (twice bc two races)

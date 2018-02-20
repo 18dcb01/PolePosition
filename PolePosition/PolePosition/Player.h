@@ -2,11 +2,14 @@
 #include "Car.h"
 #include <vector>
 #include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+
 class Player :
 	public Car
 {
 public:
 	Player();
+	Player(sf::RenderWindow*);
 	~Player();
 	void tick();
 	void drawDashboard();
@@ -20,4 +23,6 @@ private:
 	float soundPitch;
 	bool clutchHeld;
 	bool clutch;
+	std::vector<sf::Text> dashboard;
+	sf::Font aClassic;
 };

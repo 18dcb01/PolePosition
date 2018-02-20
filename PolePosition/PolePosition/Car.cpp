@@ -7,9 +7,15 @@ Car::Car() : Object()
 }
 
 
+Car::Car(sf::RenderWindow* w) : Object(w)
+{
+}
+
+
 Car::~Car()
 {
 }
+
 
 void Car::render(int)
 {

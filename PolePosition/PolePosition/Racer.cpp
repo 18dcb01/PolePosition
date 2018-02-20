@@ -2,14 +2,22 @@
 #include "Racer.h"
 #include "Racer.h"
 
-Racer::Racer() : Car()
+
+Racer::Racer()
 {
 }
+
+
+Racer::Racer(sf::RenderWindow* w) : Car(w)
+{
+}
+
 
 Racer::~Racer()
 {
 
 }
+
 
 Racer::Racer(int pos)
 {
@@ -19,6 +27,7 @@ Racer::Racer(int pos)
 		position[0] = 20;
 	position[1] = -20 * (pos / 2);
 }
+
 
 void Racer::tick()
 {
