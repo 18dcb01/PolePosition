@@ -25,4 +25,5 @@ private:
 	bool clutch;
 	std::vector<sf::Text> dashboard;
 	sf::Font aClassic;
+	void initializeDashboard();
 };
