@@ -8,12 +8,14 @@ Game::Game(sf::RenderWindow *tempWindow)
 
 	//creating background texture
 	if (!background.loadFromFile("PolePositionMtFuji.png"))
-		std::cout << "Error loading background texture\n";
 	{
 		std::cout << "Error loading background texture\n";
 	}
-	//applying texture to background sprite
-	backgroundSprite.setTexture(background);
+	else
+	{
+		//applying texture to background sprite
+		backgroundSprite.setTexture(background);
+	}
 
 	//Map is initialized to all straight for now.
 	for (int i = 0; i < 50; i++)

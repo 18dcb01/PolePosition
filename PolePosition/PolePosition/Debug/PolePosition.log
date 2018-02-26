@@ -1,23 +1,10 @@
-﻿  stdafx.cpp
-  RoadShape.cpp
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\roadshape.cpp(22): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\roadshape.cpp(25): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\roadshape.cpp(35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\roadshape.cpp(43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\roadshape.cpp(64): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\roadshape.cpp(72): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Road.cpp
-  Racer.cpp
-  PolePosition.cpp
-  Player.cpp
-  Object.cpp
+﻿  PolePosition.cpp
   Game.cpp
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(68): warning C4930: 'sf::ConvexShape veerRight(void)': prototyped function not called (was a variable definition intended?)
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(69): warning C4930: 'sf::ConvexShape veerLeft(void)': prototyped function not called (was a variable definition intended?)
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(67): warning C4930: 'sf::ConvexShape straight(void)': prototyped function not called (was a variable definition intended?)
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(78): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(86): warning C4305: 'argument': truncation from 'double' to 'float'
-  Car.cpp
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(70): warning C4930: 'sf::ConvexShape veerRight(void)': prototyped function not called (was a variable definition intended?)
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(71): warning C4930: 'sf::ConvexShape veerLeft(void)': prototyped function not called (was a variable definition intended?)
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(69): warning C4930: 'sf::ConvexShape straight(void)': prototyped function not called (was a variable definition intended?)
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(80): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(88): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...
   PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

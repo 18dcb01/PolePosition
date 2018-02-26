@@ -18,13 +18,12 @@ curvature of the road.
 
 
 public:
-	Road(sf::RenderWindow*);
-	void drawCurve();
+	Road(sf::RenderWindow*, std::vector<double>);
 	void drawRoad();
 
 private:
-	std::vector<double> road;
-	sf::VertexArray roadSide;
-	std::vector<sf::ConvexShape> roadShapes;
+	std::vector<double> roadCurve;
+	sf::ConvexShape mainShape;
+	sf::RenderWindow* windowPtr;
 };
 

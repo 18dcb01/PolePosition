@@ -6,12 +6,15 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
 #include <vector>
+#include "Road.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::RenderWindow *windowPtr = &window;
-	Game game(windowPtr);
+	//Game game(windowPtr);
+	std::vector<double> oi;
+	Road road(windowPtr, oi);
 
 	//Vector of sounds.
 	std::vector <sf::Sound> sounds;
@@ -25,8 +28,9 @@ int main()
 				window.close();
 		}
 
+		road.drawRoad();
 		window.clear();
-		game.play();
+		//game.play();
 		window.display();
 	}
 
