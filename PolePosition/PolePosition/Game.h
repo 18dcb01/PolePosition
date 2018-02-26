@@ -20,12 +20,13 @@ private:
 	int score;
 	time_t startTime;
 	sf::RenderWindow window;
+	short pState;
+	int tickCount;
+	int highScore;
 	void race();
 	void tick();
 	void render();
 	void drawMap(sf::RenderWindow*);
 	void drawBackground();
 	void openingMenu();
-	short pState;
-	int tickCount;
 };

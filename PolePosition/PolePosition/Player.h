@@ -25,5 +25,6 @@ private:
 	bool clutch;
 	std::vector<sf::Text> dashboard;
 	sf::Font aClassic;
+	int score;
 	void initializeDashboard();
 };
