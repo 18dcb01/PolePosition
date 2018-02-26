@@ -40,13 +40,15 @@ Player::~Player()
 
 void Player::playSound()
 {
-	vroom.play();
+	if (vroom.getStatus() != 2)
+		vroom.play();
 }
 
 
 void Player::pauseSound()
 {
-	vroom.pause();
+	if (vroom.getStatus() != 1)
+		vroom.pause();
 }
 
 

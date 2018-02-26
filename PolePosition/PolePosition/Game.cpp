@@ -52,9 +52,14 @@ void Game::race()
 		}
 		//should maybe get more complicated?
 		if (GetKeyState(80) == pState)
+		{
+			p.playSound();
 			tick();
-		else
+		}
+		else {
+			p.pauseSound();
 			render();
+		}
 		while (time > clock() - 20) {}
 	}
 	//A loop - continually calls tick
