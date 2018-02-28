@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 #include <math.h>
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\VertexArray.hpp>

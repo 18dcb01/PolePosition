@@ -11,7 +11,12 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::RenderWindow *windowPtr = &window;
+<<<<<<< HEAD
 	Game game(windowPtr);
+=======
+	std::vector<double> oi;
+	Road road(windowPtr, oi);
+>>>>>>> e847691b867b3c739aac16cbbbbad4ec9f0d681a
 
 
 	while (window.isOpen())
@@ -23,9 +28,16 @@ int main()
 				window.close();
 		}
 
+<<<<<<< HEAD
 		window.clear();
 		game.play();
+=======
+		
+		window.clear();
+		road.drawRoad();
+>>>>>>> e847691b867b3c739aac16cbbbbad4ec9f0d681a
 		window.display();
+
 	}
 
 	return 0;
