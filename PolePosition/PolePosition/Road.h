@@ -24,7 +24,9 @@ public:
 
 private:
 	std::vector<double> roadCurve;
-	sf::ConvexShape mainShape;
+	//sf::ConvexShape mainShape;
 	sf::RenderWindow* windowPtr;
+	sf::Vector2f pointList[10];
+	std::vector<sf::ConvexShape> mainShape;
 };
 

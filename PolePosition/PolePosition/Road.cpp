@@ -4,23 +4,34 @@
 
 Road::Road(sf::RenderWindow *window, std::vector<double> track)
 {
-	mainShape.setPointCount( 5 * 2);
+	
+	 /*
+	 TODO: 
+		Because of how convex shape works we will split points up into
+		quadralaterals and then render all of them.
+	 */
+	//mainShape.setPointCount( 5 * 2);
 	int windowHeight = window->getSize().y / 2;
 
 	//defining Y values for all points
-	int right = mainShape.getPointCount();
+
+	//Is number of points.
+	int right = 5 * 2;
 	//Will be upper half of points due to for loop ending after half.
-	for (int left = 0; left < mainShape.getPointCount() / 2; left++)
+	for (int left = 0; left < right / 2; left++)
 	{
-		right--;
-		double height = windowHeight + (windowHeight * 1.0 / (((mainShape.getPointCount() - 1) / 2))*left);
-		mainShape.setPoint(left, sf::Vector2f(0, height));
-		mainShape.setPoint(right, sf::Vector2f(0, height));
+		double height = windowHeight + (windowHeight * 1.0 / (((right - 1) / 2))*left);
+		//double height = left * 100;
+		pointList[left] = sf::Vector2f(0, height);
+		pointList[right] = sf::Vector2f(0, height);
+		
 	}
+
+
 
 	
 	windowPtr = window;
-	roadCurve.push_back(2);
+	roadCurve.push_back(2.1);
 }
 
 
@@ -34,17 +45,21 @@ void Road::drawRoad()
  		for (int left = 0; left < mainShape.getPointCount() / 2; left++)
 		{
 			right--;
-			int height = mainShape.getPoint(left).y;
+			int height = pointList[left].y;
 
 			//calculating left x values
 			int width = 0.001 * pow(height, abs(roadCurve.at(0)));
-			mainShape.setPoint(left, sf::Vector2f( width, height));
+			pointList[left] = sf::Vector2f( width, height);
 			std::cout << "Point " << left << ": " << width << ", " << height << "\n";
+
+
 
 			//calculating right values
 			//will need its own equation in the future
-			mainShape.setPoint(right, sf::Vector2f(width + 5, height));
+			width = 0.002 * pow(height, abs(roadCurve.at(0)));
+			pointList[right] = sf::Vector2f(width, height);
 			std::cout << "Point " << right << ": " << width + 5 << ", " << height << "\n";
+			
 		}
 	}
 	//turn left
@@ -58,5 +73,16 @@ void Road::drawRoad()
 		//straight, this is a linear function, probably
 	}
 
-	windowPtr->draw(mainShape);
+	sf::CircleShape circle(5, 30);
+	circle.setOrigin(5, 5);
+	for (int j = 0; j < 10; j++)
+	{
+		mainShape.setPoint(j, pointList[j]);
+
+		circle.setPosition(pointList[j]);
+		circle.setFillColor(sf::Color::Red);
+		windowPtr->draw(circle);
+	}
+
+	//windowPtr->draw(mainShape);
 }

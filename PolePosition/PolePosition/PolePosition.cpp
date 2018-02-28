@@ -10,7 +10,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(1000, 448), "SFML works!");
 	sf::RenderWindow *windowPtr = &window;
 	std::vector<double> oi;
 	Road road(windowPtr, oi);
