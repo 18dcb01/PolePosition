@@ -9,10 +9,8 @@ Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window,&tickC
 }
 
 
-
 Game::~Game()
 {
-
 }
 
 
@@ -59,13 +57,11 @@ void Game::race()
 			p.playSound();
 			tick();
 		}
-		else
-		{
+		else {
 			p.pauseSound();
 			render();
 		}
-		if (time > clock() - 20)
-			while (time > clock() - 20) {}
+		while (time > clock() - 20) {}
 	}
 	//A loop - continually calls tick
 }

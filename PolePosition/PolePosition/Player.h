@@ -16,6 +16,8 @@ public:
 	void updateSound();
 	void playSound();
 	void pauseSound();
+	void awardPoints(int);
+	int getScore();
 
 private:
 	sf::Sound vroom;
@@ -25,6 +27,8 @@ private:
 	bool clutch;
 	std::vector<sf::Text> dashboard;
 	sf::Font aClassic;
+	int score;
+	int highScore;
 	void initializeDashboard();
 	int * tickCount;
 	int lapStart;

@@ -17,9 +17,10 @@ private:
 	Racer r[7];
 	std::vector<Direction> map;
 	std::vector<Object> signs;
-	int score;
 	double time;
 	sf::RenderWindow window;
+	short pState;
+	int tickCount;
 	void race();
 	void tick();
 	void render();

@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML\Audio.hpp>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -15,6 +16,18 @@ Player::Player() : Car()
 
 Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 {
+	//Initialize score and high score
+	score = 0;
+	fstream scoreFile;
+	scoreFile.open("highScore.txt");
+	if (scoreFile.is_open())
+		scoreFile >> highScore;
+	else
+	{
+		cout << "High score file could not be opened" << endl;
+		highScore = 0;
+	}
+	scoreFile.close();
 	//Load engine noise
 	tickCount = tickCount_;
 
@@ -39,12 +52,16 @@ Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 
 Player::~Player()
 {
+	std::fstream scoreFile;
+	scoreFile.open("highScore.txt");
+	scoreFile << highScore;
+	scoreFile.close();
 }
 
 
 void Player::playSound()
 {
-	if(vroom.getStatus() != 2)
+	if (vroom.getStatus() != 2)
 		vroom.play();
 }
 
@@ -53,6 +70,19 @@ void Player::pauseSound()
 {
 	if (vroom.getStatus() != 1)
 		vroom.pause();
+}
+
+
+//To increase score as the player travels
+void Player::awardPoints(int p)
+{
+	score += p;
+}
+
+
+int Player::getScore()
+{
+	return score;
 }
 
 
@@ -131,15 +161,16 @@ void Player::updateSound()
 void Player::drawDashboard()
 {
 	//Set the strings for the second half
-	dashboard.at(5).setString(to_string(static_cast<int>(position[1])));//top score value
-	dashboard.at(6).setString("99999");//score value
+	dashboard.at(5).setString(to_string(highScore));
+	dashboard.at(6).setString(to_string(score));
 	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
 	int lapSeconds = (*tickCount - lapStart) / 25;
 	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
 	if (lapCentiseconds != 0)
 		lapCentiseconds += rand() % 4;
-	dashboard.at(8).setString((lapSeconds < 10 ? "0" : "") + to_string(lapSeconds)+(lapCentiseconds<10?"\"0":"\"")+to_string(lapCentiseconds));//lap value
-
+	dashboard.at(8).setString(
+    (lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) +
+    (lapCentiseconds<10?"\"0":"\"") + to_string(lapCentiseconds));//lap value
 	int ySpeed = speed[1];
 	dashboard.at(9).setString(to_string(ySpeed));//speed value
 	for (int i = 5; i < 10; i++)
