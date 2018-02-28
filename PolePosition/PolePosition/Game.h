@@ -18,7 +18,7 @@ private:
 	std::vector<Direction> map;
 	std::vector<Object> signs;
 	int score;
-	time_t startTime;
+	double time;
 	sf::RenderWindow window;
 	void race();
 	void tick();

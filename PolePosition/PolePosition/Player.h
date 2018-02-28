@@ -9,7 +9,7 @@ class Player :
 {
 public:
 	Player();
-	Player(sf::RenderWindow*);
+	Player(sf::RenderWindow*, int*);
 	~Player();
 	void tick();
 	void drawDashboard();
@@ -26,4 +26,6 @@ private:
 	std::vector<sf::Text> dashboard;
 	sf::Font aClassic;
 	void initializeDashboard();
+	int * tickCount;
+	int lapStart;
 };

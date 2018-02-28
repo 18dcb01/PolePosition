@@ -13,9 +13,11 @@ Player::Player() : Car()
 }
 
 
-Player::Player(sf::RenderWindow* w) : Car(w)
+Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 {
 	//Load engine noise
+	tickCount = tickCount_;
+
 	clutchHeld = false;
 	buffer.loadFromFile("CarVroom.wav");
 	vroom.setBuffer(buffer);
@@ -30,6 +32,8 @@ Player::Player(sf::RenderWindow* w) : Car(w)
 	dashboard = {tTop, tScore, tTime, tLap, tSpeed,
 		topScore, score, time, lap, speed};
 	initializeDashboard();
+
+	position[1] = -10;
 }
 
 
@@ -85,7 +89,7 @@ void Player::tick()
 			//Accel faster if fast, with a limit near max speed
 			accel = (2 / (1 + num)) * (1.5 - (1.5 / (1 + num)));
 		}
-		speed[1] += accel;
+		speed[1] += accel/10;
 	}
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -104,6 +108,8 @@ void Player::tick()
 	}
 	else if (clutchHeld)
 		clutchHeld = false;
+	if (position[1] < 0)
+		lapStart = *tickCount;
 
 	//Update pos
 	position[0] += speed[0];
@@ -125,10 +131,15 @@ void Player::updateSound()
 void Player::drawDashboard()
 {
 	//Set the strings for the second half
-	dashboard.at(5).setString("99999");//top score value
+	dashboard.at(5).setString(to_string(static_cast<int>(position[1])));//top score value
 	dashboard.at(6).setString("99999");//score value
-	dashboard.at(7).setString("999");//time value
-	dashboard.at(8).setString("99\"99");//lap value
+	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
+	int lapSeconds = (*tickCount - lapStart) / 25;
+	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
+	if (lapCentiseconds != 0)
+		lapCentiseconds += rand() % 4;
+	dashboard.at(8).setString((lapSeconds < 10 ? "0" : "") + to_string(lapSeconds)+(lapCentiseconds<10?"\"0":"\"")+to_string(lapCentiseconds));//lap value
+
 	int ySpeed = speed[1];
 	dashboard.at(9).setString(to_string(ySpeed));//speed value
 	for (int i = 5; i < 10; i++)

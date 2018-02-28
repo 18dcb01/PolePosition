@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <iostream>
 
-Game::Game():window(sf::VideoMode(512,448), "Pole Position"),p(&window)
+Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window,&tickCount)
 {
 	tickCount = 0;
 }
