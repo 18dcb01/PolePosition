@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+﻿  PolePosition.cpp
+  PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.exe
+  PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
+=======
 ﻿  Road.cpp
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(15): warning C4018: '<': signed/unsigned mismatch
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(20): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
@@ -11,3 +16,4 @@ c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cp
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(33): warning C4101: 'x': unreferenced local variable
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
+>>>>>>> e847691b867b3c739aac16cbbbbad4ec9f0d681a
