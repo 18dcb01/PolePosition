@@ -53,7 +53,7 @@ Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 Player::~Player()
 {
 	std::fstream scoreFile;
-	scoreFile.open("highScore.txt");
+	scoreFile.open("highScore.txt",ios::out);
 	scoreFile << highScore;
 	scoreFile.close();
 }

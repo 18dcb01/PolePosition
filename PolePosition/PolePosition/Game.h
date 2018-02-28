@@ -28,6 +28,4 @@ private:
 	void drawBackground();
 	void openingMenu();
 	void drawPause();
-	short pState;
-	int tickCount;
 };
