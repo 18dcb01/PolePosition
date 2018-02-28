@@ -8,25 +8,11 @@
 Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window)
 {
 	tickCount = 0;
-	std::fstream scoreFile;
-	scoreFile.open("highScore.txt");
-	if (scoreFile.is_open())
-		scoreFile >> highScore;
-	else
-	{
-		std::cout << "High score file could not be opened" << std::endl;
-		highScore = 0;
-	}
-	scoreFile.close();
 }
 
 
 Game::~Game()
 {
-	std::fstream scoreFile;
-	scoreFile.open("highScore.txt");
-	scoreFile << highScore;
-	scoreFile.close();
 }
 
 

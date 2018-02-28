@@ -16,6 +16,18 @@ Player::Player() : Car()
 
 Player::Player(sf::RenderWindow* w) : Car(w)
 {
+	//Initialize score and high score
+	score = 0;
+	fstream scoreFile;
+	scoreFile.open("highScore.txt");
+	if (scoreFile.is_open())
+		scoreFile >> highScore;
+	else
+	{
+		cout << "High score file could not be opened" << endl;
+		highScore = 0;
+	}
+	scoreFile.close();
 	//Load engine noise
 	clutchHeld = false;
 	buffer.loadFromFile("CarVroom.wav");
@@ -35,7 +47,11 @@ Player::Player(sf::RenderWindow* w) : Car(w)
 
 
 Player::~Player()
-{	
+{
+	std::fstream scoreFile;
+	scoreFile.open("highScore.txt");
+	scoreFile << highScore;
+	scoreFile.close();
 }
 
 
@@ -50,6 +66,19 @@ void Player::pauseSound()
 {
 	if (vroom.getStatus() != 1)
 		vroom.pause();
+}
+
+
+//To increase score as the player travels
+void Player::awardPoints(int p)
+{
+	score += p;
+}
+
+
+int Player::getScore()
+{
+	return score;
 }
 
 
@@ -126,10 +155,15 @@ void Player::updateSound()
 void Player::drawDashboard()
 {
 	//Set the strings for the second half
-	dashboard.at(5).setString("99999");
+	//Top score
+	dashboard.at(5).setString(to_string(highScore));
+	//Current score
 	dashboard.at(6).setString("99999");
+	//Time (countdown)
 	dashboard.at(7).setString("999");
+	//Lap time (count up)
 	dashboard.at(8).setString("99\"99");
+	//Speed
 	int ySpeed = speed[1];
 	dashboard.at(9).setString(to_string(ySpeed));
 	for (int i = 5; i < 10; i++)
