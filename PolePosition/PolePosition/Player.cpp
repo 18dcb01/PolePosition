@@ -40,14 +40,15 @@ Player::~Player()
 
 void Player::playSound()
 {
-	
-	vroom.play();
+	if(vroom.getStatus() != 2)
+		vroom.play();
 }
 
 
 void Player::pauseSound()
 {
-	vroom.pause();
+	if (vroom.getStatus() != 1)
+		vroom.pause();
 }
 
 
@@ -124,12 +125,12 @@ void Player::updateSound()
 void Player::drawDashboard()
 {
 	//Set the strings for the second half
-	dashboard.at(5).setString("99999");
-	dashboard.at(6).setString("99999");
-	dashboard.at(7).setString("999");
-	dashboard.at(8).setString("99\"99");
+	dashboard.at(5).setString("99999");//top score value
+	dashboard.at(6).setString("99999");//score value
+	dashboard.at(7).setString("999");//time value
+	dashboard.at(8).setString("99\"99");//lap value
 	int ySpeed = speed[1];
-	dashboard.at(9).setString(to_string(ySpeed));
+	dashboard.at(9).setString(to_string(ySpeed));//speed value
 	for (int i = 5; i < 10; i++)
 	{
 		dashboard.at(i).setOrigin(dashboard.at(i).getLocalBounds().width, 0);
@@ -139,9 +140,14 @@ void Player::drawDashboard()
 }
 
 
+/*
+Creates:
+  TOP #####  TIME   LAP ##"##
+SCORE #####  ###  SPEED ###
+should add mph/km
+*/
 void Player::initializeDashboard()
 {
-
 	for (int i = 0; i < 10; i++)
 	{
 		dashboard.at(i).setFont(aClassic);
@@ -149,32 +155,32 @@ void Player::initializeDashboard()
 	}
 	dashboard.at(0).setString("TOP");
 	dashboard.at(0).setPosition(48, 16);
-	dashboard.at(0).setFillColor(sf::Color(255, 151, 173));
+	dashboard.at(0).setFillColor(sf::Color(255, 151, 173));//pink
 
 	dashboard.at(1).setString("SCORE");
-	dashboard.at(1).setPosition(16, 48);
+	dashboard.at(1).setPosition(16, 48);//white
 
 	dashboard.at(2).setString("TIME");
 	dashboard.at(2).setPosition(224, 16);
-	dashboard.at(2).setFillColor(sf::Color(255, 250, 103));
+	dashboard.at(2).setFillColor(sf::Color(255, 250, 103));//yellow
 
 	dashboard.at(3).setString("LAP");
 	dashboard.at(3).setPosition(352, 16);
-	dashboard.at(3).setFillColor(sf::Color(141, 238, 105));
+	dashboard.at(3).setFillColor(sf::Color(141, 238, 105));//green
 
 	dashboard.at(4).setString("SPEED");
-	dashboard.at(4).setPosition(320, 48);
+	dashboard.at(4).setPosition(320, 48);//white
 
-	dashboard.at(5).setPosition(192, 16);
-	dashboard.at(5).setFillColor(sf::Color(255, 151, 173));
+	dashboard.at(5).setPosition(192, 16);//top score value
+	dashboard.at(5).setFillColor(sf::Color(255, 151, 173));//pink
 
-	dashboard.at(6).setPosition(192, 48);
+	dashboard.at(6).setPosition(192, 48);//score value, white
 
-	dashboard.at(7).setPosition(272, 48);
-	dashboard.at(7).setFillColor(sf::Color(255, 250, 103));
+	dashboard.at(7).setPosition(272, 48);//time value
+	dashboard.at(7).setFillColor(sf::Color(255, 250, 103));//yellow
 
-	dashboard.at(8).setPosition(496, 16);
-	dashboard.at(8).setFillColor(sf::Color(141, 238, 105));
+	dashboard.at(8).setPosition(496, 16);//lap value
+	dashboard.at(8).setFillColor(sf::Color(141, 238, 105));//green
 
-	dashboard.at(9).setPosition(464, 48);
+	dashboard.at(9).setPosition(464, 48);//speed value, white
 }

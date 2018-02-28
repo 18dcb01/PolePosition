@@ -26,6 +26,7 @@ private:
 	void drawMap(sf::RenderWindow*);
 	void drawBackground();
 	void openingMenu();
+	void drawPause();
 	short pState;
 	int tickCount;
 };

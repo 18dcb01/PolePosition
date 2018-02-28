@@ -1,3 +1,7 @@
-﻿  PolePosition.cpp
+﻿  Game.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(133): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(137): warning C4305: 'argument': truncation from 'double' to 'float'
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
