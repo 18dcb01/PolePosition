@@ -2,10 +2,8 @@
 #include "Game.h"
 #include <Windows.h>
 #include <iostream>
-#include <fstream>
 
-
-Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window)
+Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window,&tickCount)
 {
 	tickCount = 0;
 }
@@ -21,6 +19,8 @@ void Game::play()
 	openingMenu();
 
 	pState = GetKeyState(80);//log current p state for pauses
+	if (pState < 0)
+		pState += 128;
 
 	//start vroom noises
 	p.playSound();
@@ -84,12 +84,15 @@ void Game::tick()
 void Game::render()
 {
 	window.clear();
+
 	p.drawDashboard();
 	//First, drawBackground
 	drawBackground();
 	//Then, drawMap
 	drawMap(&window);
 	//Then signs, racers, and the player
+	if (GetKeyState(80) != pState)
+		drawPause();
 	window.display();
 
 }
@@ -147,4 +150,22 @@ void Game::openingMenu()
 		window.draw(s2);
 		window.display();
 	}
+}
+
+void Game::drawPause()
+{
+	sf::Font aClassic;
+
+	if (!aClassic.loadFromFile("Arcade Classic.ttf"))
+	{
+		std::cout << "Didn't work dude" << std::endl;
+	}
+
+	sf::Text pauseText;
+	pauseText.setFont(aClassic);
+	pauseText.setString("PAUSE");
+	pauseText.setPosition(sf::Vector2f(216, 240));
+	pauseText.setCharacterSize(16);
+	pauseText.setFillColor(sf::Color(255, 250, 103));
+	window.draw(pauseText);
 }

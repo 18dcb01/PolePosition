@@ -17,7 +17,7 @@ private:
 	Racer r[7];
 	std::vector<Direction> map;
 	std::vector<Object> signs;
-	time_t startTime;
+	double time;
 	sf::RenderWindow window;
 	short pState;
 	int tickCount;
@@ -27,4 +27,7 @@ private:
 	void drawMap(sf::RenderWindow*);
 	void drawBackground();
 	void openingMenu();
+	void drawPause();
+	short pState;
+	int tickCount;
 };
