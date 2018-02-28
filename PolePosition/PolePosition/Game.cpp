@@ -81,7 +81,6 @@ void Game::drawBackground()
 
 
 	//create background sprite
-	backgroundSprite.setTexture(background);
 	backgroundSprite.setScale(1, 1.75);
 
 	//rotate sprite to correct angle
