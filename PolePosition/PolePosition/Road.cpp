@@ -10,56 +10,80 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 		Because of how convex shape works we will split points up into
 		quadralaterals and then render all of them.
 	 */
-	//mainShape.setPointCount( 5 * 2);
+	sf::ConvexShape bleach;
+	for (int i = 0; i < 10; i++)
+		roadShape.push_back(bleach);
+
 	int windowHeight = window->getSize().y / 2;
 
 	//defining Y values for all points
 
-	//Is number of points.
-	int right = 5 * 2;
-	//Will be upper half of points due to for loop ending after half.
-	for (int left = 0; left < right / 2; left++)
+	//setting the height for all points
+	for (int i = 0; i < roadShape.size(); i++)
 	{
-		double height = windowHeight + (windowHeight * 1.0 / (((right - 1) / 2))*left);
-		//double height = left * 100;
-		pointList[left] = sf::Vector2f(0, height);
-		pointList[right] = sf::Vector2f(0, height);
-		
+		//setting each shape to have 4 points
+		roadShape.at(i).setPointCount(4);
+
+		//setting A and B points (the top two for the shape)
+		//if the shape isn't the first shape, than the height of A, B are the same as C, D of the shape before.
+		if (i == 0)
+		{
+			roadShape.at(i).setPoint(0, sf::Vector2f(0, windowHeight));
+			roadShape.at(i).setPoint(1, sf::Vector2f(0, windowHeight));
+		}
+		else
+		{
+			roadShape.at(i).setPoint(0, roadShape.at(i - 1).getPoint(3));
+			roadShape.at(i).setPoint(1, roadShape.at(i - 1).getPoint(3));
+		}
+
+		//Setting C and D shapes (the bottom two points)
+		roadShape.at(i).setPoint(2, sf::Vector2f(0, 
+			roadShape.at(i).getPoint(0).y + (windowHeight / roadShape.size())));
+		roadShape.at(i).setPoint(3, sf::Vector2f(0,
+			roadShape.at(i).getPoint(0).y + (windowHeight / roadShape.size())));
 	}
-
-
-
 	
 	windowPtr = window;
-	roadCurve.push_back(2.1);
+	roadCurve = track;
 }
 
 
 void Road::drawRoad()
 {
-	int x;
-	int right = mainShape.getPointCount();
+	int x, width, height;
+
 	//turn right
 	if (roadCurve.at(0) > 1)
-	{
- 		for (int left = 0; left < mainShape.getPointCount() / 2; left++)
+	{			
+		//calculating initial width
+		height = roadShape.at(0).getPoint(0).y;
+		width = 0.001 * pow(height, abs(roadCurve.at(0)));
+
+		for (int i = 0; i < roadShape.size(); i++)
 		{
-			right--;
-			int height = pointList[left].y;
-
-			//calculating left x values
-			int width = 0.001 * pow(height, abs(roadCurve.at(0)));
-			pointList[left] = sf::Vector2f( width, height);
-			std::cout << "Point " << left << ": " << width << ", " << height << "\n";
-
-
-
-			//calculating right values
-			//will need its own equation in the future
-			width = 0.002 * pow(height, abs(roadCurve.at(0)));
-			pointList[right] = sf::Vector2f(width, height);
-			std::cout << "Point " << right << ": " << width + 5 << ", " << height << "\n";
+			//setting A and B points (the top two for the shape)
+			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
+			if (i == 0)
+			{
+				roadShape.at(i).setPoint(0, sf::Vector2f(width, roadShape.at(i).getPoint(0).y));
+				roadShape.at(i).setPoint(1, sf::Vector2f(width, roadShape.at(i).getPoint(0).y));
+			}
+			else
+			{
+				roadShape.at(i).setPoint(0, roadShape.at(i - 1).getPoint(3));
+				roadShape.at(i).setPoint(1, roadShape.at(i - 1).getPoint(3));
+			}
 			
+			//changing width and height to deal with point C, D
+			roadShape.at(i).getPoint(2).y;
+			width = 0.001 * pow(height, abs(roadCurve.at(0)));
+
+			//Setting C and D shapes (the bottom two points)
+			roadShape.at(i).setPoint(2, sf::Vector2f(width, roadShape.at(i).getPoint(2).y));
+			roadShape.at(i).setPoint(3, sf::Vector2f(width, roadShape.at(i).getPoint(2).y));
+			//TODO: print values to test.
+			//std::cout << roadShape.at(i).getPoint(0).x, 
 		}
 	}
 	//turn left
@@ -73,16 +97,11 @@ void Road::drawRoad()
 		//straight, this is a linear function, probably
 	}
 
-	sf::CircleShape circle(5, 30);
-	circle.setOrigin(5, 5);
-	for (int j = 0; j < 10; j++)
+	//draw Road
+	for (int i = 0; i < roadShape.size(); i++)
 	{
-		mainShape.setPoint(j, pointList[j]);
-
-		circle.setPosition(pointList[j]);
-		circle.setFillColor(sf::Color::Red);
-		windowPtr->draw(circle);
+		windowPtr->draw(roadShape.at(i));
 	}
 
-	//windowPtr->draw(mainShape);
+	return;
 }
