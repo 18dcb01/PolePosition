@@ -4,7 +4,6 @@
 
 Road::Road(sf::RenderWindow *window, std::vector<double> track)
 {
-<<<<<<< HEAD
 	
 	 /*
 	 TODO: 
@@ -47,25 +46,6 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	
 	windowPtr = window;
 	roadCurve = track;
-=======
-	mainShape.setPointCount( 5 * 2);
-	int windowHeight = window->getSize().y / 2;
-
-	//defining Y values for all points
-	int right = mainShape.getPointCount();
-	//Will be upper half of points due to for loop ending after half.
-	for (int left = 0; left < mainShape.getPointCount() / 2; left++)
-	{
-		right--;
-		double height = windowHeight + (windowHeight * 1.0 / (((mainShape.getPointCount() - 1) / 2))*left);
-		mainShape.setPoint(left, sf::Vector2f(0, height));
-		mainShape.setPoint(right, sf::Vector2f(0, height));
-	}
-
-	
-	windowPtr = window;
-	roadCurve.push_back(2);
->>>>>>> 6f9451b4bd48f6540844e02fbc9e2bac91e8c6f4
 }
 
 
@@ -75,7 +55,6 @@ void Road::drawRoad()
 
 	//turn right
 	if (roadCurve.at(0) > 1)
-<<<<<<< HEAD
 	{			
 		//calculating initial width
 		height = roadShape.at(0).getPoint(0).y;
@@ -105,23 +84,6 @@ void Road::drawRoad()
 			roadShape.at(i).setPoint(3, sf::Vector2f(width, roadShape.at(i).getPoint(2).y));
 			//TODO: print values to test.
 			//std::cout << roadShape.at(i).getPoint(0).x, 
-=======
-	{
- 		for (int left = 0; left < mainShape.getPointCount() / 2; left++)
-		{
-			right--;
-			int height = mainShape.getPoint(left).y;
-
-			//calculating left x values
-			int width = 0.001 * pow(height, abs(roadCurve.at(0)));
-			mainShape.setPoint(left, sf::Vector2f( width, height));
-			std::cout << "Point " << left << ": " << width << ", " << height << "\n";
-
-			//calculating right values
-			//will need its own equation in the future
-			mainShape.setPoint(right, sf::Vector2f(width + 5, height));
-			std::cout << "Point " << right << ": " << width + 5 << ", " << height << "\n";
->>>>>>> 6f9451b4bd48f6540844e02fbc9e2bac91e8c6f4
 		}
 	}
 	//turn left
@@ -135,7 +97,6 @@ void Road::drawRoad()
 		//straight, this is a linear function, probably
 	}
 
-<<<<<<< HEAD
 	//draw Road
 	for (int i = 0; i < roadShape.size(); i++)
 	{
@@ -143,7 +104,4 @@ void Road::drawRoad()
 	}
 
 	return;
-=======
-	windowPtr->draw(mainShape);
->>>>>>> 6f9451b4bd48f6540844e02fbc9e2bac91e8c6f4
 }

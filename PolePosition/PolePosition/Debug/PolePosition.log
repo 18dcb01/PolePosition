@@ -1,5 +1,4 @@
 ﻿  Road.cpp
-<<<<<<< HEAD
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(22): warning C4018: '<': signed/unsigned mismatch
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -19,16 +18,5 @@ c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cp
   Player.cpp
   Object.cpp
   Car.cpp
-=======
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(13): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(17): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(18): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(34): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(37): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(40): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(29): warning C4101: 'x': unreferenced local variable
->>>>>>> 6f9451b4bd48f6540844e02fbc9e2bac91e8c6f4
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
