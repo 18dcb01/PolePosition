@@ -6,6 +6,7 @@ class Object
 public:
 	Object();
 	Object(sf::RenderWindow*);
+	Object(sf::RenderWindow *, bool);
 	~Object();
 	virtual void render(int);
 	void setPos(int, int);
@@ -13,6 +14,7 @@ public:
 	double getPosy();
 
 protected:
+	sf::Texture SignTextures;
 	sf::Sprite sprite;
 	double position[2];
 	sf::RenderWindow* window;

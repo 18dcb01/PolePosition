@@ -6,6 +6,9 @@
 Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window,&tickCount)
 {
 	tickCount = 0;
+	Object obj(&window, true);
+	obj.setPos(-10, 500);
+	signs.push_back(obj);
 }
 
 
@@ -93,6 +96,9 @@ void Game::render()
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
+
+	for (int i = 0; i < signs.size(); i++)
+		signs.at(i).render(p.getPosy());
 	window.display();
 
 }
@@ -105,11 +111,19 @@ void Game::drawMap(sf::RenderWindow *window)
 	int width = windowSize.x;
 	int height = windowSize.y;
 	//Draw the grass
-	sf::RectangleShape grass(sf::Vector2f(width, tickCount%(height / 2)));
+	sf::RectangleShape grass(sf::Vector2f(width, height/2));
+
+	sf::ConvexShape road;
+	road.setPointCount(4);
+	road.setPoint(0, sf::Vector2f(width / 3-5, height));
+	road.setPoint(1, sf::Vector2f(width / 2-5, height/2));
+	road.setPoint(2, sf::Vector2f(width / 2+5, height / 2));
+	road.setPoint(3, sf::Vector2f(2*width / 3+5, height));
 	//Set grass position and color
 	grass.setPosition(0, height/2);
 	grass.setFillColor(sf::Color::Green);
 	window->draw(grass);
+	window->draw(road);
 }
 
 

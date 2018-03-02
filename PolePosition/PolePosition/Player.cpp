@@ -119,7 +119,7 @@ void Player::tick()
 			//Accel faster if fast, with a limit near max speed
 			accel = (2 / (1 + num)) * (1.5 - (1.5 / (1 + num)));
 		}
-		speed[1] += accel/10;
+		speed[1] += accel;
 	}
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -145,6 +145,8 @@ void Player::tick()
 	position[0] += speed[0];
 	position[1] += speed[1];
 	updateSound();
+
+	score = position[1]+10;
 }
 
 

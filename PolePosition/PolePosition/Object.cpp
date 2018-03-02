@@ -14,18 +14,36 @@ Object::Object(sf::RenderWindow* win)
 }
 
 
+Object::Object(sf::RenderWindow* win, bool val)
+{
+	window = win;
+	if (SignTextures.getSize().x == 0)
+		SignTextures.loadFromFile("Pole Position sign sprites.png");
+	sprite.setTexture(SignTextures);
+	sprite.setPosition(0, 0);
+	window->draw(sprite);
+	window->display();
+	int signVal = rand() % 16;
+}
+
+
 Object::~Object()
 {
 }
 
 
-void Object::render(int)
+void Object::render(int carPos)
 {
+	sprite.setTexture(SignTextures);
+	sprite.setPosition(0,0);
+	window->draw(sprite);
 }
 
 
-void Object::setPos(int, int)
+void Object::setPos(int x, int y)
 {
+	position[0] = x;
+	position[1] = y;
 }
 
 
