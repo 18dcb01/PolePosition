@@ -10,13 +10,13 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 448), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::RenderWindow *windowPtr = &window;
 
 	//Game game(windowPtr);
 
 	std::vector<double> oi;
-	oi.push_back(2.1);
+	oi.push_back(2);
 	Road road(windowPtr, oi);
 
 
