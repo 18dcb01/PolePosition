@@ -15,7 +15,7 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	
 	//pushing roadPiece into roadShape, number of shapes is adjustable
 	//numbers are 7, 14, 28, 56, 112, 224 (14 is recommended, minimal lag with straight edges only at steep turns
-	for (int i = 0; i < 28; i++)
+	for (int i = 0; i < 14; i++)
 		roadShape.push_back(roadPiece);
 
 	//since the road is only in the bottom half of the screen, windHeight is half the actual height
@@ -131,6 +131,7 @@ void Road::drawRoad()
 		windowPtr->draw(roadShape.at(i));
 	}
 
-	roadCurve.at(0) -= .0001;
+	roadCurve.at(0) += .0001;
+	
 	return;
 }

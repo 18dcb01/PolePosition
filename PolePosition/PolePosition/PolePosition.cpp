@@ -3,17 +3,17 @@
 
 #include "stdafx.h"
 #include "Game.h"
+#include "Road.h"
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
 #include <vector>
-#include "Road.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	sf::RenderWindow *windowPtr = &window;
 
-	//Game game(windowPtr);
+	Game game(windowPtr);
 
 	std::vector<double> oi;
 	oi.push_back(2);
@@ -32,7 +32,7 @@ int main()
 
 
 		window.clear();
-		//game.play();
+		game.play();
 		road.drawRoad();
 		window.display();
 

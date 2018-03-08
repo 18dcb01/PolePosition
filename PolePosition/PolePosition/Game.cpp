@@ -64,11 +64,6 @@ void Game::render()
 void Game::drawMap()
 {
 	//Draw track pieces 5 at a time so user can see ahead.
-
-	//3 possible track pieces.
-	sf::ConvexShape straight();
-	sf::ConvexShape veerRight();
-	sf::ConvexShape veerLeft();
 }
 
 
@@ -84,7 +79,7 @@ void Game::drawBackground()
 	backgroundSprite.setScale(1, 1.75);
 
 	//rotate sprite to correct angle
-	backgroundSprite.move(-.1, 0);
+	backgroundSprite.move(-.001, 0);
 	if (backgroundSprite.getPosition().x < -windowSize.x)
 		backgroundSprite.setPosition(sf::Vector2f(0, 0));
 	if (backgroundSprite.getPosition().x > 0)
