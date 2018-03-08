@@ -11,7 +11,10 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
+	window.setFramerateLimit(60);
 	sf::RenderWindow *windowPtr = &window;
+
+	sf::Clock clock;
 
 	Game game(windowPtr);
 
@@ -33,9 +36,12 @@ int main()
 
 		window.clear();
 		game.play();
-		road.drawRoad();
+		road.draw(100, 0);
 		window.display();
 
+		//track framerate
+		std::cout << 1.f / clock.getElapsedTime().asSeconds() << '\n';
+		clock.restart();
 	}
 
 	return 0;

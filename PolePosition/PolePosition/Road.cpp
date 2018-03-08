@@ -15,7 +15,7 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	
 	//pushing roadPiece into roadShape, number of shapes is adjustable
 	//numbers are 7, 14, 28, 56, 112, 224 (14 is recommended, minimal lag with straight edges only at steep turns
-	for (int i = 0; i < 14; i++)
+	for (int i = 0; i < 224; i++)
 		roadShape.push_back(roadPiece);
 
 	//since the road is only in the bottom half of the screen, windHeight is half the actual height
@@ -46,12 +46,23 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 }
 
 
-void Road::drawRoad()
+void Road::draw(double position, double speed)
+{
+	drawRoad(position);
+	drawCenterLine(position, speed);
+	drawOutsideLines(position, speed);
+	drawThinLines(position, speed);
+
+	return;
+}
+
+
+void Road::drawRoad(double position)
 {
 	int width, height, offset;
 
 	//offset will be what allows the road to leave the window if the car drives off
-	offset = 100;
+	offset = position;
 
 	//turn right
 	if (roadCurve.at(0) >= 0)
@@ -134,4 +145,22 @@ void Road::drawRoad()
 	roadCurve.at(0) += .0001;
 	
 	return;
+}
+
+
+void Road::drawCenterLine(double position, double speed)
+{
+
+}
+
+
+void Road::drawOutsideLines(double position, double speed)
+{
+
+}
+
+
+void Road::drawThinLines(double position, double speed)
+{
+
 }
