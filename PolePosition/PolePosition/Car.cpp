@@ -9,6 +9,8 @@ Car::Car() : Object()
 
 Car::Car(sf::RenderWindow* w) : Object(w)
 {
+	if (CarTextures.getSize().x == 0)
+		CarTextures.loadFromFile("CarTextures");
 }
 
 

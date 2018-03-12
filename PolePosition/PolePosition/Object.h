@@ -15,6 +15,7 @@ public:
 
 protected:
 	static sf::Texture SignTextures;
+	static sf::Texture CarTextures;
 	sf::Sprite sprite;
 	double position[2];
 	sf::RenderWindow* window;

@@ -2,6 +2,7 @@
 #include "Object.h"
 
 sf::Texture Object::SignTextures;
+sf::Texture Object::CarTextures;
 
 
 Object::Object()
@@ -24,7 +25,7 @@ Object::Object(sf::RenderWindow* win, bool val)
 	int signVal = rand() % 16;
 	sprite.setTextureRect(sf::IntRect(signVal * 96, 0, 95, 72));
 	sprite.setOrigin(48, 72);
-	sprite.setTexture(SignTextures);//doesn't work when done in initializer?
+	sprite.setTexture(SignTextures);
 }
 
 
