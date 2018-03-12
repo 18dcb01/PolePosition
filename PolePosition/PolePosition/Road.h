@@ -32,9 +32,11 @@ private:
 	void drawThinLines(double, double);
 
 	//variables
-	std::vector<double> roadCurve;
-	sf::RenderWindow* windowPtr;
-	sf::Vector2f pointList[10];
-	std::vector<sf::ConvexShape> roadShape;
+	std::vector<double> roadCurve;	//race track
+	sf::RenderWindow* windowPtr;	//window
+	std::vector<sf::ConvexShape> roadShape;	//main road
+	std::vector<sf::ConvexShape> middleLine;	//center dotted line
+	std::vector<sf::ConvexShape> littleLines;
+	std::vector<sf::ConvexShape> stripedLine;	//red and white stripes
 };
 

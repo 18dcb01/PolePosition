@@ -8,13 +8,14 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	windowPtr = window;
 	roadCurve = track;
 
+
+	//Creating Road
 	//creating a convex shape with four points and color to add to the roadShape
 	sf::ConvexShape roadPiece;
 	roadPiece.setFillColor(sf::Color(64, 64, 64));
 	roadPiece.setPointCount(4);
-	
+
 	//pushing roadPiece into roadShape, number of shapes is adjustable
-	//numbers are 7, 14, 28, 56, 112, 224 (14 is recommended, minimal lag with straight edges only at steep turns
 	for (int i = 0; i < 224; i++)
 		roadShape.push_back(roadPiece);
 
@@ -42,6 +43,38 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 			roadShape.at(i).getPoint(0).y + (windowHeight / roadShape.size())));
 		roadShape.at(i).setPoint(3, sf::Vector2f(0,
 			roadShape.at(i).getPoint(1).y + (windowHeight / roadShape.size())));
+	}
+
+
+	//Creating Striped Center Line
+	sf::ConvexShape stripe;
+	stripe.setPointCount(4);
+
+	for (int i = 0; i < 9; i++)
+		middleLine.push_back(stripe);
+
+	for (int i = 0; i < middleLine.size(); i++)
+	{
+		if (i == 0)
+		{
+			middleLine.at(0).setPoint(0, sf::Vector2f(0, windowHeight));
+			middleLine.at(0).setPoint(1, sf::Vector2f(0, windowHeight));
+		}
+
+		if (i % 2 == 0)
+		{
+			middleLine.at(i).setPoint(2, sf::Vector2f(0,
+				middleLine.at(i).getPoint(0).y + (windowHeight / middleLine.size())));
+			middleLine.at(i).setPoint(3, sf::Vector2f(0,
+				middleLine.at(i).getPoint(1).y + (windowHeight / middleLine.size())));
+		}
+		else
+		{
+			middleLine.at(i).setPoint(0, sf::Vector2f(0,
+				middleLine.at(i).getPoint(2).y + (windowHeight / middleLine.size())));
+			middleLine.at(i).setPoint(1, sf::Vector2f(0,
+				middleLine.at(i).getPoint(3).y + (windowHeight / middleLine.size())));
+		}
 	}
 }
 
@@ -142,7 +175,7 @@ void Road::drawRoad(double position)
 		windowPtr->draw(roadShape.at(i));
 	}
 
-	roadCurve.at(0) += .0001;
+	roadCurve.at(0) -= .0001;
 	
 	return;
 }
@@ -150,6 +183,15 @@ void Road::drawRoad(double position)
 
 void Road::drawCenterLine(double position, double speed)
 {
+	/*
+	will be a series of convex shapes, which will expand as they move closer to the
+	bottom of the screen. (road already widens, need to sort out length)
+	
+	As soon as the bottom shape leaves sight, all shapes will revert to original positions.
+	
+	y += height * speed;
+	*/
+
 
 }
 

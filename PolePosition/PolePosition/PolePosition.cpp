@@ -33,15 +33,15 @@ int main()
 				window.close();
 		}
 
-
 		window.clear();
 		game.play();
 		road.draw(100, 0);
 		window.display();
 
-		//track framerate
+		/*/track framerate
 		std::cout << 1.f / clock.getElapsedTime().asSeconds() << '\n';
 		clock.restart();
+		*/
 	}
 
 	return 0;

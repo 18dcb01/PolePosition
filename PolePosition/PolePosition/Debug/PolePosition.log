@@ -1,3 +1,29 @@
-﻿  PolePosition.cpp
+﻿  Road.cpp
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(26): warning C4018: '<': signed/unsigned mismatch
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(56): warning C4018: '<': signed/unsigned mismatch
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(98): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(104): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(105): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(107): warning C4018: '<': signed/unsigned mismatch
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(114): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(116): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(125): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(126): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(130): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(132): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(139): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(140): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(142): warning C4018: '<': signed/unsigned mismatch
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(149): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(151): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(160): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(161): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(165): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(167): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(173): warning C4018: '<': signed/unsigned mismatch
   PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
