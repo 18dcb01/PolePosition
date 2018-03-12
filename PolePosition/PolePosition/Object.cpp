@@ -24,7 +24,7 @@ Object::Object(sf::RenderWindow* win, bool val)
 	int signVal = rand() % 16;
 	sprite.setTextureRect(sf::IntRect(signVal * 96, 0, 95, 72));
 	sprite.setOrigin(48, 72);
-	sprite.setTexture(SignTextures);//doesn't work when done in initializer?
+	sprite.setTexture(SignTextures);
 }
 
 
@@ -35,12 +35,12 @@ Object::~Object()
 
 void Object::render(int carPos)
 {
-	int dist = position[1] - carPos;//distance to sign
-	double mult = 300;//randomly chosen to start
+	int dist = position[1] - carPos - 20;//distance to sign
+	double mult = 1000;//arbitrarily chosen, looks about right
 	mult /= dist;//size is inversely proportional to distance
 	if (mult > 0.05)//far too small
 	{
-		sprite.setPosition(mult*position[0] + 256, 203 + mult * 245);
+		sprite.setPosition(mult*position[0] + 256, 204 + mult * 245);
 		sprite.setScale(2 * mult, 2 * mult);//looks better?
 		if (sprite.getPosition().y > 224 && sprite.getPosition().y < 800)//within the draw space
 			window->draw(sprite);
