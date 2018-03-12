@@ -1,3 +1,6 @@
 ﻿  Object.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.cpp(38): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.cpp(43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.cpp(44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Object.h"
 
+sf::Texture Object::SignTextures;
+
 
 Object::Object()
 {
@@ -19,11 +21,10 @@ Object::Object(sf::RenderWindow* win, bool val)
 	window = win;
 	if (SignTextures.getSize().x == 0)
 		SignTextures.loadFromFile("Pole Position sign sprites.png");
-	sprite.setTexture(SignTextures);
-	sprite.setPosition(0, 0);
-	window->draw(sprite);
-	window->display();
 	int signVal = rand() % 16;
+	sprite.setTextureRect(sf::IntRect(signVal * 96, 0, 95, 72));
+	sprite.setOrigin(48, 72);
+	sprite.setTexture(SignTextures);//doesn't work when done in initializer?
 }
 
 
@@ -34,9 +35,16 @@ Object::~Object()
 
 void Object::render(int carPos)
 {
-	sprite.setTexture(SignTextures);
-	sprite.setPosition(0,0);
-	window->draw(sprite);
+	int dist = position[1] - carPos;//distance to sign
+	double mult = 300;//randomly chosen to start
+	mult /= dist;//size is inversely proportional to distance
+	if (mult > 0.05)//far too small
+	{
+		sprite.setPosition(mult*position[0] + 256, 203 + mult * 245);
+		sprite.setScale(2 * mult, 2 * mult);//looks better?
+		if (sprite.getPosition().y > 224 && sprite.getPosition().y < 800)//within the draw space
+			window->draw(sprite);
+	}
 }
 
 
