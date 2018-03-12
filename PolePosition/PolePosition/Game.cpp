@@ -6,9 +6,12 @@
 Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window,&tickCount)
 {
 	tickCount = 0;
-	Object obj(&window, true);
-	obj.setPos(-10, 500);
-	signs.push_back(obj);
+	for (int i = 0; i < 500; i++)
+	{
+		Object obj(&window, true);
+		obj.setPos(-180, 5000*i);
+		signs.push_back(obj);
+	}
 }
 
 

@@ -14,7 +14,7 @@ public:
 	double getPosy();
 
 protected:
-	sf::Texture SignTextures;
+	static sf::Texture SignTextures;
 	sf::Sprite sprite;
 	double position[2];
 	sf::RenderWindow* window;
