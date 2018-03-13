@@ -8,6 +8,5 @@ public:
 	Racer(int);
 	~Racer();
 	void tick();
-
 private:
 };

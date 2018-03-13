@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <iostream>
 
-Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window,&tickCount)
+Game::Game(sf::RenderWindow *tempWindow): p(&window,&tickCount)
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
@@ -12,6 +12,23 @@ Game::Game() :window(sf::VideoMode(512, 448), "Pole Position"), p(&window,&tickC
 		obj.setPos(-180, 5000*i);
 		signs.push_back(obj);
 	}
+
+	window = tempWindow;
+
+	//creating background texture
+	if (!background.loadFromFile("PolePositionMtFuji.png"))
+	{
+		std::cout << "Error loading background texture\n";
+	}
+	else
+	{
+		//applying texture to background sprite
+		backgroundSprite.setTexture(background);
+	}
+
+	//Map is initialized to all straight for now.
+	for (int i = 0; i < 50; i++)
+		map.push_back(forward);
 }
 
 
@@ -42,6 +59,7 @@ void Game::play()
 		race();
 	}
 	//Calls race (twice bc two races)
+	tick();
 }
 
 
@@ -84,6 +102,7 @@ void Game::tick()
 	}
 	render();
 	//Calls render, updates player and racers
+	render();
 }
 
 
@@ -95,7 +114,7 @@ void Game::render()
 	//First, drawBackground
 	drawBackground();
 	//Then, drawMap
-	drawMap(&window);
+	drawMap();
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
@@ -107,7 +126,8 @@ void Game::render()
 }
 
 
-void Game::drawMap(sf::RenderWindow *window)
+//Draw road
+void Game::drawMap()
 {
 	//this all needs to go into a vector dummy
 	sf::Vector2u windowSize = window->getSize();
@@ -126,13 +146,40 @@ void Game::drawMap(sf::RenderWindow *window)
 	grass.setPosition(0, height/2);
 	grass.setFillColor(sf::Color::Green);
 	window->draw(grass);
-	window->draw(road);
+	window->draw(road);//just draws a trapezoid for now
+	//Draw track pieces 5 at a time so user can see ahead.
 }
 
 
+//drawing background and grass
 void Game::drawBackground()
 {
+	//Grabbing window size and converting into the right type of vector
+	sf::Vector2u tempSize = window->getSize();
+	sf::Vector2f windowSize(tempSize.x, tempSize.y);
 
+
+	//create background sprite
+	backgroundSprite.setScale(1, 1.75);
+
+	//rotate sprite to correct angle
+	backgroundSprite.move(-.001, 0);
+	if (backgroundSprite.getPosition().x < -windowSize.x)
+		backgroundSprite.setPosition(sf::Vector2f(0, 0));
+	if (backgroundSprite.getPosition().x > 0)
+		backgroundSprite.setPosition(sf::Vector2f(-windowSize.x, 0));
+
+	//draw sprite
+	window->draw(backgroundSprite);
+
+	
+	//Draw the grass
+	sf::RectangleShape grass(windowSize);
+	
+	//Set grass position and color
+	grass.setPosition(0, windowSize.y / 2);
+	grass.setFillColor(sf::Color::Color(67, 157, 14, 255));
+	window->draw(grass);
 }
 
 

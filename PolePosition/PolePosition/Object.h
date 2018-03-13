@@ -19,4 +19,6 @@ protected:
 	sf::Sprite sprite;
 	double position[2];
 	sf::RenderWindow* window;
+
+	sf::RectangleShape hitbox;
 };
