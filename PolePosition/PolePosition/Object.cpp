@@ -7,13 +7,12 @@ sf::Texture Object::CarTextures;
 
 Object::Object()
 {
-	//Maybe grab a pointer to the render window
 }
 
 
-Object::Object(sf::RenderWindow* win)
+Object::Object(sf::RenderWindow* w)
 {
-	window = win;
+	window = w;
 }
 
 

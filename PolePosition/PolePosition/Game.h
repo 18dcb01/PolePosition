@@ -30,7 +30,6 @@ private:
 
 	std::vector<Object> signs;
 	double time;
-	sf::RenderWindow window;
 	short pState;
 	int tickCount;
 	void race();

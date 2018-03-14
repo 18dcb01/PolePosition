@@ -3,17 +3,17 @@
 #include <Windows.h>
 #include <iostream>
 
-Game::Game(sf::RenderWindow *tempWindow): p(&window,&tickCount)
+Game::Game(sf::RenderWindow *w): p(w,&tickCount)
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
 	{
-		Object obj(&window, true);
+		Object obj(w, true);
 		obj.setPos(-180, 15000*i);
 		signs.push_back(obj);
 	}
 
-	window = tempWindow;
+	window = w;
 
 	//creating background texture
 	if (!background.loadFromFile("PolePositionMtFuji.png"))
@@ -48,14 +48,14 @@ void Game::play()
 	//start vroom noises
 	p.playSound();
 	//qualifying round
-	if (window.isOpen())
+	if (window->isOpen())
 		race();
 
 	//second race
-	if (window.isOpen())
+	if (window->isOpen())
 	{
 		for (int i = 0; i < 7; i++)
-			r[i] = Racer(&window);
+			r[i] = Racer(window);
 		race();
 	}
 	//Calls race (twice bc two races)
@@ -65,15 +65,15 @@ void Game::play()
 
 void Game::race()
 {
-	while (window.isOpen())
+	while (window->isOpen())
 	{
 		clock_t time = clock();
 		//sfml overhead
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
+				window->close();
 		}
 		//should maybe get more complicated?
 		if (GetKeyState(80) == pState)
@@ -108,46 +108,19 @@ void Game::tick()
 
 void Game::render()
 {
-	window.clear();
-
-	p.drawDashboard();
+	window->clear();
+	
 	//First, drawBackground
 	drawBackground();
-	//Then, drawMap
-	drawMap();
+	p.drawDashboard();
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
 
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());
-	window.display();
+	window->display();
 
-}
-
-
-//Draw road
-void Game::drawMap()
-{
-	//this all needs to go into a vector dummy
-	sf::Vector2u windowSize = window->getSize();
-	int width = windowSize.x;
-	int height = windowSize.y;
-	//Draw the grass
-	sf::RectangleShape grass(sf::Vector2f(width, height/2));
-
-	sf::ConvexShape road;
-	road.setPointCount(4);
-	road.setPoint(0, sf::Vector2f(width / 3-5, height));
-	road.setPoint(1, sf::Vector2f(width / 2-5, height/2));
-	road.setPoint(2, sf::Vector2f(width / 2+5, height / 2));
-	road.setPoint(3, sf::Vector2f(2*width / 3+5, height));
-	//Set grass position and color
-	grass.setPosition(0, height/2);
-	grass.setFillColor(sf::Color::Green);
-	window->draw(grass);
-	window->draw(road);//just draws a trapezoid for now
-	//Draw track pieces 5 at a time so user can see ahead.
 }
 
 
@@ -199,20 +172,20 @@ void Game::openingMenu()
 	s2.setPosition(0, 384);
 
 	bool menuClosed = false;
-	while (window.isOpen() && !menuClosed)
+	while (window->isOpen() && !menuClosed)
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
+				window->close();
 			if (event.type == sf::Event::KeyPressed)
 				menuClosed = true;
 		}
-		window.clear();
-		window.draw(s);
-		window.draw(s2);
-		window.display();
+		window->clear();
+		window->draw(s);
+		window->draw(s2);
+		window->display();
 	}
 }
 
@@ -231,5 +204,5 @@ void Game::drawPause()
 	pauseText.setPosition(sf::Vector2f(216, 240));
 	pauseText.setCharacterSize(16);
 	pauseText.setFillColor(sf::Color(255, 250, 103));
-	window.draw(pauseText);
+	window->draw(pauseText);
 }

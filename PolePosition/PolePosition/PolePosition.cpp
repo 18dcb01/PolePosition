@@ -19,23 +19,16 @@ using namespace std;
 
 int main()
 {
-	FreeConsole();
+	//FreeConsole();
 	//basic game run
 	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
-	Game game(&window);
-	game.play();
-
-	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
 	window.setFramerateLimit(60);
-	sf::RenderWindow *windowPtr = &window;
 
-	sf::Clock clock;
-
-	Game game(windowPtr);
+	Game game(&window);
 
 	std::vector<double> oi;
 	oi.push_back(2);
-	Road road(windowPtr, oi);
+	Road road(&window, oi);
 
 
 
@@ -52,11 +45,6 @@ int main()
 		game.play();
 		road.draw(100, 0);
 		window.display();
-
-		/*/track framerate
-		std::cout << 1.f / clock.getElapsedTime().asSeconds() << '\n';
-		clock.restart();
-		*/
 	}
 
 	return 0;
