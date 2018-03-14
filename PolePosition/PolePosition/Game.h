@@ -35,7 +35,6 @@ private:
 	void race();
 	void tick();
 	void render();
-	void drawMap();
 	void drawBackground();
 	void openingMenu();
 	void drawPause();
