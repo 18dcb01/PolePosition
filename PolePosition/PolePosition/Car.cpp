@@ -14,9 +14,7 @@ Car::Car(sf::RenderWindow* w) : Object(w)
 	if (CarTextures.getSize().x == 0)
 		CarTextures.loadFromFile("CarTextures.png");
 	initializeSprites(0);
-	sprites.at(0).setOrigin(32, 15);
-	sprites.at(0).setPosition(256, 392);
-	sprites.at(0).setScale(2, 2);
+	
 }
 
 
@@ -40,6 +38,12 @@ void Car::initializeSprites(int x)
 	{
 		s.setTextureRect(sf::IntRect(i, 257, 64, 31));
 		sprites.push_back(s);
+	}
+	for (int i = 0; i < sprites.size(); i++)
+	{
+		sprites.at(i).setOrigin(32, 15);
+		sprites.at(i).setPosition(256, 392);
+		sprites.at(i).setScale(2, 2);
 	}
 }
 

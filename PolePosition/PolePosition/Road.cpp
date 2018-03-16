@@ -181,10 +181,7 @@ void Road::drawRoad(double position)
 	for (int i = 0; i < roadShape.size(); i++)
 		windowPtr->draw(roadShape.at(i));
 
-<<<<<<< HEAD
 	roadCurve.at(0) -= .0001;
-=======
->>>>>>> e26c362378091dc43c71a24360e6e0ad3200889f
 	return;
 }
 
