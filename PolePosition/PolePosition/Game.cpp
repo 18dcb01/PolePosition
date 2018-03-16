@@ -116,6 +116,7 @@ void Game::render()
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
+	p.render(0);
 
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());

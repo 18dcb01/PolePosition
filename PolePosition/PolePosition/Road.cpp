@@ -176,7 +176,6 @@ void Road::drawRoad(double position)
 	}
 
 	roadCurve.at(0) -= .0001;
-	
 	return;
 }
 

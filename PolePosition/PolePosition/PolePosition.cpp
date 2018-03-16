@@ -21,7 +21,7 @@ int main()
 {
 	//FreeConsole();
 	//basic game run
-	sf::RenderWindow window(sf::VideoMode(512, 448), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(512, 448), "Pole Position");
 	window.setFramerateLimit(60);
 
 	Game game(&window);

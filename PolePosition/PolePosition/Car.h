@@ -9,6 +9,7 @@ public:
 	Car();
 	Car(sf::RenderWindow*);
 	~Car();
+	void initializeSprites(int);
 	virtual void render(int);
 	double getSpdx();
 	double getSpdy();
