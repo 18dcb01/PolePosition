@@ -1,9 +1,9 @@
 #pragma once
 #include "Player.h"
 #include "Racer.h"
+#include "Road.h"
 #include <vector>
 #include <iostream>
-#include "Direction.h"
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Texture.hpp>
 
@@ -26,7 +26,8 @@ private:
 
 	//vector that contains all of the the directions that
 	//the track is going to turn.
-	std::vector<Direction> map;
+	std::vector<double> map;
+	Road road;
 
 	std::vector<Object> signs;
 	double time;

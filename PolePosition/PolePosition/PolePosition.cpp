@@ -26,12 +26,6 @@ int main()
 
 	Game game(&window);
 
-	std::vector<double> oi;
-	oi.push_back(2);
-	Road road(&window, oi);
-
-
-
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -43,7 +37,6 @@ int main()
 
 		window.clear();
 		game.play();
-		road.draw(100, 0);
 		window.display();
 	}
 

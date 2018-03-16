@@ -19,6 +19,7 @@ curvature of the road.
 
 
 public:
+	Road();
 	Road(sf::RenderWindow*, std::vector<double>);
 
 	//everything in here
