@@ -39,9 +39,6 @@
     <ClInclude Include="Racer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Direction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Road.h">
       <Filter>Header Files</Filter>
     </ClInclude>

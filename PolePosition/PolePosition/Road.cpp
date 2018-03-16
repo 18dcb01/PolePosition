@@ -2,6 +2,12 @@
 #include "Road.h"
 
 
+//Empty constructor
+Road::Road()
+{
+}
+
+
 Road::Road(sf::RenderWindow *window, std::vector<double> track)
 {
 	//assigning window and storing the race track
@@ -177,6 +183,8 @@ void Road::drawRoad(double position)
 
 	roadCurve.at(0) -= .0001;
 	
+	std::cout << "Road is drawn?\n";
+
 	return;
 }
 

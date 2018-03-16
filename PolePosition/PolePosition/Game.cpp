@@ -28,7 +28,9 @@ Game::Game(sf::RenderWindow *w): p(w,&tickCount)
 
 	//Map is initialized to all straight for now.
 	for (int i = 0; i < 50; i++)
-		map.push_back(forward);
+		map.push_back(2);
+
+	road = Road(w, map);
 }
 
 
@@ -113,6 +115,10 @@ void Game::render()
 	//First, drawBackground
 	drawBackground();
 	p.drawDashboard();
+
+	//Draw Road
+	road.draw(100, 0);
+
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
