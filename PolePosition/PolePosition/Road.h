@@ -31,6 +31,7 @@ private:
 	void drawCenterLine(double, double);
 	void drawOutsideLines(double, double);
 	void drawThinLines(double, double);
+	void resetLineHeight(std::vector<sf::ConvexShape>*);
 
 	//variables
 	std::vector<double> roadCurve;	//race track
