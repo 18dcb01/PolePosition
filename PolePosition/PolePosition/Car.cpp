@@ -14,7 +14,6 @@ Car::Car(sf::RenderWindow* w) : Object(w)
 	if (CarTextures.getSize().x == 0)
 		CarTextures.loadFromFile("CarTextures.png");
 	initializeSprites(0);
-	
 }
 
 
@@ -23,7 +22,6 @@ Car::Car(sf::RenderWindow* w) : Object(w)
 void Car::initializeSprites(int x)
 {
 	sf::Sprite s(CarTextures);
-
 	for (int i = 911; i > 65; i -= 65)
 	{
 		s.setTextureRect(sf::IntRect(i, 33, 64, 31));
