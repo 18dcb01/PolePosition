@@ -39,9 +39,6 @@
     <ClInclude Include="Racer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Direction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Road.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -71,5 +68,32 @@
     <ClCompile Include="Road.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Arcade Classic.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="CarTextures.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="OpeningMenu.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Pole position sign sprites.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="PolePositionMtFuji.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="CarVroom.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

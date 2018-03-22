@@ -24,6 +24,8 @@ public:
 
 	//everything in here
 	void draw(double, double);
+	//Returns center of the road given a height.
+	double getRoadCenterXCoord(double);
 
 private:
 	//drawing functions

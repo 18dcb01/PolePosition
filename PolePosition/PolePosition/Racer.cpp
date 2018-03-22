@@ -11,13 +11,6 @@ Racer::Racer(sf::RenderWindow* w) : Car(w)
 {
 }
 
-
-Racer::~Racer()
-{
-
-}
-
-
 Racer::Racer(int pos)
 {
 	if (pos % 2 == 0)
@@ -27,6 +20,10 @@ Racer::Racer(int pos)
 	position[1] = -20 * (pos / 2);
 }
 
+Racer::~Racer()
+{
+
+}
 
 void Racer::tick()
 {

@@ -22,7 +22,7 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	roadPiece.setPointCount(4);
 
 	//pushing roadPiece into roadShape, number of shapes is adjustable
-	for (int i = 0; i < 224; i++)
+	for (int i = 0; i < 14; i++)
 		roadShape.push_back(roadPiece);
 
 	//setting the height for all points
@@ -52,6 +52,26 @@ void Road::draw(double position, double speed)
 	return;
 }
 
+//Only to be called after x coordnates are set.
+double Road::getRoadCenterXCoord(double objectHeight)
+{
+	//get points with similar heights to our car.
+	double currentVal = 1000000;
+	for (int i = 0; i < roadShape.size(); i++)
+	{
+		for (int j = 0; j < roadShape.at(i).getPointCount(); j++)
+		{
+			//if Point's y value is closer to our y value than the current champ.
+			//Replace our current champ.
+			if (abs(roadShape.at(i).getPoint(j).y - objectHeight) <
+				abs(currentVal - objectHeight))
+				currentVal = abs(roadShape.at(i).getPoint(j).y - objectHeight);
+		}
+	}
+	
+	//Later return mid-road x pos.
+	return 0;
+}
 
 void Road::drawRoad(double position)
 {
@@ -62,7 +82,7 @@ void Road::drawRoad(double position)
 
 	//turn right
 	if (roadCurve.at(0) >= 0)
-	{			
+	{
 		//calculating initial width
 		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
 		width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
@@ -73,9 +93,9 @@ void Road::drawRoad(double position)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
 			if (i == 0)
 			{
-				roadShape.at(i).setPoint(0, sf::Vector2f(width + height / 1, 
+				roadShape.at(i).setPoint(0, sf::Vector2f(width + height / 1,
 					roadShape.at(i).getPoint(0).y));
-				roadShape.at(i).setPoint(1, sf::Vector2f(width + roadShape.at(i).getPoint(1).y / 1 + 50, 
+				roadShape.at(i).setPoint(1, sf::Vector2f(width + roadShape.at(i).getPoint(1).y / 1 + 50,
 					roadShape.at(i).getPoint(1).y));
 			}
 			else
@@ -83,7 +103,7 @@ void Road::drawRoad(double position)
 				roadShape.at(i).setPoint(1, roadShape.at(i - 1).getPoint(2));
 				roadShape.at(i).setPoint(0, roadShape.at(i - 1).getPoint(3));
 			}
-			
+
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
 			width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
@@ -134,8 +154,21 @@ void Road::drawRoad(double position)
 
 	//draw Road
 	for (int i = 0; i < roadShape.size(); i++)
+	{
 		windowPtr->draw(roadShape.at(i));
-
+		//uncomment to highlight the points in roadShape.
+		/*
+		sf::CircleShape highlight = sf::CircleShape(5);
+		for (int j = 0; j < roadShape.at(i).getPointCount(); j++)
+		{
+			highlight.setPosition(roadShape.at(i).getPoint(j).x, roadShape.at(i).getPoint(j).y);
+			highlight.setFillColor(sf::Color::Red);
+			if (i % 2 == 0)
+				highlight.setFillColor(sf::Color::Blue);
+			windowPtr->draw(highlight);
+		}
+		*/
+	}
 	roadCurve.at(0) -= .0001;
 	return;
 }

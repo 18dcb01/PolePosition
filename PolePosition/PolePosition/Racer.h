@@ -9,4 +9,5 @@ public:
 	~Racer();
 	void tick();
 private:
+	
 };
