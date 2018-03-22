@@ -160,7 +160,7 @@ void Player::updateSound()
 }
 
 
-void Player::drawDashboard()
+void Player::drawDashboard(bool paused)
 {
 	//Set the strings for the second half
 	dashboard.at(5).setString(to_string(highScore));
@@ -168,7 +168,7 @@ void Player::drawDashboard()
 	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
 	int lapSeconds = (*tickCount - lapStart) / 25;
 	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
-	if (lapCentiseconds != 0)
+	if (lapCentiseconds != 0&&!paused)
 		lapCentiseconds += rand() % 4;
 	dashboard.at(8).setString(
     (lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) +
