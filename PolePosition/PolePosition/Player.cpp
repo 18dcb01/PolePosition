@@ -45,6 +45,7 @@ Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 	dashboard = {tTop, tScore, tTime, tLap, tSpeed,
 		topScore, score, time, lap, speed};
 	initializeDashboard();
+	initializeSprites();
 
 	position[1] = -10;
 }
@@ -54,8 +55,17 @@ Player::~Player()
 {
 	std::fstream scoreFile;
 	scoreFile.open("highScore.txt",ios::out);
-	scoreFile << highScore;
+	scoreFile << ((highScore / 10) * 10);
 	scoreFile.close();
+}
+
+
+void Player::initializeSprites()
+{
+	for (int i = 0; i < sprites.size(); i++)
+		sprites.at(i).setPosition(256, 392);
+	for (int i = 0; i < spritesTwo.size(); i++)
+		spritesTwo.at(i).setPosition(256, 392);
 }
 
 
@@ -77,6 +87,8 @@ void Player::pauseSound()
 void Player::awardPoints(int p)
 {
 	score += p;
+	if (score > highScore)
+		highScore = score;
 }
 
 
@@ -105,7 +117,7 @@ void Player::tick()
 		//Slow down, maybe skidding noise
 	}
 	//Accelerate
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 300)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 200)
 	{
 		double accel = 0;
 		double num = exp(-.04*(speed[1]-150));
@@ -146,7 +158,7 @@ void Player::tick()
 	position[1] += speed[1];
 	updateSound();
 
-	score = position[1]+10;
+	awardPoints(0.1 * speed[1]);
 }
 
 
@@ -160,15 +172,17 @@ void Player::updateSound()
 }
 
 
-void Player::drawDashboard()
+void Player::drawDashboard(bool paused)
 {
 	//Set the strings for the second half
-	dashboard.at(5).setString(to_string(highScore));
-	dashboard.at(6).setString(to_string(score));
+	int displayHigh = (highScore / 10) * 10;
+	dashboard.at(5).setString(to_string(displayHigh));
+	int displayScore = (score / 10) * 10;
+	dashboard.at(6).setString(to_string(displayScore));
 	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
 	int lapSeconds = (*tickCount - lapStart) / 25;
 	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
-	if (lapCentiseconds != 0)
+	if (lapCentiseconds != 0 && !paused)
 		lapCentiseconds += rand() % 4;
 	dashboard.at(8).setString(
     (lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) +

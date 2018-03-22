@@ -16,5 +16,7 @@ public:
 
 protected:
 	std::vector<sf::Sprite> sprites;
+	std::vector<sf::Sprite> spritesTwo;
 	double speed[2];
+	unsigned short spinny;
 };
