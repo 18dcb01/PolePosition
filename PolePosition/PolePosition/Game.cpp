@@ -9,7 +9,7 @@ Game::Game(sf::RenderWindow *w): p(w,&tickCount)
 	for (int i = 0; i < 500; i++)
 	{
 		Object obj(w, true);
-		obj.setPos(-180, 15000*i);
+		obj.setPos(-300, 15000*i);
 		signs.push_back(obj);
 	}
 

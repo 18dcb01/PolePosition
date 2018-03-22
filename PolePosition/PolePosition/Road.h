@@ -23,15 +23,19 @@ public:
 	Road(sf::RenderWindow*, std::vector<double>);
 
 	//everything in here
-	void draw(double, double);
+	void draw(double, double, int);
 
 private:
 	//drawing functions
 	void drawRoad(double);
-	void drawCenterLine(double, double);
+	void drawCenterLine(double, double, int);
 	void drawOutsideLines(double, double);
 	void drawThinLines(double, double);
 	void resetLineHeight(std::vector<sf::ConvexShape>*);
+
+	//utility functions
+	void editX(std::vector<sf::ConvexShape>*, int, int, int);
+	void editY(std::vector<sf::ConvexShape>*, int, int, int);
 
 	//variables
 	std::vector<double> roadCurve;	//race track
