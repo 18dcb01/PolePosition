@@ -1,9 +1,20 @@
-﻿  Game.cpp
+﻿  Player.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(149): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(156): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(158): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(176): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Game.cpp
 c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(128): warning C4018: '<': signed/unsigned mismatch
 c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(129): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(140): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
 c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(147): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(174): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(178): warning C4305: 'argument': truncation from 'double' to 'float'
+  Car.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\car.cpp(40): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Racer.cpp
+  PolePosition.cpp
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
