@@ -40,10 +40,10 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 }
 
 
-void Road::draw(double position, double speed)
+void Road::draw(double position, double speed, double carpos)
 {
-	drawRoad(position);
-	drawCenterLine(position, speed);
+	drawRoad(position, carpos);
+	drawCenterLine(position, speed, carpos);
 	drawOutsideLines(position, speed);
 	drawThinLines(position, speed);
 
@@ -53,19 +53,20 @@ void Road::draw(double position, double speed)
 }
 
 
-void Road::drawRoad(double position)
+void Road::drawRoad(double position, int carpos)
 {
 	int width, height, offset;
+	carpos = (carpos / 1000) % roadCurve.size();
 
 	//offset will be what allows the road to leave the window if the car drives off
 	offset = position;
 
 	//turn right
-	if (roadCurve.at(0) >= 0)
+	if (roadCurve.at(carpos) >= 0)
 	{			
 		//calculating initial width
 		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-		width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
+		width = 0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 		for (int i = 0; i < roadShape.size(); i++)
 		{
@@ -86,7 +87,7 @@ void Road::drawRoad(double position)
 			
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
-			width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
+			width = 0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 			//Setting D and C shapes (the bottom two points)
 			roadShape.at(i).setPoint(3, sf::Vector2f(width + height / 1,
@@ -96,11 +97,11 @@ void Road::drawRoad(double position)
 		}
 	}
 	//turn left
-	else if (roadCurve.at(0) < 0)
+	else if (roadCurve.at(carpos) < 0)
 	{
 		//calculating initial width
 		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-		width = -0.001 * pow(height, abs(roadCurve.at(0))) + offset;
+		width = -0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 		for (int i = 0; i < roadShape.size(); i++)
 		{
@@ -121,7 +122,7 @@ void Road::drawRoad(double position)
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
-			width = -0.001 * pow(height, abs(roadCurve.at(0))) + offset;
+			width = -0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 			//Setting D and C shapes (the bottom two points)
 			roadShape.at(i).setPoint(3, sf::Vector2f(width + height / 1.5,
@@ -136,13 +137,14 @@ void Road::drawRoad(double position)
 	for (int i = 0; i < roadShape.size(); i++)
 		windowPtr->draw(roadShape.at(i));
 
-	roadCurve.at(0) -= .0001;
+	//roadCurve.at(0) -= .0001;
 	return;
 }
 
 
-void Road::drawCenterLine(double position, double speed)
+void Road::drawCenterLine(double position, double speed, int carpos)
 {
+	double mult = 300;
 	int width, height;
 	double offset;
 
@@ -157,6 +159,27 @@ void Road::drawCenterLine(double position, double speed)
 	if (middleLine.at(last).getPoint(0).y > windowPtr->getSize().y)
 		resetLineHeight(&middleLine);
 
+	middleLine.clear();
+	for (int i = (carpos / 500) * 500; mult / (i-carpos) > 0.05||carpos>i; i+=500)
+	{
+		if (i>carpos-250)
+		{
+
+			sf::ConvexShape shape;
+			shape.setPointCount(4);
+			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 250 - carpos) * 245)));
+			if (i > carpos)
+				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
+			else
+				shape.setPoint(2, sf::Vector2f(0, 448));
+
+			shape.setPoint(1, shape.getPoint(0));
+			shape.setPoint(3, shape.getPoint(2));
+			
+			middleLine.push_back(shape);
+		}
+	}
+
 	//Setting X values
 	//turn right
 	if (roadCurve.at(0) >= 0)
@@ -169,18 +192,10 @@ void Road::drawCenterLine(double position, double speed)
 		{
 			//setting A and B points (the top two for the shape)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
-			if (i == 0)
-			{
 				middleLine.at(i).setPoint(0, sf::Vector2f(width + height / 100,
 					middleLine.at(i).getPoint(0).y));
 				middleLine.at(i).setPoint(1, sf::Vector2f(width + middleLine.at(i).getPoint(1).y / 100 + 2,
 					middleLine.at(i).getPoint(1).y));
-			}
-			else
-			{
-				middleLine.at(i).setPoint(1, middleLine.at(i - 1).getPoint(2));
-				middleLine.at(i).setPoint(0, middleLine.at(i - 1).getPoint(3));
-			}
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - middleLine.at(i).getPoint(2).y;
@@ -204,18 +219,11 @@ void Road::drawCenterLine(double position, double speed)
 		{
 			//setting A and B points (the top two for the shape)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
-			if (i == 0)
-			{
+
 				middleLine.at(i).setPoint(0, sf::Vector2f(width + height / 2,
 					middleLine.at(i).getPoint(0).y));
 				middleLine.at(i).setPoint(1, sf::Vector2f(width + middleLine.at(i).getPoint(1).y / 2 + 2,
 					middleLine.at(i).getPoint(1).y));
-			}
-			else
-			{
-				middleLine.at(i).setPoint(1, middleLine.at(i - 1).getPoint(2));
-				middleLine.at(i).setPoint(0, middleLine.at(i - 1).getPoint(3));
-			}
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - middleLine.at(i).getPoint(2).y;
@@ -227,12 +235,6 @@ void Road::drawCenterLine(double position, double speed)
 			middleLine.at(i).setPoint(2, sf::Vector2f(width + roadShape.at(i).getPoint(2).y / 2 + 2,
 				middleLine.at(i).getPoint(2).y));
 		}
-	}
-
-	for (int i = 0; i < middleLine.size(); i++)
-	{
-		for (int j = 0; j < 4; j++)
-			middleLine.at(i).setPoint(j, sf::Vector2f(middleLine.at(i).getPoint(j).x, middleLine.at(i).getPoint(j).y + speed));
 	}
 
 	//Draw middleLine

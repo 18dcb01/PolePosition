@@ -23,12 +23,12 @@ public:
 	Road(sf::RenderWindow*, std::vector<double>);
 
 	//everything in here
-	void draw(double, double);
+	void draw(double, double, double);
 
 private:
 	//drawing functions
-	void drawRoad(double);
-	void drawCenterLine(double, double);
+	void drawRoad(double,int);
+	void drawCenterLine(double, double, int);
 	void drawOutsideLines(double, double);
 	void drawThinLines(double, double);
 	void resetLineHeight(std::vector<sf::ConvexShape>*);

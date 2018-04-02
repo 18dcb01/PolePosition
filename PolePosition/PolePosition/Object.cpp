@@ -44,8 +44,8 @@ Object::~Object()
 
 void Object::render(int carPos)
 {
-	int dist = position[1] - carPos - 20;//distance to sign
-	double mult = 1000;//arbitrarily chosen, looks about right
+	int dist = position[1] - carPos;//distance to sign
+	double mult = 300;//arbitrarily chosen, looks about right
 	mult /= dist;//size is inversely proportional to distance
 	if (mult > 0.05)//far too small
 	{
