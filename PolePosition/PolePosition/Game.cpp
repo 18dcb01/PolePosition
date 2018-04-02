@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 
-Game::Game(sf::RenderWindow *w): p(w,&tickCount)
+Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
@@ -58,7 +58,7 @@ void Game::play()
 	if (window->isOpen())
 	{
 		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window);
+			r[i] = Racer(window, 0);
 		race();
 	}
 	//Calls race (twice bc two races)

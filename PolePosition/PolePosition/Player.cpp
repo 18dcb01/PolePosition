@@ -14,7 +14,7 @@ Player::Player() : Car()
 }
 
 
-Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
+Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
 {
 	//Initialize score and high score
 	score = 0;
@@ -45,7 +45,6 @@ Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 	dashboard = {tTop, tScore, tTime, tLap, tSpeed,
 		topScore, score, time, lap, speed};
 	initializeDashboard();
-	initializeSprites();
 
 	position[1] = -10;
 }
@@ -57,15 +56,6 @@ Player::~Player()
 	scoreFile.open("highScore.txt",ios::out);
 	scoreFile << ((highScore / 10) * 10);
 	scoreFile.close();
-}
-
-
-void Player::initializeSprites()
-{
-	for (int i = 0; i < sprites.size(); i++)
-		sprites.at(i).setPosition(256, 392);
-	for (int i = 0; i < spritesTwo.size(); i++)
-		spritesTwo.at(i).setPosition(256, 392);
 }
 
 
@@ -117,7 +107,7 @@ void Player::tick()
 		//Slow down, maybe skidding noise
 	}
 	//Accelerate
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 200)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 225)
 	{
 		double accel = 0;
 		double num = exp(-.04*(speed[1]-150));
@@ -157,7 +147,8 @@ void Player::tick()
 	position[0] += speed[0];
 	position[1] += speed[1];
 	updateSound();
-
+	
+	spinny += 80 * speed[1];
 	awardPoints(0.1 * speed[1]);
 }
 
@@ -182,7 +173,7 @@ void Player::drawDashboard(bool paused)
 	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
 	int lapSeconds = (*tickCount - lapStart) / 25;
 	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
-	if (lapCentiseconds != 0 && !paused)
+	if (lapCentiseconds != 0&&!paused)
 		lapCentiseconds += rand() % 4;
 	dashboard.at(8).setString(
     (lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) +

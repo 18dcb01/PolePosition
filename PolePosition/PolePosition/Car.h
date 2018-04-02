@@ -7,7 +7,7 @@ class Car :
 {
 public:
 	Car();
-	Car(sf::RenderWindow*);
+	Car(sf::RenderWindow*, int);
 	~Car();
 	void initializeSprites(int);
 	virtual void render(int);
