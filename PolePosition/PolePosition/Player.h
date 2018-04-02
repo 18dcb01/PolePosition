@@ -30,6 +30,7 @@ private:
 	int score;
 	int highScore;
 	void initializeDashboard();
+	void initializeSprites();
 	int * tickCount;
 	int lapStart;
 };
