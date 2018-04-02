@@ -56,7 +56,9 @@ void Road::draw(double position, double speed)
 double Road::getRoadCenterXCoord(double objectHeight)
 {
 	//get points with similar heights to our car.
-	double currentVal = 1000000;
+	sf::Vector2f *champPtr = &roadShape.at(0).getPoint(0);
+	sf::ConvexShape *shapePtr = &roadShape.at(0);
+
 	for (int i = 0; i < roadShape.size(); i++)
 	{
 		for (int j = 0; j < roadShape.at(i).getPointCount(); j++)
@@ -64,13 +66,38 @@ double Road::getRoadCenterXCoord(double objectHeight)
 			//if Point's y value is closer to our y value than the current champ.
 			//Replace our current champ.
 			if (abs(roadShape.at(i).getPoint(j).y - objectHeight) <
-				abs(currentVal - objectHeight))
-				currentVal = abs(roadShape.at(i).getPoint(j).y - objectHeight);
+				abs(champPtr->y - objectHeight))
+			{
+				champPtr = &roadShape.at(i).getPoint(j);
+				shapePtr = &roadShape.at(i);
+			}
+				
 		}
 	}
 	
-	//Later return mid-road x pos.
-	return 0;
+	//iterate through our champ's home shape and find mid x val.
+	for (int i = 0; i < shapePtr->getPointCount(); i++)
+	{
+		if (champPtr->x == shapePtr->getPoint(i).x &&
+			champPtr->y != shapePtr->getPoint(i).y)
+			return (champPtr->x + shapePtr->getPoint(i).x) / 2;
+	}
+
+	std::cout << "Isaac made a mistake!" << std::endl;
+	//If function fails, prevent error.
+	return windowPtr->getSize().x / 2;
+}
+
+bool Road::intersects(sf::FloatRect intersect)
+{
+	for (int i = 0; i < roadShape.size(); i++)
+	{
+		sf::FloatRect tempBound = roadShape.at(i).getGlobalBounds();
+		if (intersect.intersects(tempBound))
+			return true;
+	}
+
+	return false;
 }
 
 void Road::drawRoad(double position)

@@ -26,6 +26,8 @@ public:
 	void draw(double, double);
 	//Returns center of the road given a height.
 	double getRoadCenterXCoord(double);
+	//Returns true if a given hitbox is inside the road.
+	bool intersects(sf::FloatRect);
 
 private:
 	//drawing functions
