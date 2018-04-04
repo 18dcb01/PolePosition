@@ -93,10 +93,10 @@ void Player::tick()
 	//Controls
 	//Turn left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		speed[0] -= .25;
+		speed[0] += .25;
 	//Turn right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		speed[0] += .25;
+		speed[0] -= .25;
 	//If overturned, crash
 	if (speed[0] <= -14 || speed[0] >= 14)
 	{

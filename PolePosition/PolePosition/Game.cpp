@@ -118,7 +118,7 @@ void Game::render()
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
-	road.edit(p.getPosx(), p.getSpdy(), 10);
+	road.edit(-p.getPosx(), p.getSpdy(), 10);
 	road.draw();
 
 	//Then signs, racers, and the player

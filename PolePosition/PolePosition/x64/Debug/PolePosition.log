@@ -1,16 +1,56 @@
 ﻿  stdafx.cpp
-  RoadShape.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\roadshape.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+  Road.cpp
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(89): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(90): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(107): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(108): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(112): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(119): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(120): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(128): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(137): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(138): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(142): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(163): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(167): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(178): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(179): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(188): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(197): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(198): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(202): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(209): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(210): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(219): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(228): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(229): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(233): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(244): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(245): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(278): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(279): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(300): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(306): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Racer.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\object.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
   PolePosition.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\object.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
   Player.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\object.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\player.cpp(151): warning C4244: '+=': conversion from 'double' to 'unsigned short', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\player.cpp(152): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\player.cpp(159): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\player.cpp(161): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\player.cpp(181): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Object.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\object.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\object.cpp(47): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\object.cpp(52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\object.cpp(53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Game.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\object.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(130): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(141): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(148): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(175): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\game.cpp(179): warning C4305: 'argument': truncation from 'double' to 'float'
   Car.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\object.h(2): fatal error C1083: Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+c:\users\18maa02\documents\poleposition\poleposition\poleposition\car.cpp(69): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Generating Code...
+sfml-graphics-d.lib(sfml-graphics-d-2.dll) : fatal error LNK1112: module machine type 'X86' conflicts with target machine type 'x64'
