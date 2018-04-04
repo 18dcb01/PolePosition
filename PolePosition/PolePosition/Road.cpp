@@ -100,25 +100,19 @@ void Road::drawRoad(double position, int carpos)
 	else if (roadCurve.at(carpos) < 0)
 	{
 		//calculating initial width
-		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-		width = -0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 		for (int i = 0; i < roadShape.size(); i++)
 		{
+
+			height = windowPtr->getSize().y - roadShape.at(i).getPoint(0).y;
+			width = -0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 			//setting A and B points (the top two for the shape)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
-			if (i == 0)
-			{
+
 				roadShape.at(i).setPoint(0, sf::Vector2f(width + height / 1.5,
 					roadShape.at(i).getPoint(0).y));
 				roadShape.at(i).setPoint(1, sf::Vector2f(width + roadShape.at(i).getPoint(1).y / 1.5 + 50,
 					roadShape.at(i).getPoint(1).y));
-			}
-			else
-			{
-				roadShape.at(i).setPoint(1, roadShape.at(i - 1).getPoint(2));
-				roadShape.at(i).setPoint(0, roadShape.at(i - 1).getPoint(3));
-			}
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
@@ -185,11 +179,11 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 	if (roadCurve.at(0) >= 0)
 	{
 		//calculating initial width
-		height = windowPtr->getSize().y - middleLine.at(0).getPoint(0).y;
-		width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
 
 		for (int i = 0; i < middleLine.size(); i++)
 		{
+			height = windowPtr->getSize().y - middleLine.at(i).getPoint(0).y;
+			width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
 			//setting A and B points (the top two for the shape)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
 				middleLine.at(i).setPoint(0, sf::Vector2f(width + height / 100,
@@ -238,7 +232,7 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 	}
 
 	//Draw middleLine
-	for (int i = 0; i < middleLine.size(); i+= 2)
+	for (int i = 0; i < middleLine.size(); i++)
 		windowPtr->draw(middleLine.at(i));
 
 	return;

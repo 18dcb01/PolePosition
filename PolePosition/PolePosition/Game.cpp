@@ -225,4 +225,6 @@ void Game::loadTrack()
 	{
 		map.push_back(stod(str));
 	}
+	if (map.size() == 0)
+		map.push_back(0);
 }
