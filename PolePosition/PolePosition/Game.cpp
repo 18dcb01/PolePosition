@@ -58,7 +58,7 @@ void Game::play()
 	if (window->isOpen())
 	{
 		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window, 0);
+			r[i] = Racer(window,&road, 0);
 		race();
 	}
 	//Calls race (twice bc two races)
@@ -215,8 +215,6 @@ void Game::drawPause()
 	pauseText.setFillColor(sf::Color(255, 250, 103));
 	window->draw(pauseText);
 }
-<<<<<<< HEAD
-=======
 
 
 void Game::loadTrack()
@@ -229,4 +227,3 @@ void Game::loadTrack()
 		map.push_back(stod(str));
 	}
 }
->>>>>>> master

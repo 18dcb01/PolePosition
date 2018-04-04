@@ -23,11 +23,7 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	roadPiece.setPointCount(4);
 
 	//pushing roadPiece into roadShape, number of shapes is adjustable
-<<<<<<< HEAD
-	for (int i = 0; i < 14; i++)
-=======
 	for (int i = 0; i < 28; i++)
->>>>>>> master
 		roadShape.push_back(roadPiece);
 
 	//setting the height for all points
@@ -96,6 +92,8 @@ double Road::getRoadCenterXCoord(double objectHeight)
 
 bool Road::intersects(sf::FloatRect intersect)
 {
+
+	std::cout << roadShape.size() << '\n';
 	for (int i = 0; i < roadShape.size(); i++)
 	{
 		sf::FloatRect tempBound = roadShape.at(i).getGlobalBounds();
@@ -116,15 +114,6 @@ void Road::edit(double position, double speed, int carPos)
 	return;
 }
 
-<<<<<<< HEAD
-	//turn right
-	if (roadCurve.at(0) >= 0)
-	{
-		//calculating initial width
-		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-		width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
-=======
->>>>>>> master
 
 //issue with lastTrack used not transitioning usefully
 //
@@ -132,6 +121,15 @@ void Road::edit(double position, double speed, int carPos)
 void Road::editRoad(double offset)
 {
 	int width, height;
+
+	//turn right
+	if (roadCurve.at(0) >= 0)
+	{
+		//calculating initial width
+		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
+		width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
+
+	}
 	
 	//keeps track of where we are on the track
 	int j = lastTrackUsed;
@@ -154,15 +152,14 @@ void Road::editRoad(double offset)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
 			if (i == 0)
 			{
-<<<<<<< HEAD
+
 				roadShape.at(i).setPoint(0, sf::Vector2f(width + height / 1,
 					roadShape.at(i).getPoint(0).y));
 				roadShape.at(i).setPoint(1, sf::Vector2f(width + roadShape.at(i).getPoint(1).y / 1 + 50,
 					roadShape.at(i).getPoint(1).y));
-=======
+
 				editX(&roadShape, i, 0, width + height);
 				editX(&roadShape, i, 1, width + roadShape.at(i).getPoint(1).y + 50);
->>>>>>> master
 			}
 			else
 			{
@@ -216,14 +213,12 @@ void Road::editRoad(double offset)
 
 	//update lastTrackUsed
 	lastTrackUsed = j;
-
-<<<<<<< HEAD
 	//draw Road
 	for (int i = 0; i < roadShape.size(); i++)
 	{
 		windowPtr->draw(roadShape.at(i));
 		//uncomment to highlight the points in roadShape.
-		/*
+		
 		sf::CircleShape highlight = sf::CircleShape(5);
 		for (int j = 0; j < roadShape.at(i).getPointCount(); j++)
 		{
@@ -233,11 +228,9 @@ void Road::editRoad(double offset)
 				highlight.setFillColor(sf::Color::Blue);
 			windowPtr->draw(highlight);
 		}
-		*/
+		
 	}
 	roadCurve.at(0) -= .0001;
-=======
->>>>>>> master
 	return;
 }
 

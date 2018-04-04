@@ -8,12 +8,9 @@
 class Road
 {
 /*
-TODO:
 
-Should be the class that defines the quadratic that will represent the
-curvature of the road.
-
- Uses road shapes to map sf objects to the aforementioned lines.
+	The class that represents the road as a bunch of convex shapes
+	and the surprisingly complex math needed to calculate each point.
 
 */
 
@@ -23,16 +20,13 @@ public:
 	Road(sf::RenderWindow*, std::vector<double>);
 
 	//everything in here
-<<<<<<< HEAD
 	void draw(double, double);
 	//Returns center of the road given a height.
 	double getRoadCenterXCoord(double);
 	//Returns true if a given hitbox is inside the road.
 	bool intersects(sf::FloatRect);
-=======
 	void draw();
 	void edit(double, double, int);
->>>>>>> master
 
 private:
 	//drawing functions
