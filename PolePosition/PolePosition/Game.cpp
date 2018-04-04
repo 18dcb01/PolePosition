@@ -2,8 +2,10 @@
 #include "Game.h"
 #include <Windows.h>
 #include <iostream>
+#include <fstream>
+#include <string>
 
-Game::Game(sf::RenderWindow *w): p(w,&tickCount)
+Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
@@ -27,8 +29,7 @@ Game::Game(sf::RenderWindow *w): p(w,&tickCount)
 	}
 
 	//Map is initialized to all straight for now.
-	for (int i = 0; i < 50; i++)
-		map.push_back(2);
+	loadTrack();
 
 	road = Road(w, map);
 }
@@ -57,7 +58,7 @@ void Game::play()
 	if (window->isOpen())
 	{
 		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window);
+			r[i] = Racer(window, 0);
 		race();
 	}
 	//Calls race (twice bc two races)
@@ -114,10 +115,11 @@ void Game::render()
 	
 	//First, drawBackground
 	drawBackground();
-	p.drawDashboard();
+	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
-	road.draw(100, 0);
+	road.edit(p.getPosx(), p.getSpdy(), 10);
+	road.draw();
 
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
@@ -213,3 +215,18 @@ void Game::drawPause()
 	pauseText.setFillColor(sf::Color(255, 250, 103));
 	window->draw(pauseText);
 }
+<<<<<<< HEAD
+=======
+
+
+void Game::loadTrack()
+{
+	std::fstream stream;
+	stream.open("Basic Track.txt", std::ios::in);
+	std::string str;
+	while (getline(stream, str))
+	{
+		map.push_back(stod(str));
+	}
+}
+>>>>>>> master

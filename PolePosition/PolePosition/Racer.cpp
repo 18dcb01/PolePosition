@@ -7,11 +7,17 @@ Racer::Racer()
 }
 
 
+<<<<<<< HEAD
 Racer::Racer(sf::RenderWindow* w,Road* roadAdr) : Car(w)
 {	
 	roadPtr = roadAdr;
+	window = w;
 	//Choose a random "enemy" sprite.
 	initializeSprites(0/*will be rand as soon as that works*/);
+=======
+Racer::Racer(sf::RenderWindow* w, int color) : Car(w, color)
+{
+>>>>>>> master
 }
 
 Racer::~Racer()

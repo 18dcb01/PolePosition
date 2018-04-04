@@ -39,4 +39,5 @@ private:
 	void drawBackground();
 	void openingMenu();
 	void drawPause();
+	void loadTrack();
 };

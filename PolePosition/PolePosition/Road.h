@@ -23,22 +23,32 @@ public:
 	Road(sf::RenderWindow*, std::vector<double>);
 
 	//everything in here
+<<<<<<< HEAD
 	void draw(double, double);
 	//Returns center of the road given a height.
 	double getRoadCenterXCoord(double);
 	//Returns true if a given hitbox is inside the road.
 	bool intersects(sf::FloatRect);
+=======
+	void draw();
+	void edit(double, double, int);
+>>>>>>> master
 
 private:
 	//drawing functions
-	void drawRoad(double);
-	void drawCenterLine(double, double);
-	void drawOutsideLines(double, double);
-	void drawThinLines(double, double);
+	void editRoad(double);
+	void editCenterLine(double, double, int);
+	void editOutsideLines(double, double);
+	void editThinLines(double, double);
 	void resetLineHeight(std::vector<sf::ConvexShape>*);
+
+	//utility functions
+	void editX(std::vector<sf::ConvexShape>*, int, int, int);
+	void editY(std::vector<sf::ConvexShape>*, int, int, int);
 
 	//variables
 	std::vector<double> roadCurve;	//race track
+	int lastTrackUsed;
 	sf::RenderWindow* windowPtr;	//window
 	std::vector<sf::ConvexShape> roadShape;	//main road
 	std::vector<sf::ConvexShape> middleLine;	//center dotted line

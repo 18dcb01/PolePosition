@@ -7,7 +7,12 @@ class Racer : public Car
 {
 public:
 	Racer();
+<<<<<<< HEAD
 	Racer(sf::RenderWindow*, Road*);
+=======
+	Racer(sf::RenderWindow*, int);
+	Racer(int);
+>>>>>>> master
 	~Racer();
 	void tick();
 private:
