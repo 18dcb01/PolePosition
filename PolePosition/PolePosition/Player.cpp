@@ -97,15 +97,6 @@ void Player::tick()
 	//Turn right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		speed[0] += .25;
-	//If overturned, crash
-	if (speed[0] <= -14 || speed[0] >= 14)
-	{
-		//crash, maybe noise, different set of sprites
-	}
-	else if (speed[0] <= -12 || speed[0] >= 12)
-	{
-		//Slow down, maybe skidding noise
-	}
 	//Accelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 225)
 	{
@@ -149,7 +140,7 @@ void Player::tick()
 	updateSound();
 	
 	spinny += 80 * speed[1];
-	awardPoints(0.1 * speed[1]);
+	awardPoints(0.05 * speed[1]);
 }
 
 

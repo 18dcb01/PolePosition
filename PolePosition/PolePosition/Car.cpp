@@ -64,7 +64,7 @@ Car::~Car()
 
 
 //Should probably eventually be passed horizontal speed which is a double
-void Car::render(int i)
+void Car::render()
 {
 	int x = (speed[0] * 1.5) + 14;
 	if (x < 3)
