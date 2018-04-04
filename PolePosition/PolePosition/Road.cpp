@@ -57,7 +57,7 @@ void Road::draw()
 
 void Road::edit(double position, double speed, int carPos)
 {
-	editRoad(position);
+	editRoad(position, speed);
 	editCenterLine(position, speed, carPos);
 	editOutsideLines(position, speed);
 	editThinLines(position, speed);
@@ -69,7 +69,7 @@ void Road::edit(double position, double speed, int carPos)
 //issue with lastTrack used not transitioning usefully
 //
 //
-void Road::editRoad(double offset)
+void Road::editRoad(double offset, double playerSpeed)
 {
 	int width, height;
 	
@@ -102,6 +102,7 @@ void Road::editRoad(double offset)
 				roadShape.at(i).setPoint(1, roadShape.at(i - 1).getPoint(2));
 				roadShape.at(i).setPoint(0, roadShape.at(i - 1).getPoint(3));
 			}
+
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
@@ -143,8 +144,12 @@ void Road::editRoad(double offset)
 
 		}
 
-		//increment j
-		j++;
+		if (roadSpeedTimer.getElapsedTime().asMilliseconds() > 500 - playerSpeed && playerSpeed > 0)
+		{
+			//increment j
+			j++;
+			roadSpeedTimer.restart();
+		}
 	}
 
 	//update lastTrackUsed
@@ -304,4 +309,16 @@ void Road::editX(std::vector<sf::ConvexShape> *shapeList, int shape, int point, 
 void Road::editY(std::vector<sf::ConvexShape> *shapeList, int shape, int point, int newY)
 {
 	shapeList->at(shape).setPoint(point, sf::Vector2f(shapeList->at(shape).getPoint(point).x, newY));
+}
+
+
+void Game::loadTrack()
+{
+	std::fstream stream;
+	stream.open("Basic Track.txt", std::ios::in);
+	std::string str;
+	while (getline(stream, str))
+	{
+		map.push_back(stod(str));
+	}
 }

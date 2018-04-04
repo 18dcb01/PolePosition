@@ -15,6 +15,7 @@ curvature of the road.
 
  Uses road shapes to map sf objects to the aforementioned lines.
 
+ moved loadTrack to road, plug it in
 */
 
 
@@ -28,7 +29,7 @@ public:
 
 private:
 	//drawing functions
-	void editRoad(double);
+	void editRoad(double, double);
 	void editCenterLine(double, double, int);
 	void editOutsideLines(double, double);
 	void editThinLines(double, double);
@@ -41,6 +42,7 @@ private:
 	//variables
 	std::vector<double> roadCurve;	//race track
 	int lastTrackUsed;
+	sf::Clock roadSpeedTimer;
 	sf::RenderWindow* windowPtr;	//window
 	std::vector<sf::ConvexShape> roadShape;	//main road
 	std::vector<sf::ConvexShape> middleLine;	//center dotted line
