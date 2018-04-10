@@ -28,10 +28,7 @@ Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 		backgroundSprite.setTexture(background);
 	}
 
-	//Map is initialized to all straight for now.
-	loadTrack();
-
-	road = Road(w, map);
+	road = Road(w);
 }
 
 
@@ -118,7 +115,7 @@ void Game::render()
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
-	road.edit(-p.getPosx(), p.getSpdy(), 10);
+	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
 	road.draw();
 
 	//Then signs, racers, and the player
@@ -214,16 +211,4 @@ void Game::drawPause()
 	pauseText.setCharacterSize(16);
 	pauseText.setFillColor(sf::Color(255, 250, 103));
 	window->draw(pauseText);
-}
-
-
-void Game::loadTrack()
-{
-	std::fstream stream;
-	stream.open("Basic Track.txt", std::ios::in);
-	std::string str;
-	while (getline(stream, str))
-	{
-		map.push_back(stod(str));
-	}
 }

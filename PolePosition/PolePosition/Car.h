@@ -10,7 +10,7 @@ public:
 	Car(sf::RenderWindow*, int);
 	~Car();
 	void initializeSprites(int);
-	virtual void render(int);
+	virtual void render();
 	double getSpdx();
 	double getSpdy();
 
