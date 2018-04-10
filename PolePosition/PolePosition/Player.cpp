@@ -97,6 +97,14 @@ void Player::tick()
 	//Turn right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		speed[0] += .25;
+	if (speed[0] > 9 || speed[0] < -9)
+		isCrashing = true;
+	if (isCrashing)
+	{
+		speed[1] -= 15;
+		if (speed[1] < 0)
+			speed[1] = 0;
+	}
 	//Accelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 225)
 	{
@@ -117,9 +125,8 @@ void Player::tick()
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		if (speed[1] >= 2)
-			speed[1] -= 2;
-		else if (speed[1] > 0)
+		speed[1] -= 2;
+		if (speed[1] < 0)
 			speed[1] = 0;
 	}
 	//Clutch

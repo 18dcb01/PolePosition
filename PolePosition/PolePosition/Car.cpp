@@ -15,6 +15,8 @@ Car::Car(sf::RenderWindow* w, int color) : Object(w)
 		CarTextures.loadFromFile("CarTextures.png");
 	initializeSprites(color % 4);
 	spinny = 0;
+	isCrashing = false;
+	crashing = 0;
 }
 
 
@@ -66,16 +68,46 @@ Car::~Car()
 //Should probably eventually be passed horizontal speed which is a double
 void Car::render()
 {
-	int x = (speed[0] * 1.5) + 14;
-	if (x < 3)
-		x = 3;
-	else if (x > 25)
-		x = 25;
-	//spinny += 50 * speed[1];
-	if (spinny < 32784)
-		window->draw(sprites.at(x));
+	int x = 0;
+	if (!isCrashing)
+	{
+		x = (speed[0] * 1.5) + 14;
+		if (x < 3)
+			x = 3;
+		else if (x > 25)
+			x = 25;
+		if (spinny < 32784)
+			window->draw(sprites.at(x));
+		else
+			window->draw(spritesTwo.at(x));
+	}
 	else
-		window->draw(spritesTwo.at(x));
+	{
+		if (crashing <= 6)
+		{
+			if (speed[0] > 0)
+				x = 26 + (crashing / 3);
+			else
+				x = 2 - (crashing / 3);
+		}
+		else if (crashing <= 9)
+		{
+			x = 29;
+			if (speed[0] < 0)
+				x++;
+		}
+		else if (crashing <= 26)
+			x = 31 + ((crashing - 12) / 3);
+		else
+		{
+			crashing = -1;
+			isCrashing = false;
+			speed[0] = 0;
+			speed[1] = 0;
+		}
+		crashing++;
+		window->draw(sprites.at(x));
+	}
 }
 
 

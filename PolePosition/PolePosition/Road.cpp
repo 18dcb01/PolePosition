@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Road.h"
+#include <fstream>
 
 
 //Empty constructor
@@ -312,13 +313,13 @@ void Road::editY(std::vector<sf::ConvexShape> *shapeList, int shape, int point, 
 }
 
 
-void Game::loadTrack()
+void Road::loadTrack()
 {
 	std::fstream stream;
 	stream.open("Basic Track.txt", std::ios::in);
 	std::string str;
 	while (getline(stream, str))
 	{
-		map.push_back(stod(str));
+		roadCurve.push_back(stod(str));
 	}
 }

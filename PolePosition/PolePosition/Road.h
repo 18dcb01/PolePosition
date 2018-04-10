@@ -38,6 +38,7 @@ private:
 	//utility functions
 	void editX(std::vector<sf::ConvexShape>*, int, int, int);
 	void editY(std::vector<sf::ConvexShape>*, int, int, int);
+	void loadTrack();
 
 	//variables
 	std::vector<double> roadCurve;	//race track
