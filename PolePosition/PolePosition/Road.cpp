@@ -164,8 +164,12 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 250 - carpos) * 245)));
 			if (i > carpos)
 				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
-			else
+
+			if (shape.getPoint(2).y > 448|| shape.getPoint(2).y <=0)
 				shape.setPoint(2, sf::Vector2f(0, 448));
+
+			if (shape.getPoint(0).y > 448 || shape.getPoint(0).y <=0)
+				shape.setPoint(0, sf::Vector2f(0, 448));
 
 			
 
@@ -178,11 +182,6 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 	}
 
 	//Setting X values
-	//turn right
-	if (roadCurve.at(0) >= 0)
-	{
-		//calculating initial width
-
 		for (int i = 0; i < middleLine.size(); i++)
 		{
 			double ypos = middleLine.at(i).getPoint(0).y;
@@ -198,35 +197,6 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 				middleLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, 0.485), ypos));
 				middleLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 0.515), ypos));
 		}
-	}
-	//turn left
-	else if (roadCurve.at(0) < 0)
-	{
-		//calculating initial width
-		height = windowPtr->getSize().y - middleLine.at(0).getPoint(0).y;
-		width = -0.001 * pow(height, abs(roadCurve.at(0))) + offset;
-
-		for (int i = 0; i < middleLine.size(); i++)
-		{
-			//setting A and B points (the top two for the shape)
-			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
-
-				middleLine.at(i).setPoint(0, sf::Vector2f(width + height / 2,
-					middleLine.at(i).getPoint(0).y));
-				middleLine.at(i).setPoint(1, sf::Vector2f(width + middleLine.at(i).getPoint(1).y / 2 + 2,
-					middleLine.at(i).getPoint(1).y));
-
-			//changing width and height to deal with point C, D
-			height = windowPtr->getSize().y - middleLine.at(i).getPoint(2).y;
-			width = -0.001 * pow(height, abs(roadCurve.at(0))) + offset;
-
-			//Setting D and C shapes (the bottom two points)
-			middleLine.at(i).setPoint(3, sf::Vector2f(width + height / 2,
-				middleLine.at(i).getPoint(3).y));
-			middleLine.at(i).setPoint(2, sf::Vector2f(width + roadShape.at(i).getPoint(2).y / 2 + 2,
-				middleLine.at(i).getPoint(2).y));
-		}
-	}
 
 	//Draw middleLine
 	for (int i = 0; i < middleLine.size(); i++)
