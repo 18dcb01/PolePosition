@@ -154,7 +154,7 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 		resetLineHeight(&middleLine);
 
 	middleLine.clear();
-	for (int i = (carpos / 500) * 500; mult / (i-carpos) > 0.05||carpos>i; i+=500)
+	for (int i = (carpos / 500) * 500; mult / (i-carpos) > 0.03||carpos>i; i+=500)
 	{
 		if (i>carpos-250)
 		{
@@ -166,6 +166,9 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
 			else
 				shape.setPoint(2, sf::Vector2f(0, 448));
+
+			
+
 
 			shape.setPoint(1, shape.getPoint(0));
 			shape.setPoint(3, shape.getPoint(2));
@@ -182,24 +185,18 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 
 		for (int i = 0; i < middleLine.size(); i++)
 		{
-			height = windowPtr->getSize().y - middleLine.at(i).getPoint(0).y;
-			width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
+			double ypos = middleLine.at(i).getPoint(0).y;
 			//setting A and B points (the top two for the shape)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
-				middleLine.at(i).setPoint(0, sf::Vector2f(width + height / 100,
-					middleLine.at(i).getPoint(0).y));
-				middleLine.at(i).setPoint(1, sf::Vector2f(width + middleLine.at(i).getPoint(1).y / 100 + 2,
-					middleLine.at(i).getPoint(1).y));
+				middleLine.at(i).setPoint(0, sf::Vector2f(getXVal(ypos,0.485),ypos));
+				middleLine.at(i).setPoint(1, sf::Vector2f(getXVal(ypos, 0.515), ypos));
 
+				ypos = middleLine.at(i).getPoint(2).y;
 			//changing width and height to deal with point C, D
-			height = windowPtr->getSize().y - middleLine.at(i).getPoint(2).y;
-			width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
 
 			//Setting D and C shapes (the bottom two points)
-			middleLine.at(i).setPoint(3, sf::Vector2f(width + height / 100,
-				middleLine.at(i).getPoint(3).y));
-			middleLine.at(i).setPoint(2, sf::Vector2f(width + middleLine.at(i).getPoint(2).y / 100 + 2,
-				middleLine.at(i).getPoint(2).y));
+				middleLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, 0.485), ypos));
+				middleLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 0.515), ypos));
 		}
 	}
 	//turn left
@@ -276,4 +273,16 @@ void Road::resetLineHeight(std::vector<sf::ConvexShape> *line)
 		line->at(i).setPoint(3, sf::Vector2f(0,
 			line->at(i).getPoint(1).y + (windowHeight / line->size())));
 	}
+}
+
+double Road::getXVal(double height, double percentAcross)
+{
+	int i = 0;
+	while (roadShape.at(i).getPoint(2).y < height&&i<roadShape.size()-1)
+		i++;
+	sf::Shape * curShape = &roadShape.at(i);
+	double percentDown = (height - curShape->getPoint(1).y) / (curShape->getPoint(2).y - curShape->getPoint(1).y);
+	double result = percentDown*(percentAcross*curShape->getPoint(2).x + (1 - percentAcross)*curShape->getPoint(3).x);
+	result += (1-percentDown)*(percentAcross*curShape->getPoint(1).x + (1 - percentAcross)*curShape->getPoint(0).x);
+	return result;
 }
