@@ -1,6 +1,2 @@
-﻿  Car.cpp
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\car.cpp(49): warning C4018: '<': signed/unsigned mismatch
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\car.cpp(55): warning C4018: '<': signed/unsigned mismatch
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\car.cpp(74): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.exe
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
+﻿  PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.exe
+  PolePosition.vcxproj -> C:\Users\18maa02\Documents\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
