@@ -42,6 +42,7 @@ Game::~Game()
 
 void Game::play()
 {
+
 	openingMenu();
 
 	pState = GetKeyState(80);//log current p state for pauses
@@ -57,6 +58,7 @@ void Game::play()
 	//second race
 	if (window->isOpen())
 	{
+		//TODO: actually spawn racers.
 		for (int i = 0; i < 7; i++)
 			r[i] = Racer(window,&road, 0);
 		race();
@@ -101,7 +103,10 @@ void Game::tick()
 	if (r[0].getPosy() > -1000)
 	{
 		for (int i = 0; i < 7; i++)
+		{
+			r[i].setRoadRef(&road);
 			r[i].tick();
+		}
 	}
 	render();
 	//Calls render, updates player and racers

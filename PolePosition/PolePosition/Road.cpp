@@ -26,6 +26,7 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	for (int i = 0; i < 28; i++)
 		roadShape.push_back(roadPiece);
 
+	std::cout << roadShape.size() << std::endl;
 	//setting the height for all points
 	resetLineHeight(&roadShape);
 
@@ -38,6 +39,7 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 		middleLine.push_back(stripe);
 	
 	resetLineHeight(&middleLine);
+
 }
 
 
@@ -52,6 +54,11 @@ void Road::draw()
 		windowPtr->draw(middleLine.at(i));
 
 	return;
+}
+
+double Road::getRoadSize()
+{
+	return roadShape.size();
 }
 
 //Only to be called after x coordnates are set.
@@ -93,13 +100,15 @@ double Road::getRoadCenterXCoord(double objectHeight)
 bool Road::intersects(sf::FloatRect intersect)
 {
 
-	std::cout << roadShape.size() << '\n';
+//	std::cout << roadShape.size() << '\n';
 	for (int i = 0; i < roadShape.size(); i++)
 	{
 		sf::FloatRect tempBound = roadShape.at(i).getGlobalBounds();
 		if (intersect.intersects(tempBound))
 			return true;
 	}
+
+
 
 	return false;
 }

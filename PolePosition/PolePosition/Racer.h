@@ -10,7 +10,9 @@ public:
 	Racer();
 	Racer(sf::RenderWindow*, Road*,int);
 	~Racer();
+	void Render(int);
 	void tick();
+	void setRoadRef(Road*);
 private:
 	Road * roadPtr;
 };

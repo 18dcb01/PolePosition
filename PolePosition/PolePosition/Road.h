@@ -21,6 +21,7 @@ public:
 
 	//everything in here
 	void draw(double, double);
+	double getRoadSize();
 	//Returns center of the road given a height.
 	double getRoadCenterXCoord(double);
 	//Returns true if a given hitbox is inside the road.
