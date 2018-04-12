@@ -75,7 +75,16 @@ void Road::editRoad(double offset, double playerSpeed)
 	int width, height;
 	
 	//keeps track of where we are on the track
+	int curve[28];
 	int j = lastTrackUsed;
+	for (int i = 0; i < roadShape.size(); i++)
+	{
+		j++;
+		if (j >= roadShape.size())
+			j = 0;
+		curve[i] = roadCurve.at(j);
+	}
+	lastTrackUsed = j;
 
 	for (int i = 0; i < roadShape.size(); i++)
 	{
@@ -88,7 +97,7 @@ void Road::editRoad(double offset, double playerSpeed)
 		{
 			//calculating initial width
 			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-			width = 0.001 * pow(height, abs(roadCurve.at(j))) + offset;
+			width = 0.001 * pow(height, abs(curve[i])) + offset;
 
 
 			//setting A and B points (the top two for the shape)
@@ -107,7 +116,7 @@ void Road::editRoad(double offset, double playerSpeed)
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
-			width = 0.001 * pow(height, abs(roadCurve.at(j))) + offset;
+			width = 0.001 * pow(height, abs(curve[i])) + offset;
 
 			//Setting D and C shapes (the bottom two points)
 			editX(&roadShape, i, 3, width + height);
@@ -119,7 +128,7 @@ void Road::editRoad(double offset, double playerSpeed)
 		{
 			//calculating initial width
 			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-			width = -0.001 * pow(height, abs(roadCurve.at(j))) + offset;
+			width = -0.001 * pow(height, abs(curve[i])) + offset;
 
 
 			//setting A and B points (the top two for the shape)
@@ -137,7 +146,7 @@ void Road::editRoad(double offset, double playerSpeed)
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
-			width = -0.001 * pow(height, abs(roadCurve.at(j))) + offset;
+			width = -0.001 * pow(height, abs(curve[i])) + offset;
 
 			//Setting D and C shapes (the bottom two points)
 			editX(&roadShape, i, 3, width + height);
@@ -145,16 +154,16 @@ void Road::editRoad(double offset, double playerSpeed)
 
 		}
 
+
+		/*RUNTIME ERROR
 		if (roadSpeedTimer.getElapsedTime().asMilliseconds() > 500 - playerSpeed && playerSpeed > 0)
 		{
-			//increment j
-			j++;
-			roadSpeedTimer.restart();
-		}
+			lastTrackUsed++;
+			for (int k = 0; k < roadShape.size() - 1; k++)
+				curve[k] = curve[k + 1];
+			curve[roadShape.size()] = lastTrackUsed;
+		}*/
 	}
-
-	//update lastTrackUsed
-	lastTrackUsed = j;
 
 	return;
 }
