@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <math.h>
+#include <fstream>
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\VertexArray.hpp>
 
@@ -21,7 +22,7 @@ curvature of the road.
 
 public:
 	Road();
-	Road(sf::RenderWindow*, std::vector<double>);
+	Road(sf::RenderWindow*);
 
 	//everything in here
 	void draw();

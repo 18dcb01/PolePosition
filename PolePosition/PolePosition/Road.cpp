@@ -9,11 +9,11 @@ Road::Road()
 }
 
 
-Road::Road(sf::RenderWindow *window, std::vector<double> track)
+Road::Road(sf::RenderWindow *window)
 {
 	//assigning window and storing the race track
 	windowPtr = window;
-	roadCurve = track;
+	loadTrack();
 	lastTrackUsed = 0;
 
 
@@ -182,7 +182,8 @@ void Road::editCenterLine(double position, double speed, int carPos)
 	{
 		//calculating initial width
 		height = windowPtr->getSize().y - middleLine.at(0).getPoint(0).y;
-		width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
+		width = 0.001 * pow(height, abs(roadCurve.at(0)))
+			+ offset;
 
 		for (int i = 0; i < middleLine.size(); i++)
 		{
