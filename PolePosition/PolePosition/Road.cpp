@@ -16,6 +16,9 @@ Road::Road(sf::RenderWindow *window)
 	loadTrack();
 	lastTrackUsed = 0;
 
+	//new system? would break middle line; ask Daniel before implementing
+	//creating pre-loaded convex shapes to piece together to make turns;
+	//same scaling same as signs
 
 	//Creating Road
 	//creating a convex shape with four points and color to add to the roadShape
@@ -68,8 +71,6 @@ void Road::edit(double position, double speed, int carPos)
 
 
 //issue with lastTrack used not transitioning usefully
-//
-//
 void Road::editRoad(double offset, double playerSpeed)
 {
 	int width, height;
@@ -155,14 +156,25 @@ void Road::editRoad(double offset, double playerSpeed)
 		}
 
 
-		/*RUNTIME ERROR
+		//check turns and such
+		//need to handle rotations and translations and still make 
+		for (int k = 1; k < sizeof(curve) / sizeof(curve[0]); k++)
+		{
+			if (curve[k] > curve[k - 1])
+			{
+				roadShape.at(k).setRotation((curve[k] - curve[k - 1]));
+			}
+		}
+
+
+		//Move Curve down
 		if (roadSpeedTimer.getElapsedTime().asMilliseconds() > 500 - playerSpeed && playerSpeed > 0)
 		{
 			lastTrackUsed++;
-			for (int k = 0; k < roadShape.size() - 1; k++)
+			for (int k = 0; k < roadShape.size() - 2; k++)
 				curve[k] = curve[k + 1];
-			curve[roadShape.size()] = lastTrackUsed;
-		}*/
+			curve[roadShape.size() - 1] = lastTrackUsed;
+		}
 	}
 
 	return;
