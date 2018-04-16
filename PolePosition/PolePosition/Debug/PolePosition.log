@@ -1,28 +1,6 @@
 ﻿  Racer.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(25): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(30): warning C4244: '+=': conversion from 'double' to 'unsigned short', possible loss of data
-  Generating Code...
-  Compiling...
-  PolePosition.cpp
-  Player.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(151): warning C4244: '+=': conversion from 'double' to 'unsigned short', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(152): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(159): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(161): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(181): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Game.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(133): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(134): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(145): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(152): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(179): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(183): warning C4305: 'argument': truncation from 'double' to 'float'
-  Car.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\car.cpp(47): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\car.cpp(53): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\car.cpp(69): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Object.cpp
-  PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
-  PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(35): warning C4244: '+=': conversion from 'double' to 'unsigned short', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+Game.obj : error LNK2019: unresolved external symbol "public: __thiscall Racer::Racer(void)" (??0Racer@@QAE@XZ) referenced in function "public: __thiscall Game::Game(class sf::RenderWindow *)" (??0Game@@QAE@PAVRenderWindow@sf@@@Z)
+C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe : fatal error LNK1120: 1 unresolved externals

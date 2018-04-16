@@ -60,7 +60,7 @@ void Game::play()
 	{
 		//TODO: actually spawn racers.
 		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window,&road, 0);
+			r[i] = Racer(window,&road,&p, 0);
 		race();
 	}
 	//Calls race (twice bc two races)

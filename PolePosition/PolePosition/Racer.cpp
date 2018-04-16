@@ -2,17 +2,21 @@
 #include "Racer.h"
 
 
-Racer::Racer()
+//TODO: fix use of empty Racer constructer.
+Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(w, color)
 {
-}
-
-
-Racer::Racer(sf::RenderWindow* w, Road* roadAdr, int color) : Car(w, color)
-{
+	carPtr = car;
 	roadPtr = roadAdr;
 	window = w;
 	//Choose a random "enemy" sprite.
 	initializeSprites(color);
+
+	speed[0] = 0;
+	speed[1] = 10;
+
+	//Gets distance from player for scaling/ mapping purposes.
+	xPlayerOffset = carPtr->getPosx() - position[0];
+	yPlayerOffset = carPtr->getPosy() - position[1];
 }
 
 Racer::~Racer()
@@ -22,6 +26,9 @@ Racer::~Racer()
 
 void Racer::Render(int j)
 {
+	if (!isOnScreen)
+		return;
+
 	int x = (speed[0] * 1.5) + 14;
 	if (x < 3)
 		x = 3;
@@ -38,24 +45,31 @@ void Racer::Render(int j)
 
 void Racer::tick()
 {
-	//Check current scale an adjust hitbox.
+	//Check current scale and adjust hitbox.
 	hitbox.setSize(sprite.getScale());
 	//If car goes vertically off the bottom half of the screen,
 	//Advance racer to next map segment.
+	if (yPlayerOffset > window->getSize().x ||
+		yPlayerOffset < -40)
+		isOnScreen = false;
 
-	//If out of bounds, destroy car.
-	if (!(roadPtr->intersects(hitbox.getGlobalBounds())))
+	/*
+	if going to run into side of the road,
+	Turn while keeping a constant speed.
+	Defined in RACER_SPEED.
+	*/
+	sf::RectangleShape projectedPosition = hitbox;
+	projectedPosition.setPosition(hitbox.getPosition().x + speed[0],
+		hitbox.getPosition().y + speed[1]);
+	//Loop so car will never crash.
+	while (!(roadPtr->intersects(projectedPosition.getGlobalBounds())))
 	{
-		//destroy car.
-		//std::cout << "boom\n";
+		//Handle if going to crash into side of the road.
+		//Adjust speed and direction accordingly.
 	}
-	
 	//Check vertical and horozontal position.
 	//alter scale if neccessary.
 	//Borrow from sign code.
-
-	//If is about to crash, alter course
-	//will need access to road as well as overall map.
 }
 
 
