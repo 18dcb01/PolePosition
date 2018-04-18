@@ -65,14 +65,23 @@ sf::ConvexShape Road::getRelativeBounds(sf::Vector2f position)
 {
 	for (int i = 0; i < roadShape.size(); i++)
 	{
+		sf::Color oldColor = roadShape.at(i).getFillColor();
+		roadShape.at(i).setFillColor(sf::Color::Red);
 		//For readability.
 		double topCurrentIter = roadShape.at(i).getLocalBounds().top;
 		double bottomCurrentIter = roadShape.at(i).getLocalBounds().top - 
 			roadShape.at(i).getLocalBounds().height;
 		if (position.y < topCurrentIter && position.y > bottomCurrentIter)
+		{
+			roadShape.at(i).setFillColor(oldColor);
 			return roadShape.at(i);
+		}
+		else
+			roadShape.at(i).setFillColor(oldColor);
+			
+
 	}
-	throw std::invalid_argument("Location not valid for road.");
+	return roadShape.at(5);
 }
 
 bool Road::intersects(sf::FloatRect intersect)
@@ -205,16 +214,6 @@ void Road::editRoad(double offset)
 	{
 		windowPtr->draw(roadShape.at(i));
 		//uncomment to highlight the points in roadShape.
-		
-		sf::CircleShape highlight = sf::CircleShape(5);
-		for (int j = 0; j < roadShape.at(i).getPointCount(); j++)
-		{
-			highlight.setPosition(roadShape.at(i).getPoint(j).x, roadShape.at(i).getPoint(j).y);
-			highlight.setFillColor(sf::Color::Red);
-			if (i % 2 == 0)
-				highlight.setFillColor(sf::Color::Blue);
-			windowPtr->draw(highlight);
-		}
 		
 	}
 	roadCurve.at(0) -= .0001;

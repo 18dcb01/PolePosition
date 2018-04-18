@@ -8,6 +8,10 @@
 
 /*
 	Is always in either right or left lane.
+
+	//TODO: Make racers renderable.
+	//      verify code works.
+	//       investigate how this program even works.
 */
 
 const int RACER_SPEED = 10;
@@ -15,7 +19,6 @@ const int RACER_SPEED = 10;
 class Racer : public Car
 {
 public:
-	Racer();
 	Racer(sf::RenderWindow*, Road*,Player *,int);
 	~Racer();
 	void Render(int);

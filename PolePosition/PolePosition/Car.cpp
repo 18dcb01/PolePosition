@@ -55,6 +55,7 @@ void Car::initializeSprites(int x)
 		spritesTwo.at(i).setOrigin(32, 15);
 		spritesTwo.at(i).setScale(2, 2);
 	}
+
 }
 
 

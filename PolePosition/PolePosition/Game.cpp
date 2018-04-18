@@ -49,20 +49,24 @@ void Game::play()
 	if (pState < 0)
 		pState += 128;
 
+	//second race
+	if (window->isOpen())
+	{
+		//TODO: actually spawn racers.
+		for (int i = 0; i < 7; i++)
+			r.push_back(Racer(window, &road, &p, 0));
+
+		r.at(2).setPos(80, 80);
+		race();
+	}
+
 	//start vroom noises
 	p.playSound();
 	//qualifying round
 	if (window->isOpen())
 		race();
 
-	//second race
-	if (window->isOpen())
-	{
-		//TODO: actually spawn racers.
-		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window,&road,&p, 0);
-		race();
-	}
+
 	//Calls race (twice bc two races)
 	tick();
 }
@@ -100,14 +104,23 @@ void Game::tick()
 {
 	tickCount++;
 	p.tick();
-	if (r[0].getPosy() > -1000)
+	try
 	{
-		for (int i = 0; i < 7; i++)
+		if (r.at(0).getPosy() > -1000)
 		{
-			r[i].setRoadRef(&road);
-			r[i].tick();
+
+			for (int i = 0; i < 7; i++)
+			{
+				r.at(i).setRoadRef(&road);
+				r.at(i).tick();
+			}
 		}
 	}
+	catch(std::out_of_range& oor)
+	{
+		std::cout << "?\n";
+	}
+
 	render();
 	//Calls render, updates player and racers
 	render();
@@ -130,6 +143,11 @@ void Game::render()
 	if (GetKeyState(80) != pState)
 		drawPause();
 	p.render(14);
+
+	for (int i = 0; i < r.size(); i++)
+	{
+		r.at(i).render(14);
+	}
 
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());

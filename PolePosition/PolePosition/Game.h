@@ -22,7 +22,8 @@ private:
 
 	//
 	Player p;
-	Racer r[7];
+	//Pretty sure this has to be a vector.
+	std::vector<Racer> r;
 
 	//vector that contains all of the the directions that
 	//the track is going to turn.
