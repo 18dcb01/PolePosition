@@ -13,6 +13,8 @@ public:
 	Game(sf::RenderWindow*);
 	~Game();
 	void play();
+	void qualify();
+	void race();
 
 private:
 	//Variables for rendering
@@ -31,7 +33,9 @@ private:
 	double time;
 	short pState;
 	int tickCount;
-	void race();
+	//double raceTime;
+	//double lapTime;
+	
 	void tick();
 	void render();
 	void drawBackground();

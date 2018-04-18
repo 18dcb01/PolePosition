@@ -20,7 +20,6 @@ using namespace std;
 int main()
 {
 	//FreeConsole();
-	//basic game run
 	sf::RenderWindow window(sf::VideoMode(512, 448), "Pole Position");
 	window.setFramerateLimit(60);
 
@@ -34,9 +33,26 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
 		window.clear();
-		game.play();
+
+		//Pre qualifying things
+
+		game.qualify();
+
+		//end screen things
+
+		//reset as needed
+
+		//if qualified, begin things for race
+
+		//pre race things
+
+		//game.race();
+
+		//end screen things
+
+		//make sure score is handled
+
 		window.display();
 	}
 

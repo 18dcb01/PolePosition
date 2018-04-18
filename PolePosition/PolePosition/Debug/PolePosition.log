@@ -1,6 +1,9 @@
-﻿  Car.cpp
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\car.cpp(49): warning C4018: '<': signed/unsigned mismatch
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\car.cpp(54): warning C4018: '<': signed/unsigned mismatch
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\car.cpp(73): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+﻿  Game.cpp
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(147): warning C4018: '<': signed/unsigned mismatch
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(148): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(159): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(166): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(193): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(197): warning C4305: 'argument': truncation from 'double' to 'float'
   PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

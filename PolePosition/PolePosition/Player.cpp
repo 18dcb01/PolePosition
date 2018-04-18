@@ -16,6 +16,7 @@ Player::Player() : Car()
 
 Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
 {
+	raceTime = 120;
 	//Initialize score and high score
 	score = 0;
 	fstream scoreFile;
@@ -90,6 +91,8 @@ int Player::getScore()
 
 void Player::tick()
 {
+	int temp = (*tickCount - lapStart) / 25;
+	lapTime = temp + (((*tickCount - lapStart) % 25) * 4 / 100);
 	//Controls
 	//Turn left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -161,6 +164,27 @@ void Player::updateSound()
 }
 
 
+void Player::decrementRaceTime()
+{
+	if (raceTime > 0)
+		raceTime--;
+}
+
+
+void Player::setRaceTime(int t)
+{
+	if (t > 0)
+		raceTime = t;
+}
+
+
+void Player::addRaceTime(int t)
+{
+	if (t > 0)
+		raceTime += t;
+}
+
+
 void Player::drawDashboard(bool paused)
 {
 	//Set the strings for the second half
@@ -168,14 +192,15 @@ void Player::drawDashboard(bool paused)
 	dashboard.at(5).setString(to_string(displayHigh));
 	int displayScore = (score / 10) * 10;
 	dashboard.at(6).setString(to_string(displayScore));
-	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
+	dashboard.at(7).setString(to_string(raceTime));
 	int lapSeconds = (*tickCount - lapStart) / 25;
 	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
-	if (lapCentiseconds != 0&&!paused)
+	if (lapCentiseconds != 0 && !paused)
 		lapCentiseconds += rand() % 4;
 	dashboard.at(8).setString(
-    (lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) +
-    (lapCentiseconds<10?"\"0":"\"") + to_string(lapCentiseconds));//lap value
+		(lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) + 
+		(lapCentiseconds < 10 ? "\"0" : "\"") + to_string(lapCentiseconds));//lap value
+	
 	int ySpeed = speed[1];
 	dashboard.at(9).setString(to_string(ySpeed));//speed value
 	for (int i = 5; i < 10; i++)

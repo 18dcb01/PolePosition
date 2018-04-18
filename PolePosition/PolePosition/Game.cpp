@@ -8,6 +8,7 @@
 Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 {
 	tickCount = 0;
+	//raceTime = 120;
 	for (int i = 0; i < 500; i++)
 	{
 		Object obj(w, true);
@@ -47,19 +48,37 @@ void Game::play()
 
 	//start vroom noises
 	p.playSound();
+
 	//qualifying round
 	if (window->isOpen())
 		race();
 
-	//second race
+	//real race
 	if (window->isOpen())
-	{
-		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window, 0);
 		race();
+	//tick();
+}
+
+
+void Game::qualify()
+{
+	while (window->isOpen())
+	{
+		clock_t time = clock();
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window->close();
+		}
+		if (GetKeyState(80) != pState)
+		{
+			p.pauseSound();
+			render();
+		}
+		else
+			p.pauseSound();
 	}
-	//Calls race (twice bc two races)
-	tick();
 }
 
 
@@ -94,6 +113,8 @@ void Game::race()
 void Game::tick()
 {
 	tickCount++;
+	if (tickCount % 25 == 0)
+		p.decrementRaceTime();
 	p.tick();
 	if (r[0].getPosy() > -1000)
 	{

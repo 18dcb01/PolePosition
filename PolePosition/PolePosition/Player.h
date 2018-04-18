@@ -18,6 +18,12 @@ public:
 	void pauseSound();
 	void awardPoints(int);
 	int getScore();
+	void decrementRaceTime();
+	void setRaceTime(int);
+	void addRaceTime(int);
+	int getLapSeconds();
+	int getLapCentiSeconds();
+	void resetLapTime();
 
 private:
 	sf::Sound vroom;
@@ -30,7 +36,8 @@ private:
 	int score;
 	int highScore;
 	void initializeDashboard();
-	void initializeSprites();
 	int * tickCount;
 	int lapStart;
+	int raceTime;
+	double lapTime;
 };
