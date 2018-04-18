@@ -61,40 +61,18 @@ double Road::getRoadSize()
 	return roadShape.size();
 }
 
-//Only to be called after x coordnates are set.
-double Road::getRoadCenterXCoord(double objectHeight)
+sf::ConvexShape Road::getRelativeBounds(sf::Vector2f position)
 {
-	//get points with similar heights to our car.
-	sf::Vector2f *champPtr = &roadShape.at(0).getPoint(0);
-	sf::ConvexShape *shapePtr = &roadShape.at(0);
-
 	for (int i = 0; i < roadShape.size(); i++)
 	{
-		for (int j = 0; j < roadShape.at(i).getPointCount(); j++)
-		{
-			//if Point's y value is closer to our y value than the current champ.
-			//Replace our current champ.
-			if (abs(roadShape.at(i).getPoint(j).y - objectHeight) <
-				abs(champPtr->y - objectHeight))
-			{
-				champPtr = &roadShape.at(i).getPoint(j);
-				shapePtr = &roadShape.at(i);
-			}
-				
-		}
+		//For readability.
+		double topCurrentIter = roadShape.at(i).getLocalBounds().top;
+		double bottomCurrentIter = roadShape.at(i).getLocalBounds().top - 
+			roadShape.at(i).getLocalBounds().height;
+		if (position.y < topCurrentIter && position.y > bottomCurrentIter)
+			return roadShape.at(i);
 	}
-	
-	//iterate through our champ's home shape and find mid x val.
-	for (int i = 0; i < shapePtr->getPointCount(); i++)
-	{
-		if (champPtr->x == shapePtr->getPoint(i).x &&
-			champPtr->y != shapePtr->getPoint(i).y)
-			return (champPtr->x + shapePtr->getPoint(i).x) / 2;
-	}
-
-	std::cout << "Isaac made a mistake!" << std::endl;
-	//If function fails, prevent error.
-	return windowPtr->getSize().x / 2;
+	throw std::invalid_argument("Location not valid for road.");
 }
 
 bool Road::intersects(sf::FloatRect intersect)

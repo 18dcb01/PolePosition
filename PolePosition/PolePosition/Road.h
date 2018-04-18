@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <math.h>
+#include <stdexcept>
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\VertexArray.hpp>
 
@@ -22,8 +23,8 @@ public:
 	//everything in here
 	void draw(double, double);
 	double getRoadSize();
-	//Returns center of the road given a height.
-	double getRoadCenterXCoord(double);
+	//Returns nearest RoadShape given a position.
+	sf::ConvexShape getRelativeBounds(sf::Vector2f);
 	//Returns true if a given hitbox is inside the road.
 	bool intersects(sf::FloatRect);
 	void draw();
