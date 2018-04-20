@@ -13,6 +13,8 @@ public:
 	virtual void render();
 	double getSpdx();
 	double getSpdy();
+	void setSpdx(double);
+	void setSpdy(double);
 
 protected:
 	std::vector<sf::Sprite> sprites;

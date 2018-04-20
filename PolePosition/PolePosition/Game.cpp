@@ -8,7 +8,6 @@
 Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 {
 	tickCount = 0;
-	//raceTime = 120;
 	for (int i = 0; i < 500; i++)
 	{
 		Object obj(w, true);
@@ -62,7 +61,7 @@ void Game::play()
 
 void Game::qualify()
 {
-	while (window->isOpen())
+	while (window->isOpen() && p.getPosy() < 250000)
 	{
 		clock_t time = clock();
 		sf::Event event;
@@ -71,14 +70,21 @@ void Game::qualify()
 			if (event.type == sf::Event::Closed)
 				window->close();
 		}
-		if (GetKeyState(80) != pState)
+		if (GetKeyState(80) == pState)
+		{
+			p.playSound();
+			tick();
+		}
+		else
 		{
 			p.pauseSound();
 			render();
+			window->display();
 		}
-		else
-			p.pauseSound();
 	}
+	p.setPos(0, 0);
+	p.setSpdy(0);
+	p.setSpdx(0);
 }
 
 
@@ -103,6 +109,7 @@ void Game::race()
 		else {
 			p.pauseSound();
 			render();
+			window->display();
 		}
 		while (time > clock() - 20) {}
 	}
@@ -122,8 +129,10 @@ void Game::tick()
 			r[i].tick();
 	}
 	render();
+	window->display();
 	//Calls render, updates player and racers
 	render();
+	window->display();
 }
 
 
@@ -146,7 +155,7 @@ void Game::render()
 
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());
-	window->display();
+	//window->display();
 
 }
 
@@ -232,4 +241,30 @@ void Game::drawPause()
 	pauseText.setCharacterSize(16);
 	pauseText.setFillColor(sf::Color(255, 250, 103));
 	window->draw(pauseText);
+}
+
+
+void Game::flyBanner()
+{
+	sf::Texture t;
+	t.loadFromFile("misc.png");
+	sf::Sprite s;
+	s.setTexture(t);
+	s.setTextureRect(sf::IntRect(0, 145, 271, 16));
+	s.setScale(2, 2);
+	s.setPosition(448, 125);
+
+	while (window->isOpen() && s.getPosition().x > -350)
+	{
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window->close();
+		}
+		render();
+		window->draw(s);
+		window->display();
+		s.setPosition(s.getPosition().x - 3, 125);
+	}
 }

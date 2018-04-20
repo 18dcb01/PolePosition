@@ -140,3 +140,15 @@ double Car::getSpdy()
 {
 	return speed[1];
 }
+
+
+void Car::setSpdx(double s)
+{
+	speed[0] = s;
+}
+
+
+void Car::setSpdy(double s)
+{
+	speed[1] = s;
+}

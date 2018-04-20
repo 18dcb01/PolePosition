@@ -36,7 +36,10 @@ int main()
 		window.clear();
 
 		//Pre qualifying things
+		game.openingMenu();
+		game.flyBanner();
 
+		//qualifying race
 		game.qualify();
 
 		//end screen things

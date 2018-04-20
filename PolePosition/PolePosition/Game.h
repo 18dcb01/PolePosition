@@ -15,6 +15,8 @@ public:
 	void play();
 	void qualify();
 	void race();
+	void openingMenu();
+	void flyBanner();
 
 private:
 	//Variables for rendering
@@ -33,12 +35,9 @@ private:
 	double time;
 	short pState;
 	int tickCount;
-	//double raceTime;
-	//double lapTime;
 	
 	void tick();
 	void render();
 	void drawBackground();
-	void openingMenu();
 	void drawPause();
 };
