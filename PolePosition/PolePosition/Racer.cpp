@@ -3,15 +3,19 @@
 
 
 //TODO: fix use of empty Racer constructer.
-Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, sf::Vector2f pos, int color) : Car(w, color)
+Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(w, color)
 {
 	carPtr = car;
 	roadPtr = roadAdr;
 	window = w;
+	//Choose a random "enemy" sprite.
+	initializeSprites(color);
+
+
 	speed[0] = 0;
 	speed[1] = 10;
-	position[0] = pos.x;
-	position[1] = pos.y;
+	position[0] = window->getSize().x / 2.;
+	position[1] = 80;
 	//Gets distance from player for scaling/ mapping purposes.
 	xPlayerOffset = carPtr->getPosx() - position[0];
 	yPlayerOffset = carPtr->getPosy() - position[1];
@@ -25,9 +29,7 @@ Racer::~Racer()
 void Racer::Render(int j)
 {
 	if (isOnScreen)//within the draw space
-	{
 		window->draw(sprite);
-	}
 }
 
 
@@ -82,7 +84,6 @@ void Racer::tick()
 
 			//Based on pythagorean thing.
 			//Update y speed to keep vector.
-			//TODO: decide whether this is dumb.
 			speed[1] = std::sqrt(std::pow(RACER_SPEED, 2) - std::pow(speed[0], 2));
 			//Update speed vector.
 			speedVector = std::sqrt(std::pow(speed[0], 2) + std::pow(speed[1], 2));
@@ -115,17 +116,4 @@ void Racer::tick()
 void Racer::setRoadRef(Road * ref)
 {
 	roadPtr = ref;
-}
-
-void Racer::updateEntityPositions()
-{
-	//Update position with:
-	//1. hitbox
-	//2. sprite
-	return;
-}
-
-void Racer::adjustPosition()
-{
-	return;
 }

@@ -54,7 +54,7 @@ void Game::play()
 	{
 		//TODO: actually spawn racers.
 		for (int i = 0; i < 7; i++)
-			r.push_back(Racer(window, &road, &p,sf::Vector2f(80, 80), 0));
+			r.push_back(Racer(window, &road, &p, 0));
 
 		r.at(2).setPos(80, 80);
 		race();
