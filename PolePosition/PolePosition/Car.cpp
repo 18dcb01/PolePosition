@@ -42,6 +42,7 @@ void Car::initializeSprites(int x)
 		spritesTwo.push_back(s);
 	}
 	for (int i = 1; i < 392; i += 65)
+	for (int i = 1; i < 457; i += 65)
 	{
 		s.setTextureRect(sf::IntRect(i, 257, 64, 31));
 		sprites.push_back(s);
@@ -84,13 +85,36 @@ void Car::render()
 	else
 	{
 		if (crashing <= 6)
+		if (crashing > 0)
 		{
 			if (speed[0] > 0)
 				x = 26 + (crashing / 3);
 			else
 				x = 2 - (crashing / 3);
+			if (crashing <= 6)
+			{
+				if (speed[0] > 0)
+					x = 26 + (crashing / 3);
+				else
+					x = 2 - (crashing / 3);
+			}
+			else if (crashing <= 9)
+			{
+				x = 29;
+				if (speed[0] < 0)
+					x++;
+			}
+			else if (crashing <= 26)
+				x = 31 + ((crashing - 12) / 3);
+			else if (crashing > 26)
+			{
+				crashing = -50;
+				speed[0] = 0;
+				speed[1] = 0;
+			}
 		}
 		else if (crashing <= 9)
+		else if (crashing < 0)
 		{
 			x = 29;
 			if (speed[0] < 0)
@@ -104,6 +128,21 @@ void Car::render()
 			isCrashing = false;
 			speed[0] = 0;
 			speed[1] = 0;
+			if (crashing < -1)
+			{
+				if (crashing % 8 != 0)
+					x = 36;
+				else
+					x = 14;
+				speed[0] = 0;
+				speed[1] = 0;
+			}
+			else if (crashing == -1)
+			{
+				isCrashing = false;
+				position[0] = 0;
+				x = 14;
+			}
 		}
 		crashing++;
 		window->draw(sprites.at(x));

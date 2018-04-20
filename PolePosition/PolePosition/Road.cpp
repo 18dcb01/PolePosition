@@ -22,7 +22,8 @@ Road::Road(sf::RenderWindow *window)
 	roadPiece.setFillColor(sf::Color(64, 64, 64));
 	roadPiece.setPointCount(4);
 
-	//pushing roadPiece into roadShape, number of shapes is adjustable
+	//pushing roadPiece into roadShape
+	//number of shapes is adjustable; must be multiple of 224 though
 	for (int i = 0; i < 28; i++)
 		roadShape.push_back(roadPiece);
 
@@ -66,8 +67,8 @@ void Road::edit(double position, double speed, int carPos)
 }
 
 
-//issue with lastTrack used not transitioning usefully
-//change the roadShape creation so roadShape.at(0) is the bottom piece
+//need to fix first two points being set on the wrong spot
+//implement rotation after turns
 void Road::editRoad(double offset, double playerSpeed)
 {
 	int width, height, curveAdjustment;
@@ -87,24 +88,19 @@ void Road::editRoad(double offset, double playerSpeed)
 	for (int i = 0; i < roadShape.size(); i++)
 	{
 		//turn right
-		if (roadCurve.at(curves[0]) >= 0)
+		if (roadCurve.at(curves[i]) >= 0)
 		{
-			//calculating initial width
-			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-			width = 0.001 * pow(height, abs(curves[i])) + offset;
-
-
 			//setting A and B points (the top two for the shape)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
 			if (i == 0)
 			{
-				editX(&roadShape, i, 0, width + height);
-				editX(&roadShape, i, 1, width + roadShape.at(i).getPoint(1).y + 50);
+				editX(&roadShape, i, 3, offset - 8);
+				editX(&roadShape, i, 2, offset + roadShape.at(i).getPoint(2).y + 58);
 			}
 			else
 			{
-				roadShape.at(i).setPoint(1, roadShape.at(i - 1).getPoint(2));
-				roadShape.at(i).setPoint(0, roadShape.at(i - 1).getPoint(3));
+				roadShape.at(i).setPoint(3, roadShape.at(i - 1).getPoint(0));
+				roadShape.at(i).setPoint(2, roadShape.at(i - 1).getPoint(1));
 			}
 
 
@@ -113,12 +109,12 @@ void Road::editRoad(double offset, double playerSpeed)
 			width = 0.001 * pow(height, abs(curves[i])) + offset;
 
 			//Setting D and C shapes (the bottom two points)
-			editX(&roadShape, i, 3, width + height);
-			editX(&roadShape, i, 2, width + roadShape.at(i).getPoint(2).y / 1 + 50);
+			editX(&roadShape, i, 0, width + height);
+			editX(&roadShape, i, 1, width + roadShape.at(i).getPoint(2).y + 50);
 
 		}
 		//turn left
-		else if (curves[0] < 0)
+		else if (curves[i] < 0)
 		{
 			//calculating initial width
 			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
@@ -287,31 +283,32 @@ void Road::editThinLines(double position, double speed)
 }
 
 
-//SETTING ALL Y-VALUES TO 0
 void Road::resetLineHeight(std::vector<sf::ConvexShape> *line)
 {
 	int halfWindowHeight = windowPtr->getSize().y / 2;
 
-	for (int i = 0; i > line->size(); i++)
+ 	for (int i = 0; i < line->size(); i++)
 	{
 		if (i == 0)
 		{
-			//Points A and B for first shape
-			line->at(0).setPoint(0, sf::Vector2f(0, halfWindowHeight * 2));
-			line->at(0).setPoint(1, sf::Vector2f(0, halfWindowHeight * 2));
+			//Points C and D for first shape;
+			//they should be at the bottom of the screen
+			line->at(0).setPoint(2, sf::Vector2f(0, halfWindowHeight * 2));
+			line->at(0).setPoint(3, sf::Vector2f(0, halfWindowHeight * 2));
 		}
 		else
 		{
-			//Points A and B after first shape
-			line->at(i).setPoint(0, line->at(i - 1).getPoint(2));
-			line->at(i).setPoint(1, line->at(i - 1).getPoint(3));
+			//Points C and D after first shape
+			//should equal the top two points on the last shape
+			line->at(i).setPoint(2, line->at(i - 1).getPoint(0));
+			line->at(i).setPoint(3, line->at(i - 1).getPoint(1));
 		}
 
-		//Points C and D
-		line->at(i).setPoint(2, sf::Vector2f(0,
-			line->at(i).getPoint(0).y - (halfWindowHeight / line->size())));
-		line->at(i).setPoint(3, sf::Vector2f(0,
-			line->at(i).getPoint(1).y - (halfWindowHeight / line->size())));
+		//Points A and B
+		line->at(i).setPoint(0, sf::Vector2f(0,
+			line->at(i).getPoint(2).y - (halfWindowHeight / line->size())));
+		line->at(i).setPoint(1, sf::Vector2f(0,
+			line->at(i).getPoint(3).y - (halfWindowHeight / line->size())));
 	}
 }
 
