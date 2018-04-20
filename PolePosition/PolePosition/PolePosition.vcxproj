@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\SFML-2.4.2\SFML-2.4.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SFML-2.4.2\SFML-2.4.2\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\SFML-2.4.2\SFML-2.4.2\lib;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.16299.0\um\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -83,7 +83,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\SFML-2.4.2\SFML-2.4.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SFML-2.4.2\SFML-2.4.2\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\SFML-2.4.2\SFML-2.4.2\lib;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.16299.0\um\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

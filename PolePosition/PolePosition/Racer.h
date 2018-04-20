@@ -14,18 +14,22 @@
 	//       investigate how this program even works.
 */
 
-const int RACER_SPEED = 10;
+const double RACER_SPEED = 10;
 
 class Racer : public Car
 {
 public:
 	Racer(sf::RenderWindow*, Road*,Player *,int);
 	~Racer();
-	void Render(int);
+	void Render();
 	void tick();
 	//This fixes a weird bug, don't change.
 	void setRoadRef(Road*);
 private:
+	//Subdivide tick();
+	void preventCrash(double*, sf::RectangleShape*);
+	void updateEntitys();
+
 	Road * roadPtr;
 	Player *carPtr;
 

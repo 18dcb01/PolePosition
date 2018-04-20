@@ -9,13 +9,16 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 	roadPtr = roadAdr;
 	window = w;
 	//Choose a random "enemy" sprite.
-	initializeSprites(color);
-
+	//initializeSprites(color);
+	hitbox.setSize(sf::Vector2f(100,100));
+	hitbox.setFillColor(sf::Color::Red);
 
 	speed[0] = 0;
 	speed[1] = 10;
 	position[0] = window->getSize().x / 2.;
-	position[1] = 80;
+	position[1] = 200;
+	hitbox.setPosition(sf::Vector2f(position[0], position[1]));
+	sprite.setPosition(hitbox.getPosition());
 	//Gets distance from player for scaling/ mapping purposes.
 	xPlayerOffset = carPtr->getPosx() - position[0];
 	yPlayerOffset = carPtr->getPosy() - position[1];
@@ -26,17 +29,21 @@ Racer::~Racer()
 
 }
 
-void Racer::Render(int j)
+void Racer::Render()
 {
-	if (isOnScreen)//within the draw space
-		window->draw(sprite);
+	if (true)
+	{
+		//within the draw space
+		//window->draw(sprite);
+		//window->draw(hitbox);
+	}
 }
 
 
 void Racer::tick()
 {
 	//Check current scale and adjust hitbox.
-	hitbox.setSize(sprite.getScale());
+	//hitbox.setSize(sprite.getScale());
 	//If car goes vertically off the bottom half of the screen,
 	//Advance racer to next map segment.
 	if (yPlayerOffset > window->getSize().x ||
@@ -56,39 +63,8 @@ void Racer::tick()
 			hitbox.getPosition().y + speed[1]);
 
 		double speedVector = std::sqrt(std::pow(speed[0], 2) + std::pow(speed[1], 2));
+		preventCrash(&speedVector,&projectedPosition);
 
-		//Handle if going to crash into side of the road.
-		//Adjust speed and direction accordingly.
-		//Loop so car will never crash.
-		//Also keep total velocity of ten.
-		while (!(roadPtr->intersects(projectedPosition.getGlobalBounds())) ||
-			speedVector != RACER_SPEED)
-		{
-			//If projected position is less than RoadShapes xPos, turn right.
-			if (projectedPosition.getPosition().x
-				< roadPtr->getRelativeBounds(projectedPosition.getPosition())
-				.getLocalBounds().left)
-			{
-				speed[0]--;
-			}
-			//If projected position is greater than RoadShape's xPos, turn left.
-			else if (projectedPosition.getPosition().x
-				< roadPtr->getRelativeBounds(projectedPosition.getPosition())
-				.getLocalBounds().left)
-			{
-				speed[0]++;
-			}
-			//Update position after adjustments.
-			projectedPosition.setPosition(hitbox.getPosition().x + speed[0],
-				hitbox.getPosition().y + speed[1]);
-
-			//Based on pythagorean thing.
-			//Update y speed to keep vector.
-			speed[1] = std::sqrt(std::pow(RACER_SPEED, 2) - std::pow(speed[0], 2));
-			//Update speed vector.
-			speedVector = std::sqrt(std::pow(speed[0], 2) + std::pow(speed[1], 2));
-
-		}
 		//Update Sprite to show turning depending on speed[1].
 
 
@@ -106,14 +82,59 @@ void Racer::tick()
 	}
 
 	//TODO: make game render Racers in meaningful way.
-	hitbox.setPosition(hitbox.getPosition().x + speed[0],
-		hitbox.getPosition().x + speed[1]);
-	hitbox.setFillColor(sf::Color::Red);
-	sprite.setPosition(hitbox.getPosition());
+	updateEntitys();
 }
 
 
 void Racer::setRoadRef(Road * ref)
 {
 	roadPtr = ref;
+}
+
+void Racer::preventCrash(double * vector, sf::RectangleShape * projected)
+{
+	//Handle if going to crash into side of the road.
+	//Adjust speed and direction accordingly.
+	//Loop so car will never crash.
+	//Also keep total velocity of ten.
+	while (!(roadPtr->intersects(projected->getGlobalBounds())) )
+	{
+		//If projected position is less than RoadShapes xPos, turn right.
+		if (projected->getPosition().x
+			< roadPtr->getRelativeBounds(projected->getPosition())
+			.getLocalBounds().left)
+		{
+			speed[0]--;
+		}
+		//If projected position is greater than RoadShape's xPos, turn left.
+		else if (projected->getPosition().x
+			< roadPtr->getRelativeBounds(projected->getPosition())
+			.getLocalBounds().left)
+		{
+			speed[0]++;
+		}
+		//Update position after adjustments.
+		projected->setPosition(hitbox.getPosition().x + speed[0],
+			hitbox.getPosition().y + speed[1]);
+
+		//Based on pythagorean thing.
+		//Update y speed to keep vector.
+		speed[1] = std::sqrt(std::pow(RACER_SPEED, 2) - std::pow(speed[0], 2));
+		//Update speed vector.
+		//vector * = std::sqrt(std::pow(speed[0], 2) + std::pow(speed[1], 2));
+
+	}
+	return;
+}
+
+void Racer::updateEntitys()
+{
+	hitbox.setPosition(hitbox.getPosition().x + 1, hitbox.getPosition().y + 1);
+	//NOT VISIBLE HELP
+	//Gets distance from player for scaling/ mapping purposes.
+	xPlayerOffset = carPtr->getPosx() - position[0];
+	yPlayerOffset = carPtr->getPosy() - position[1];
+
+	std::cout << '(' << hitbox.getPosition().x << ',' << hitbox.getPosition().y << ")\n";
+	return;
 }

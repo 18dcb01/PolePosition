@@ -109,7 +109,7 @@ void Game::tick()
 		if (r.at(0).getPosy() > -1000)
 		{
 
-			for (int i = 0; i < 7; i++)
+			for (int i = 0; i < r.size(); i++)
 			{
 				r.at(i).setRoadRef(&road);
 				r.at(i).tick();
@@ -146,7 +146,9 @@ void Game::render()
 
 	for (int i = 0; i < r.size(); i++)
 	{
-		r.at(i).render(14);
+		//?? investigate 
+		//Program thinks r is a group of cars????
+		//r.at(i).render();
 	}
 
 	for (int i = 0; i < signs.size(); i++)
