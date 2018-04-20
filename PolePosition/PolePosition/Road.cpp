@@ -86,8 +86,6 @@ sf::ConvexShape Road::getRelativeBounds(sf::Vector2f position)
 
 bool Road::intersects(sf::FloatRect intersect)
 {
-
-//	std::cout << roadShape.size() << '\n';
 	for (int i = 0; i < roadShape.size(); i++)
 	{
 		sf::FloatRect tempBound = roadShape.at(i).getGlobalBounds();

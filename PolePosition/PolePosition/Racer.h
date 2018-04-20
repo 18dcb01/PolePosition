@@ -9,9 +9,8 @@
 /*
 	Is always in either right or left lane.
 
-	//TODO: Make racers renderable.
-	//      verify code works.
-	//       investigate how this program even works.
+	//TODO: 1.
+	//      
 */
 
 const double RACER_SPEED = 10;
@@ -21,7 +20,7 @@ class Racer : public Car
 public:
 	Racer(sf::RenderWindow*, Road*,Player *,int);
 	~Racer();
-	void Render();
+	void render();
 	void tick();
 	//This fixes a weird bug, don't change.
 	void setRoadRef(Road*);

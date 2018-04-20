@@ -52,11 +52,10 @@ void Game::play()
 	//second race
 	if (window->isOpen())
 	{
-		//TODO: actually spawn racers.
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 1; i++)
 			r.push_back(Racer(window, &road, &p, 0));
 
-		r.at(2).setPos(80, 80);
+		//r.at(2).setPos(80, 80);
 		race();
 	}
 
@@ -102,6 +101,10 @@ void Game::race()
 
 void Game::tick()
 {
+	render();
+	//Calls render, updates player and racers
+	render();
+
 	tickCount++;
 	p.tick();
 	try
@@ -121,9 +124,7 @@ void Game::tick()
 		std::cout << "?\n";
 	}
 
-	render();
-	//Calls render, updates player and racers
-	render();
+	
 }
 
 
@@ -144,13 +145,7 @@ void Game::render()
 		drawPause();
 	p.render(14);
 
-	for (int i = 0; i < r.size(); i++)
-	{
-		//?? investigate 
-		//Program thinks r is a group of cars????
-		//r.at(i).render();
-	}
-
+	r.at(0).render();
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());
 	window->display();
