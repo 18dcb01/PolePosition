@@ -143,15 +143,18 @@ void Road::editRoad(double offset, double playerSpeed)
 
 		}
 
+		//*
+		//tilting segments in respect to curves
+		//derivative is x = 0.001(curves[i-1])(height^curves[i-1]-1)
+		double tanSlo0pe = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
 
-		//Need to tilt the later segments in response to curves
-		for (int k = 0; k < i; k++)
+		if (tanSlope != 0)
 		{
-			//derivative is x = 0.001(curves[i-1])(height^curves[i-1]-1)
-			int tanSlope = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
-
-
+			//move the points over 8/tanSlope pixels
+			tanSlope = 8 / tanSlope;
 			//move top two points of shape i over shift amount
+			editX(&roadShape, i, 2, roadShape.at(i).getPoint(2).x + tanSlope);
+			editX(&roadShape, i, 3, roadShape.at(i).getPoint(3).x + tanSlope);
 		}
 	}
 
