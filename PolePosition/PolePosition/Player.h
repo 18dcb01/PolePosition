@@ -9,7 +9,7 @@ class Player :
 {
 public:
 	Player();
-	Player(sf::RenderWindow*, int*);
+	Player(sf::RenderWindow*, int*, int);
 	~Player();
 	void tick();
 	void drawDashboard(bool);
@@ -30,6 +30,7 @@ private:
 	int score;
 	int highScore;
 	void initializeDashboard();
+	void initializeSprites();
 	int * tickCount;
 	int lapStart;
 };
