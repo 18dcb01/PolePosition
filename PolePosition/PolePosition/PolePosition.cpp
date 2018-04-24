@@ -37,7 +37,7 @@ int main()
 
 		//Pre qualifying things
 		game.openingMenu();
-		game.flyBanner();
+		game.flyBanner(true);
 
 		//qualifying race
 		game.qualify();
@@ -49,12 +49,16 @@ int main()
 		//if qualified, begin things for race
 
 		//pre race things
+		game.flyBanner(false);
 
+		//real race
 		//game.race();
 
 		//end screen things
 
 		//make sure score is handled
+
+		//Reset as needed
 
 		window.display();
 	}

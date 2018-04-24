@@ -59,9 +59,10 @@ void Game::play()
 }
 
 
+//Runs qualifying race
 void Game::qualify()
 {
-	while (window->isOpen() && p.getPosy() < 250000)
+	while (window->isOpen() && p.getPosy() < 250000 && p.getRaceTime() > 0)
 	{
 		clock_t time = clock();
 		sf::Event event;
@@ -81,6 +82,7 @@ void Game::qualify()
 			render();
 			window->display();
 		}
+		while (time > clock() - 40) {}
 	}
 	p.setPos(0, 0);
 	p.setSpdy(0);
@@ -88,6 +90,7 @@ void Game::qualify()
 }
 
 
+//Runs 'real' race once player has qualified
 void Game::race()
 {
 	while (window->isOpen())
@@ -117,6 +120,7 @@ void Game::race()
 }
 
 
+//Ticks, calls tick functions for player and racers, and calls render
 void Game::tick()
 {
 	tickCount++;
@@ -130,12 +134,10 @@ void Game::tick()
 	}
 	render();
 	window->display();
-	//Calls render, updates player and racers
-	render();
-	window->display();
 }
 
 
+//Renders player, dashboard, road, and signs
 void Game::render()
 {
 	window->clear();
@@ -148,6 +150,8 @@ void Game::render()
 	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
 	road.draw();
 
+	p.drawClutch();
+
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
@@ -156,7 +160,6 @@ void Game::render()
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());
 	//window->display();
-
 }
 
 
@@ -192,6 +195,7 @@ void Game::drawBackground()
 }
 
 
+//Makes opening menu screen
 void Game::openingMenu()
 {
 	sf::Texture t;
@@ -225,6 +229,8 @@ void Game::openingMenu()
 	}
 }
 
+
+//Draws "PAUSE" to screen when game is paused
 void Game::drawPause()
 {
 	sf::Font aClassic;
@@ -244,13 +250,17 @@ void Game::drawPause()
 }
 
 
-void Game::flyBanner()
+//Blimp w/ banner crosses screen before races
+void Game::flyBanner(bool qualifying)
 {
 	sf::Texture t;
 	t.loadFromFile("misc.png");
 	sf::Sprite s;
 	s.setTexture(t);
-	s.setTextureRect(sf::IntRect(0, 145, 271, 16));
+	if (qualifying)
+		s.setTextureRect(sf::IntRect(0, 145, 271, 16));
+	else
+		s.setTextureRect(sf::IntRect(0, 128, 239, 16));
 	s.setScale(2, 2);
 	s.setPosition(448, 125);
 
@@ -265,6 +275,6 @@ void Game::flyBanner()
 		render();
 		window->draw(s);
 		window->display();
-		s.setPosition(s.getPosition().x - 3, 125);
+		s.setPosition(s.getPosition().x - 4, 125);
 	}
 }

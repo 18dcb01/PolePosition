@@ -13,6 +13,7 @@ public:
 	~Player();
 	void tick();
 	void drawDashboard(bool);
+	void drawClutch();
 	void updateSound();
 	void playSound();
 	void pauseSound();
@@ -21,9 +22,7 @@ public:
 	void decrementRaceTime();
 	void setRaceTime(int);
 	void addRaceTime(int);
-	int getLapSeconds();
-	int getLapCentiSeconds();
-	void resetLapTime();
+	int getRaceTime();
 
 private:
 	sf::Sound vroom;

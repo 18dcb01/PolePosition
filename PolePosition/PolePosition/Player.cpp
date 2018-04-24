@@ -42,15 +42,16 @@ Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
 		cout << "Didn't work dude" << endl;
 	}
 	sf::Text tTop, tScore, tTime, tLap, tSpeed,
-		topScore, score, time, lap, speed;
+		topScore, score, time, lap, speed, clutch;
 	dashboard = {tTop, tScore, tTime, tLap, tSpeed,
-		topScore, score, time, lap, speed};
+		topScore, score, time, lap, speed, clutch};
 	initializeDashboard();
 
 	position[1] = -10;
 }
 
 
+//Destructor writes high score information to file
 Player::~Player()
 {
 	std::fstream scoreFile;
@@ -60,6 +61,7 @@ Player::~Player()
 }
 
 
+//Plays the car's engine noise
 void Player::playSound()
 {
 	if (vroom.getStatus() != 2)
@@ -67,6 +69,7 @@ void Player::playSound()
 }
 
 
+//Pauses the car's engine noise
 void Player::pauseSound()
 {
 	if (vroom.getStatus() != 1)
@@ -83,12 +86,14 @@ void Player::awardPoints(int p)
 }
 
 
+//Public acessor for score
 int Player::getScore()
 {
 	return score;
 }
 
 
+//Increments time, handles controls, updates position, and runs tire glare
 void Player::tick()
 {
 	int temp = (*tickCount - lapStart) / 25;
@@ -98,7 +103,7 @@ void Player::tick()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		speed[0] -= .25;
 	//Turn right
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
 		speed[0] += .25;
 	if (speed[0] > 9 || speed[0] < -9)
 		isCrashing = true;
@@ -141,6 +146,8 @@ void Player::tick()
 	}
 	else if (clutchHeld)
 		clutchHeld = false;
+	if (speed[1] < 5 && clutch)
+		clutch = false;
 	if (position[1] < 0)
 		lapStart = *tickCount;
 
@@ -164,13 +171,7 @@ void Player::updateSound()
 }
 
 
-void Player::decrementRaceTime()
-{
-	if (raceTime > 0)
-		raceTime--;
-}
-
-
+//Public mutator for raceTime
 void Player::setRaceTime(int t)
 {
 	if (t > 0)
@@ -178,6 +179,7 @@ void Player::setRaceTime(int t)
 }
 
 
+//Adds extra time to raceTime (called when a lap is finished in the main race)
 void Player::addRaceTime(int t)
 {
 	if (t > 0)
@@ -185,6 +187,14 @@ void Player::addRaceTime(int t)
 }
 
 
+//Public acessor for raceTime
+int Player::getRaceTime()
+{
+	return raceTime;
+}
+
+
+//Draws the dashboard text at the top of the screen
 void Player::drawDashboard(bool paused)
 {
 	//Set the strings for the second half
@@ -200,7 +210,6 @@ void Player::drawDashboard(bool paused)
 	dashboard.at(8).setString(
 		(lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) + 
 		(lapCentiseconds < 10 ? "\"0" : "\"") + to_string(lapCentiseconds));//lap value
-	
 	int ySpeed = speed[1];
 	dashboard.at(9).setString(to_string(ySpeed));//speed value
 	for (int i = 5; i < 10; i++)
@@ -212,6 +221,17 @@ void Player::drawDashboard(bool paused)
 }
 
 
+//Draws HI or LO in corner of the screen to represent clutch
+void Player::drawClutch()
+{
+	if (clutch)
+		dashboard.at(10).setString("HI");
+	else
+		dashboard.at(10).setString("LO");
+	window->draw(dashboard.at(10));
+}
+
+
 /*
 Creates:
   TOP #####  TIME   LAP ##"##
@@ -220,7 +240,7 @@ should add mph/km
 */
 void Player::initializeDashboard()
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i <= 10; i++)
 	{
 		dashboard.at(i).setFont(aClassic);
 		dashboard.at(i).setCharacterSize(16);
@@ -255,4 +275,6 @@ void Player::initializeDashboard()
 	dashboard.at(8).setFillColor(sf::Color(141, 238, 105));//green
 
 	dashboard.at(9).setPosition(464, 48);//speed value, white
+	
+	dashboard.at(10).setPosition(480, 432);
 }

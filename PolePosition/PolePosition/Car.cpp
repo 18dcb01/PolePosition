@@ -82,8 +82,10 @@ void Car::render()
 	}
 	else
 	{
+		//Crashing
 		if (crashing > 0)
 		{
+			//Going through crash animation
 			if (crashing <= 6)
 			{
 				if (speed[0] > 0)
@@ -108,6 +110,7 @@ void Car::render()
 		}
 		else if (crashing < 0)
 		{
+			//resetting car
 			if (crashing < -1)
 			{
 				if (crashing % 8 != 0)
