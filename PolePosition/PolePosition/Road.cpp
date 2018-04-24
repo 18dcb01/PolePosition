@@ -67,6 +67,7 @@ sf::ConvexShape Road::getRelativeBounds(sf::Vector2f position)
 	{
 		sf::Color oldColor = roadShape.at(i).getFillColor();
 		roadShape.at(i).setFillColor(sf::Color::Red);
+		windowPtr->draw(roadShape.at(i));
 		//For readability.
 		double topCurrentIter = roadShape.at(i).getLocalBounds().top;
 		double bottomCurrentIter = roadShape.at(i).getLocalBounds().top - 
@@ -86,15 +87,33 @@ sf::ConvexShape Road::getRelativeBounds(sf::Vector2f position)
 
 bool Road::intersects(sf::FloatRect intersect)
 {
-	for (int i = 0; i < roadShape.size(); i++)
+	sf::ConvexShape totalRect = roadShape.at(0);
+	//TODO: Investigate how to merge all bounds of roadShape for pixel detection that works.
+	for (int i = 1; i < roadShape.size(); i++)
 	{
 		sf::FloatRect tempBound = roadShape.at(i).getGlobalBounds();
-		if (intersect.intersects(tempBound))
-			return true;
+
+		bool isThisTheOne = false;
+		sf::CircleShape point(0.5);
+		point.setOutlineThickness(1);
+		point.setOutlineColor(sf::Color::Red);
+		//If all points of intersect are in tempBound, intersect is safe.
+
+		//Iterate through x coords. //WORKS YAY.
+		for (int x = intersect.left; x < intersect.width + intersect.left; x++)
+		{
+			for (int y = intersect.top + intersect.height; y >= intersect.top; y--)
+			{
+				if (!tempBound.contains(x, y))
+				{
+					isThisTheOne = true;
+				}
+			}
+		}
+		if (!isThisTheOne)
+			continue;
+		return true;
 	}
-
-
-
 	return false;
 }
 

@@ -62,7 +62,7 @@ void Racer::tick()
 		Defined in RACER_SPEED.
 		*/
 		sf::RectangleShape projectedPosition;
-		projectedPosition.setSize(hitbox.getSize());
+		projectedPosition = hitbox;
 		projectedPosition.setPosition(position[0] + speed[0],
 			position[1] - speed[1] - 5);
 
@@ -126,7 +126,7 @@ void Racer::preventCrash(double * vector, sf::RectangleShape * projected)
 		}
 		//Update position after adjustments.
 		projected->setPosition(hitbox.getPosition().x + speed[0],
-			hitbox.getPosition().y + speed[1]);
+			hitbox.getPosition().y - speed[1]);
 
 		//Based on pythagorean thing.
 		//Update y speed to keep vector.
@@ -134,7 +134,7 @@ void Racer::preventCrash(double * vector, sf::RectangleShape * projected)
 		//Update speed vector.
 		//*vector = std::sqrt(std::pow(speed[0], 2) + std::pow(speed[1], 2));
 
-		std::cout << "XSpeed: " << speed[0] << " YSpeed: " << speed[1] << '\n';
+		std::cout << "XPos: " << projected->getPosition().x << " YPos: " << projected->getPosition().y << '\n';
 	}
 	return;
 }
