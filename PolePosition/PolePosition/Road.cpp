@@ -144,6 +144,8 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 	int width, height;
 	double offset;
 
+	//gets the y values
+
 	middleLine.clear();
 	for (int i = (carpos / 1500) * 1500; mult / (i-carpos) > 0.03||carpos>i; i+=1500)
 	{
@@ -152,10 +154,11 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 
 			sf::ConvexShape shape;
 			shape.setPointCount(4);
-			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 750 - carpos) * 245)));
+			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 750 - carpos) * 245)));//top
 			if (i > carpos)
-				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
+				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));//bottom
 
+			//if its off the screen
 			if (shape.getPoint(2).y > 448|| shape.getPoint(2).y <=0)
 				shape.setPoint(2, sf::Vector2f(0, 448));
 
@@ -163,8 +166,7 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 				shape.setPoint(0, sf::Vector2f(0, 448));
 
 			
-
-
+			//other side
 			shape.setPoint(1, shape.getPoint(0));
 			shape.setPoint(3, shape.getPoint(2));
 			
@@ -173,21 +175,18 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 	}
 
 	//Setting X values
-		for (int i = 0; i < middleLine.size(); i++)
-		{
-			double ypos = middleLine.at(i).getPoint(0).y;
-			//setting A and B points (the top two for the shape)
-			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
-				middleLine.at(i).setPoint(0, sf::Vector2f(getXVal(ypos,0.485),ypos));
-				middleLine.at(i).setPoint(1, sf::Vector2f(getXVal(ypos, 0.515), ypos));
+	for (int i = 0; i < middleLine.size(); i++)
+	{
+		double ypos = middleLine.at(i).getPoint(0).y;
+		//top
+		middleLine.at(i).setPoint(0, sf::Vector2f(getXVal(ypos, 0.485), ypos));
+		middleLine.at(i).setPoint(1, sf::Vector2f(getXVal(ypos, 0.515), ypos));
 
-				ypos = middleLine.at(i).getPoint(2).y;
-			//changing width and height to deal with point C, D
-
-			//Setting D and C shapes (the bottom two points)
-				middleLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, 0.485), ypos));
-				middleLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 0.515), ypos));
-		}
+		ypos = middleLine.at(i).getPoint(2).y;
+		//bottom
+		middleLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, 0.485), ypos));
+		middleLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 0.515), ypos));
+	}
 
 	//Draw middleLine
 	for (int i = 0; i < middleLine.size(); i++)
@@ -201,6 +200,10 @@ void Road::drawOuterLine(double position, double speed, int carpos)
 {
 	std::vector<sf::ConvexShape> outerLine;
 	double mult = 900;
+
+
+
+	//gets the y values
 	for (int i = (carpos / 1500) * 1500; mult / (i - carpos) > 0.03 || carpos>i; i += 750)
 	{
 		if (i>carpos - 750)
@@ -208,7 +211,9 @@ void Road::drawOuterLine(double position, double speed, int carpos)
 
 			sf::ConvexShape shape;
 			shape.setPointCount(4);
+			//top
 			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 750 - carpos) * 245)));
+			//bottom
 			if (i > carpos)
 				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
 
@@ -220,10 +225,12 @@ void Road::drawOuterLine(double position, double speed, int carpos)
 
 
 
-
+			//other side
 			shape.setPoint(1, shape.getPoint(0));
 			shape.setPoint(3, shape.getPoint(2));
 
+
+			//alternate red/white
 			if (i % 1500 == 0)
 				shape.setFillColor(sf::Color::Red);
 
@@ -235,15 +242,12 @@ void Road::drawOuterLine(double position, double speed, int carpos)
 	for (int i = 0; i < outerLine.size(); i++)
 	{
 		double ypos = outerLine.at(i).getPoint(0).y;
-		//setting A and B points (the top two for the shape)
-		//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
+		//draws both sides at once, behind the road
 		outerLine.at(i).setPoint(0, sf::Vector2f(getXVal(ypos, -0.1), ypos));
 		outerLine.at(i).setPoint(1, sf::Vector2f(getXVal(ypos, 1.1), ypos));
 
 		ypos = outerLine.at(i).getPoint(2).y;
-		//changing width and height to deal with point C, D
-
-		//Setting D and C shapes (the bottom two points)
+		//finding the bottom
 		outerLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, -0.1), ypos));
 		outerLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 1.1), ypos));
 	}
@@ -295,14 +299,22 @@ void Road::resetLineHeight(std::vector<sf::ConvexShape> *line)
 	}
 }
 
+
+//uses the road shape to interpolate where a given thing should be
 double Road::getXVal(double height, double percentAcross)
 {
 	int i = 0;
+	//find the relevant road shape
 	while (roadShape.at(i).getPoint(2).y < height&&i<roadShape.size()-1)
 		i++;
 	sf::Shape * curShape = &roadShape.at(i);
+
+	//finds how far down the roadshape it should be
 	double percentDown = (height - curShape->getPoint(1).y) / (curShape->getPoint(2).y - curShape->getPoint(1).y);
+
+	//considers the bottom for how far across it should be
 	double result = percentDown*(percentAcross*curShape->getPoint(2).x + (1 - percentAcross)*curShape->getPoint(3).x);
+	//adds in consideration of the top
 	result += (1-percentDown)*(percentAcross*curShape->getPoint(1).x + (1 - percentAcross)*curShape->getPoint(0).x);
 	return result;
 }
