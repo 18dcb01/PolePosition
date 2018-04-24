@@ -1,2 +1,72 @@
-﻿  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.exe
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
+﻿  stdafx.cpp
+  Road.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(51): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(55): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(81): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(84): warning C4018: '>=': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(86): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(90): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(93): warning C4018: '>=': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(100): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(101): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(109): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(119): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(120): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(124): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(131): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(132): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(140): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(149): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(150): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(154): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(165): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(174): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(205): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(207): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(209): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(216): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(225): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(226): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(230): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(237): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(238): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(240): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(247): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(256): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(257): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(261): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(268): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(272): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(273): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(278): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(301): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(306): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(307): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(328): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\road.cpp(334): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Racer.cpp
+  PolePosition.cpp
+  Player.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(152): warning C4244: '+=': conversion from 'double' to 'unsigned short', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(153): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(160): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(162): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(204): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Object.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.cpp(47): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.cpp(52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\object.cpp(53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Game.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(156): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(168): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(175): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(202): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(206): warning C4305: 'argument': truncation from 'double' to 'float'
+  Car.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\car.cpp(49): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\car.cpp(54): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\car.cpp(73): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
+  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
