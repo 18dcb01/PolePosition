@@ -61,60 +61,67 @@ double Road::getRoadSize()
 	return roadShape.size();
 }
 
-sf::ConvexShape Road::getRelativeBounds(sf::Vector2f position)
+std::vector<sf::FloatRect> Road::getIntersectingBounds(sf::FloatRect intersect)
 {
+	std::vector<sf::FloatRect> totalIntersectingRoadSegs;
 	for (int i = 0; i < roadShape.size(); i++)
 	{
-		sf::Color oldColor = roadShape.at(i).getFillColor();
-		roadShape.at(i).setFillColor(sf::Color::Red);
-		windowPtr->draw(roadShape.at(i));
-		//For readability.
-		double topCurrentIter = roadShape.at(i).getLocalBounds().top;
-		double bottomCurrentIter = roadShape.at(i).getLocalBounds().top - 
-			roadShape.at(i).getLocalBounds().height;
-		if (position.y < topCurrentIter && position.y > bottomCurrentIter)
-		{
-			roadShape.at(i).setFillColor(oldColor);
-			return roadShape.at(i);
-		}
-		else
-			roadShape.at(i).setFillColor(oldColor);
-			
-
+		//Only store bounds of roadShapes that intersect with intersect.
+		//We do this to include only the bounds that need to be checked.
+		if (roadShape.at(i).getGlobalBounds().intersects(intersect))
+			totalIntersectingRoadSegs.push_back(roadShape.at(i).getGlobalBounds());
 	}
-	return roadShape.at(5);
+
+	return totalIntersectingRoadSegs;
 }
 
-bool Road::intersects(sf::FloatRect intersect)
+
+
+//Works
+bool Road::doesRoadEncompass(sf::FloatRect intersect)
 {
-	sf::ConvexShape totalRect = roadShape.at(0);
-	//TODO: Investigate how to merge all bounds of roadShape for pixel detection that works.
-	for (int i = 1; i < roadShape.size(); i++)
+	/*
+		Take bounds of roadshapes that intersect with our parameter
+	and store them to check later that the chosen important area's pixels
+	entirely encompass intersect.
+	*/
+	std::vector<sf::FloatRect> totalIntersectingRoadSegs;
+	for (int i = 0; i < roadShape.size(); i++)
 	{
-		sf::FloatRect tempBound = roadShape.at(i).getGlobalBounds();
-
-		bool isThisTheOne = false;
-		sf::CircleShape point(0.5);
-		point.setOutlineThickness(1);
-		point.setOutlineColor(sf::Color::Red);
-		//If all points of intersect are in tempBound, intersect is safe.
-
-		//Iterate through x coords. //WORKS YAY.
-		for (int x = intersect.left; x < intersect.width + intersect.left; x++)
+		//Only store bounds of roadShapes that intersect with intersect.
+		//We do this to include only the bounds that need to be checked.
+		if (roadShape.at(i).getGlobalBounds().intersects(intersect))
 		{
-			for (int y = intersect.top + intersect.height; y >= intersect.top; y--)
-			{
-				if (!tempBound.contains(x, y))
-				{
-					isThisTheOne = true;
-				}
-			}
+			sf::ConvexShape test = roadShape.at(i);
+			test.setOutlineThickness(5);
+			test.setOutlineColor(sf::Color::Green);
+			windowPtr->draw(test);
+			windowPtr->display();
+			totalIntersectingRoadSegs.push_back(roadShape.at(i).getGlobalBounds());
 		}
-		if (!isThisTheOne)
-			continue;
-		return true;
+			
 	}
-	return false;
+
+	//Iterate through all coordinates of intersect and check to see that
+	//they are all inside the road.
+	for (int x = intersect.left; x < intersect.width + intersect.left; x++)
+	{
+		for (int y = intersect.top + intersect.height; y >= intersect.top; y--)
+		{
+			//coordIsInsideRoad is only true if intersect's pixels are entirely
+			//inside the road's bounds.
+			bool coordIsInsideRoad = false;
+			for (int i = 0; i < totalIntersectingRoadSegs.size(); i++)
+			{
+				if (totalIntersectingRoadSegs.at(i).contains(x, y))
+					coordIsInsideRoad = true;
+			}
+			//If there is ever a pixel outside the road, return false.
+			if (!coordIsInsideRoad)
+				return false;
+		}
+	}
+	return true;
 }
 
 void Road::edit(double position, double speed, int carPos)

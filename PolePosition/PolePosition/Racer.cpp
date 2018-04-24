@@ -68,10 +68,11 @@ void Racer::tick()
 
 		double speedVector = std::sqrt(std::pow(speed[0], 2) + std::pow(speed[1], 2));
 
-		std::cout << (roadPtr->intersects(projectedPosition.getGlobalBounds())) << std::endl;
+		//investigate with provided breakpoint.
+		//doesRoadEncompass returns false when it shouldnt.
+		std::cout << (roadPtr->doesRoadEncompass(projectedPosition.getGlobalBounds())) << '\n';
 		//fix
-		if(!(roadPtr->intersects(projectedPosition.getGlobalBounds())))
-			preventCrash(&speedVector,&projectedPosition);
+		if(!(roadPtr->doesRoadEncompass(projectedPosition.getGlobalBounds())))
 
 		//Update Sprite to show turning depending on speed[1].
 
@@ -107,23 +108,27 @@ void Racer::preventCrash(double * vector, sf::RectangleShape * projected)
 	//Handle if going to crash into side of the road.
 	//Adjust speed and direction accordingly.
 	//Loop so car will never crash.
-	//Also keep total velocity of ten.
-	while (!(roadPtr->intersects(projected->getGlobalBounds())) )
+	while (!(roadPtr->doesRoadEncompass(projected->getGlobalBounds())) )
 	{
-		//If projected position is less than RoadShapes xPos, turn right.
-		if (projected->getPosition().x
-			< roadPtr->getRelativeBounds(projected->getPosition())
-			.getLocalBounds().left)
+		std::vector<sf::FloatRect> bounds = roadPtr->getIntersectingBounds(projected->getGlobalBounds());
+		bool isOffRight = true;
+		for (int i = 0; i < bounds.size(); i++)
 		{
-			speed[0]+= 0.01;
+			if (bounds.at(i).left >= projected->getGlobalBounds().left)
+				isOffRight = false;
 		}
-		//If projected position is greater than RoadShape's xPos, turn left.
-		else if (projected->getPosition().x
-			< roadPtr->getRelativeBounds(projected->getPosition())
-			.getLocalBounds().left)
+
+		//If projected position is less than RoadShapes xPos, turn right.
+		if (isOffRight)
 		{
 			speed[0]-= 0.01;
 		}
+		//If projected position is greater than RoadShape's xPos, turn left.
+		else 
+		{
+			speed[0]+= 0.01;
+		}
+
 		//Update position after adjustments.
 		projected->setPosition(hitbox.getPosition().x + speed[0],
 			hitbox.getPosition().y - speed[1]);
@@ -134,7 +139,11 @@ void Racer::preventCrash(double * vector, sf::RectangleShape * projected)
 		//Update speed vector.
 		//*vector = std::sqrt(std::pow(speed[0], 2) + std::pow(speed[1], 2));
 
-		std::cout << "XPos: " << projected->getPosition().x << " YPos: " << projected->getPosition().y << '\n';
+		projected->setOutlineThickness(5);
+		projected->setOutlineColor(sf::Color::Blue);
+		window->draw(*projected);
+		window->display();
+		std::cout << "XSpeed: " << speed[0] << '\n';
 	}
 	return;
 }
