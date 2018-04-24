@@ -4,7 +4,7 @@ class Racer : public Car
 {
 public:
 	Racer();
-	Racer(sf::RenderWindow*, int);
+	Racer(sf::RenderWindow*);
 	Racer(int);
 	~Racer();
 	void tick();

@@ -14,7 +14,7 @@ Player::Player() : Car()
 }
 
 
-Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
+Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 {
 	//Initialize score and high score
 	score = 0;
@@ -54,7 +54,7 @@ Player::~Player()
 {
 	std::fstream scoreFile;
 	scoreFile.open("highScore.txt",ios::out);
-	scoreFile << ((highScore / 10) * 10);
+	scoreFile << highScore;
 	scoreFile.close();
 }
 
@@ -77,8 +77,6 @@ void Player::pauseSound()
 void Player::awardPoints(int p)
 {
 	score += p;
-	if (score > highScore)
-		highScore = score;
 }
 
 
@@ -97,16 +95,17 @@ void Player::tick()
 	//Turn right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		speed[0] += .25;
-	if (speed[0] > 9 || speed[0] < -9)
-		isCrashing = true;
-	if (isCrashing)
+	//If overturned, crash
+	if (speed[0] <= -14 || speed[0] >= 14)
 	{
-		speed[1] -= 15;
-		if (speed[1] < 0)
-			speed[1] = 0;
+		//crash, maybe noise, different set of sprites
+	}
+	else if (speed[0] <= -12 || speed[0] >= 12)
+	{
+		//Slow down, maybe skidding noise
 	}
 	//Accelerate
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 225)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 300)
 	{
 		double accel = 0;
 		double num = exp(-.04*(speed[1]-150));
@@ -125,8 +124,9 @@ void Player::tick()
 	//Decelerate
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		speed[1] -= 2;
-		if (speed[1] < 0)
+		if (speed[1] >= 2)
+			speed[1] -= 2;
+		else if (speed[1] > 0)
 			speed[1] = 0;
 	}
 	//Clutch
@@ -145,9 +145,8 @@ void Player::tick()
 	position[0] += speed[0];
 	position[1] += speed[1];
 	updateSound();
-	
-	spinny += 80 * speed[1];
-	awardPoints(0.05 * speed[1]);
+
+	score = position[1]+10;
 }
 
 
@@ -164,10 +163,8 @@ void Player::updateSound()
 void Player::drawDashboard(bool paused)
 {
 	//Set the strings for the second half
-	int displayHigh = (highScore / 10) * 10;
-	dashboard.at(5).setString(to_string(displayHigh));
-	int displayScore = (score / 10) * 10;
-	dashboard.at(6).setString(to_string(displayScore));
+	dashboard.at(5).setString(to_string(highScore));
+	dashboard.at(6).setString(to_string(score));
 	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
 	int lapSeconds = (*tickCount - lapStart) / 25;
 	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
