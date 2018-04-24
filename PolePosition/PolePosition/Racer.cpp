@@ -7,7 +7,7 @@ Racer::Racer()
 }
 
 
-Racer::Racer(sf::RenderWindow* w, int color) : Car(w, color)
+Racer::Racer(sf::RenderWindow* w) : Car(w)
 {
 }
 
