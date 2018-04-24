@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Road.h"
+#include <vector>
 
 
 //Empty constructor
@@ -42,6 +43,7 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 
 void Road::draw(double position, double speed, double carpos)
 {
+	drawOuterLine(position, speed, carpos);
 	drawRoad(position, carpos);
 	drawCenterLine(position, speed, carpos);
 	drawOutsideLines(position, speed);
@@ -138,30 +140,19 @@ void Road::drawRoad(double position, int carpos)
 
 void Road::drawCenterLine(double position, double speed, int carpos)
 {
-	double mult = 300;
+	double mult = 900;
 	int width, height;
 	double offset;
 
-	//setting the offset to midpoint of the bottom of road
-	int last = roadShape.size() - 1;
-	offset = roadShape.at(last).getPoint(2).x + roadShape.at(last).getPoint(3).x;
-	offset = offset / 2;
-	//adjusting offset for width of center line
-	last = middleLine.size() - 1;
-	offset -= (middleLine.at(last).getPoint(2).x - middleLine.at(last).getPoint(3).x) / 2 ;
-
-	if (middleLine.at(last).getPoint(0).y > windowPtr->getSize().y)
-		resetLineHeight(&middleLine);
-
 	middleLine.clear();
-	for (int i = (carpos / 500) * 500; mult / (i-carpos) > 0.03||carpos>i; i+=500)
+	for (int i = (carpos / 1500) * 1500; mult / (i-carpos) > 0.03||carpos>i; i+=1500)
 	{
-		if (i>carpos-250)
+		if (i>carpos-750)
 		{
 
 			sf::ConvexShape shape;
 			shape.setPointCount(4);
-			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 250 - carpos) * 245)));
+			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 750 - carpos) * 245)));
 			if (i > carpos)
 				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
 
@@ -201,6 +192,65 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 	//Draw middleLine
 	for (int i = 0; i < middleLine.size(); i++)
 		windowPtr->draw(middleLine.at(i));
+
+	return;
+}
+
+
+void Road::drawOuterLine(double position, double speed, int carpos)
+{
+	std::vector<sf::ConvexShape> outerLine;
+	double mult = 900;
+	for (int i = (carpos / 1500) * 1500; mult / (i - carpos) > 0.03 || carpos>i; i += 750)
+	{
+		if (i>carpos - 750)
+		{
+
+			sf::ConvexShape shape;
+			shape.setPointCount(4);
+			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 750 - carpos) * 245)));
+			if (i > carpos)
+				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
+
+			if (shape.getPoint(2).y > 448 || shape.getPoint(2).y <= 0)
+				shape.setPoint(2, sf::Vector2f(0, 448));
+
+			if (shape.getPoint(0).y > 448 || shape.getPoint(0).y <= 0)
+				shape.setPoint(0, sf::Vector2f(0, 448));
+
+
+
+
+			shape.setPoint(1, shape.getPoint(0));
+			shape.setPoint(3, shape.getPoint(2));
+
+			if (i % 1500 == 0)
+				shape.setFillColor(sf::Color::Red);
+
+			outerLine.push_back(shape);
+		}
+	}
+
+	//Setting X values
+	for (int i = 0; i < outerLine.size(); i++)
+	{
+		double ypos = outerLine.at(i).getPoint(0).y;
+		//setting A and B points (the top two for the shape)
+		//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
+		outerLine.at(i).setPoint(0, sf::Vector2f(getXVal(ypos, -0.1), ypos));
+		outerLine.at(i).setPoint(1, sf::Vector2f(getXVal(ypos, 1.1), ypos));
+
+		ypos = outerLine.at(i).getPoint(2).y;
+		//changing width and height to deal with point C, D
+
+		//Setting D and C shapes (the bottom two points)
+		outerLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, -0.1), ypos));
+		outerLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 1.1), ypos));
+	}
+
+	//Draw outerLine
+	for (int i = 0; i < outerLine.size(); i++)
+		windowPtr->draw(outerLine.at(i));
 
 	return;
 }

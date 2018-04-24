@@ -29,6 +29,7 @@ private:
 	//drawing functions
 	void drawRoad(double,int);
 	void drawCenterLine(double, double, int);
+	void drawOuterLine(double, double, int);
 	void drawOutsideLines(double, double);
 	void drawThinLines(double, double);
 	void resetLineHeight(std::vector<sf::ConvexShape>*);
