@@ -71,8 +71,7 @@ void Road::edit(double position, double speed, int carPos)
 //implement rotation after turns
 void Road::editRoad(double offset, double playerSpeed)
 {
-	int width, height, curveAdjustment;
-	bool adjust = false;	//used to check if there was a curve earlier in the road
+	int width, height;
 	
 	//used curves
 	double curves[28];	//size should equal roadShape's size
@@ -145,18 +144,15 @@ void Road::editRoad(double offset, double playerSpeed)
 		}
 		
 
-		//Need to shift over the top of straight segments in response to turns
+		//Need to tilt the later segments in response to curves
 		for (int k = 0; k < i; k++)
 		{
-			if (curves[i] != 0)
-				adjust = true;
-			else
-				adjust = false;
+			//derivative is x = 0.001(curves[i-1])(height^curves[i-1]-1)
+			int tanSlope = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
+
+
+			//move top two points of shape i over shift amount
 		}
-		if (adjust)
-			curveAdjustment = roadShape.at(i - 1).getPoint(0).x - roadShape.at(i - 1).getPoint(3).x;
-		else
-			curveAdjustment = 0;
 	}
 
 
