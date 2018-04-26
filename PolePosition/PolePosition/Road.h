@@ -3,7 +3,6 @@
 #include <iostream>
 #include <math.h>
 #include <stdexcept>
-#include <fstream>
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\VertexArray.hpp>
 
@@ -19,6 +18,7 @@ class Road
 
 public:
 	Road();
+	Road(sf::RenderWindow*, std::vector<double>);
 
 	//everything in here
 	void draw(double, double);
@@ -30,7 +30,6 @@ public:
 private:
 	//drawing functions
 	void editRoad(double);
-	void editRoad(double, double);
 	void editCenterLine(double, double, int);
 	void editOutsideLines(double, double);
 	void editThinLines(double, double);
@@ -39,12 +38,10 @@ private:
 	//utility functions
 	void editX(std::vector<sf::ConvexShape>*, int, int, int);
 	void editY(std::vector<sf::ConvexShape>*, int, int, int);
-	void loadTrack();
 
 	//variables
 	std::vector<double> roadCurve;	//race track
 	int lastTrackUsed;
-	sf::Clock roadSpeedTimer;
 	sf::RenderWindow* windowPtr;	//window
 	std::vector<sf::ConvexShape> roadShape;	//main road
 	std::vector<sf::ConvexShape> middleLine;	//center dotted line

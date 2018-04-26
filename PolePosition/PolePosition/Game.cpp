@@ -6,13 +6,12 @@
 #include <string>
 
 Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
-Game::Game(sf::RenderWindow *w) : p(w, &tickCount, 3)
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
 	{
 		Object obj(w, true);
-		obj.setPos(-300, 15000 * i);
+		obj.setPos(-300, 15000*i);
 		signs.push_back(obj);
 	}
 
@@ -33,7 +32,6 @@ Game::Game(sf::RenderWindow *w) : p(w, &tickCount, 3)
 	loadTrack();
 
 	road = Road(w, map);
-	road = Road(w);
 }
 
 
@@ -68,13 +66,6 @@ void Game::play()
 		race();
 
 
-	//second race
-	if (window->isOpen())
-	{
-		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window, 0);
-		race();
-	}
 	//Calls race (twice bc two races)
 	tick();
 }
@@ -140,20 +131,19 @@ void Game::tick()
 void Game::render()
 {
 	window->clear();
-
+	
 	//First, drawBackground
 	drawBackground();
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
 	road.edit(p.getPosx(), p.getSpdy(), 10);
-	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
 	road.draw();
 
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
-	p.render();
+	p.render(14);
 
 	r.at(0).render();
 	for (int i = 0; i < signs.size(); i++)
@@ -184,10 +174,10 @@ void Game::drawBackground()
 	//draw sprite
 	window->draw(backgroundSprite);
 
-
+	
 	//Draw the grass
 	sf::RectangleShape grass(windowSize);
-
+	
 	//Set grass position and color
 	grass.setPosition(0, windowSize.y / 2);
 	grass.setFillColor(sf::Color::Color(67, 157, 14, 255));

@@ -10,7 +10,7 @@ public:
 	Car(sf::RenderWindow*, int);
 	~Car();
 	void initializeSprites(int);
-	virtual void render();
+	virtual void render(int);
 	double getSpdx();
 	double getSpdy();
 	
@@ -19,7 +19,4 @@ protected:
 	std::vector<sf::Sprite> spritesTwo;
 	double speed[2];
 	unsigned short spinny;
-=======
-	int crashing;
-	bool isCrashing;
 };

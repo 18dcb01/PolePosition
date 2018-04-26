@@ -25,7 +25,9 @@ private:
 	//Pretty sure this has to be a vector.
 	std::vector<Racer> r;
 
-	//road object; contains the map
+	//vector that contains all of the the directions that
+	//the track is going to turn.
+	std::vector<double> map;
 	Road road;
 
 	std::vector<Object> signs;
