@@ -7,10 +7,10 @@
 #include "Player.h"
 
 /*
-	Is always in either right or left lane.
-
-	//TODO: 1.
-	//      
+TODO:
+	1. Finish scale.
+	2. Handle changing sprites.
+	3. Follow the road.
 */
 
 const double RACER_SPEED = 10;
@@ -26,8 +26,8 @@ public:
 	void setRoadRef(Road*);
 private:
 	//Subdivide tick();
-	void preventCrash(double*, sf::RectangleShape*);
 	void updateEntitys();
+	void handleScaling();
 
 	Road * roadPtr;
 	Player *carPtr;
@@ -38,4 +38,7 @@ private:
 	//Distance from player.
 	double xPlayerOffset;
 	double yPlayerOffset;
+	//Actual size for scaling.
+	double xRealHeight;
+	double yRealHeight;
 };

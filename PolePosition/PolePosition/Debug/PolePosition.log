@@ -1,11 +1,4 @@
 ﻿  Racer.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(24): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(67): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(85): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(91): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(114): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(133): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(155): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
-  PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

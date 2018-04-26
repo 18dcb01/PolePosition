@@ -47,7 +47,9 @@ void Road::draw()
 {
 	//draw Road
 	for (int i = 0; i < roadShape.size(); i++)
+	{
 		windowPtr->draw(roadShape.at(i));
+	}
 
 	//Draw middleLine
 	for (int i = 0; i < middleLine.size(); i += 2)
@@ -88,17 +90,15 @@ bool Road::doesRoadEncompass(sf::FloatRect intersect)
 	std::vector<sf::FloatRect> totalIntersectingRoadSegs;
 	for (int i = 0; i < roadShape.size(); i++)
 	{
+
+		
 		//Only store bounds of roadShapes that intersect with intersect.
 		//We do this to include only the bounds that need to be checked.
 		if (roadShape.at(i).getGlobalBounds().intersects(intersect))
 		{
-			sf::ConvexShape test = roadShape.at(i);
-			test.setOutlineThickness(5);
-			test.setOutlineColor(sf::Color::Green);
-			windowPtr->draw(test);
-			windowPtr->display();
 			totalIntersectingRoadSegs.push_back(roadShape.at(i).getGlobalBounds());
 		}
+
 			
 	}
 
@@ -122,6 +122,11 @@ bool Road::doesRoadEncompass(sf::FloatRect intersect)
 		}
 	}
 	return true;
+}
+
+double Road::getCurrentRoadCurve()
+{
+	return roadCurve.at(lastTrackUsed);
 }
 
 void Road::edit(double position, double speed, int carPos)
