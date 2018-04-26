@@ -13,7 +13,7 @@ public:
 	virtual void render(int);
 	double getSpdx();
 	double getSpdy();
-
+	
 protected:
 	std::vector<sf::Sprite> sprites;
 	std::vector<sf::Sprite> spritesTwo;

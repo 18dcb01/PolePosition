@@ -12,7 +12,7 @@ public:
 	void setPos(int, int);
 	double getPosx();
 	double getPosy();
-
+	sf::RectangleShape getHitbox();
 protected:
 	static sf::Texture SignTextures;
 	static sf::Texture CarTextures;

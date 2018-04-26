@@ -63,66 +63,6 @@ double Road::getRoadSize()
 	return roadShape.size();
 }
 
-std::vector<sf::FloatRect> Road::getIntersectingBounds(sf::FloatRect intersect)
-{
-	std::vector<sf::FloatRect> totalIntersectingRoadSegs;
-	for (int i = 0; i < roadShape.size(); i++)
-	{
-		//Only store bounds of roadShapes that intersect with intersect.
-		//We do this to include only the bounds that need to be checked.
-		if (roadShape.at(i).getGlobalBounds().intersects(intersect))
-			totalIntersectingRoadSegs.push_back(roadShape.at(i).getGlobalBounds());
-	}
-
-	return totalIntersectingRoadSegs;
-}
-
-
-
-//Works
-bool Road::doesRoadEncompass(sf::FloatRect intersect)
-{
-	/*
-		Take bounds of roadshapes that intersect with our parameter
-	and store them to check later that the chosen important area's pixels
-	entirely encompass intersect.
-	*/
-	std::vector<sf::FloatRect> totalIntersectingRoadSegs;
-	for (int i = 0; i < roadShape.size(); i++)
-	{
-
-		
-		//Only store bounds of roadShapes that intersect with intersect.
-		//We do this to include only the bounds that need to be checked.
-		if (roadShape.at(i).getGlobalBounds().intersects(intersect))
-		{
-			totalIntersectingRoadSegs.push_back(roadShape.at(i).getGlobalBounds());
-		}
-
-			
-	}
-
-	//Iterate through all coordinates of intersect and check to see that
-	//they are all inside the road.
-	for (int x = intersect.left; x < intersect.width + intersect.left; x++)
-	{
-		for (int y = intersect.top + intersect.height; y >= intersect.top; y--)
-		{
-			//coordIsInsideRoad is only true if intersect's pixels are entirely
-			//inside the road's bounds.
-			bool coordIsInsideRoad = false;
-			for (int i = 0; i < totalIntersectingRoadSegs.size(); i++)
-			{
-				if (totalIntersectingRoadSegs.at(i).contains(x, y))
-					coordIsInsideRoad = true;
-			}
-			//If there is ever a pixel outside the road, return false.
-			if (!coordIsInsideRoad)
-				return false;
-		}
-	}
-	return true;
-}
 
 double Road::getCurrentRoadCurve()
 {

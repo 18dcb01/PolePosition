@@ -8,9 +8,8 @@
 
 /*
 TODO:
-	1. Finish scale.
-	2. Handle changing sprites.
-	3. Follow the road.
+	1. Handle changing sprites.
+	2. Follow the road.
 */
 
 const double RACER_SPEED = 10;
@@ -39,6 +38,6 @@ private:
 	double xPlayerOffset;
 	double yPlayerOffset;
 	//Actual size for scaling.
-	double xRealHeight;
-	double yRealHeight;
+	double xReal;
+	double yReal;
 };

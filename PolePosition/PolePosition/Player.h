@@ -18,6 +18,7 @@ public:
 	void pauseSound();
 	void awardPoints(int);
 	int getScore();
+	
 
 private:
 	sf::Sound vroom;

@@ -23,10 +23,6 @@ public:
 	//everything in here
 	void draw(double, double);
 	double getRoadSize();
-	//Returns bounds of all roadShapes that FloatRect intersects with.
-	std::vector<sf::FloatRect>getIntersectingBounds(sf::FloatRect);
-	//Returns true if a given hitbox is entirely inside the road.
-	bool doesRoadEncompass(sf::FloatRect);
 	double getCurrentRoadCurve();
 	void draw();
 	void edit(double, double, int);

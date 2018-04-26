@@ -1,4 +1,8 @@
 ﻿  Racer.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(101): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(116): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(119): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
+  PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
