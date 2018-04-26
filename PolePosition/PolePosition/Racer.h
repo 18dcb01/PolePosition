@@ -17,7 +17,13 @@ const double RACER_SPEED = 10;
 class Racer : public Car
 {
 public:
+<<<<<<< HEAD
 	Racer(sf::RenderWindow*, Road*,Player *,int);
+=======
+	Racer();
+	Racer(sf::RenderWindow*, int);
+	Racer(int);
+>>>>>>> master
 	~Racer();
 	void render();
 	void tick();
