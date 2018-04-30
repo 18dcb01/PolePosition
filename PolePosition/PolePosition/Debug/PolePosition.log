@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿  Racer.cpp
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
@@ -7,16 +6,3 @@ c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.c
 c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(119): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
-=======
-﻿  Game.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(128): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(161): warning C4018: '<': signed/unsigned mismatch
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(162): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(173): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(180): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(207): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\game.cpp(211): warning C4305: 'argument': truncation from 'double' to 'float'
-Game.obj : error LNK2019: unresolved external symbol "public: __thiscall Racer::Racer(class sf::RenderWindow *,int)" (??0Racer@@QAE@PAVRenderWindow@sf@@H@Z) referenced in function "public: void __thiscall Game::play(void)" (?play@Game@@QAEXXZ)
-Game.obj : error LNK2019: unresolved external symbol "private: void __thiscall Game::loadTrack(void)" (?loadTrack@Game@@AAEXXZ) referenced in function "public: __thiscall Game::Game(class sf::RenderWindow *)" (??0Game@@QAE@PAVRenderWindow@sf@@@Z)
-C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe : fatal error LNK1120: 2 unresolved externals
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637

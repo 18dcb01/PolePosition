@@ -12,9 +12,6 @@ public:
 	void setPos(int, int);
 	double getPosx();
 	double getPosy();
-
-	sf::Vector2f getScreenPosition();
-
 	sf::RectangleShape getHitbox();
 protected:
 	static sf::Texture SignTextures;

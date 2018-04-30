@@ -53,10 +53,6 @@ Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
 Player::~Player()
 {
 	std::fstream scoreFile;
-<<<<<<< HEAD
-=======
-  
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 	scoreFile.open("highScore.txt",ios::out);
 	scoreFile << ((highScore / 10) * 10);
 	scoreFile.close();
@@ -151,21 +147,9 @@ void Player::tick()
 	position[0] += speed[0];
 	position[1] += speed[1];
 	updateSound();
-<<<<<<< HEAD
 	
 	spinny += 80 * speed[1];
 	awardPoints(0.1 * speed[1]);
-=======
-  
-	
-	spinny += 80 * speed[1];
-	awardPoints(0.1 * speed[1]);
-     
-
-	spinny += 80 * speed[1];
-	awardPoints(0.05 * speed[1]);
-    
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 }
 
 
@@ -189,15 +173,7 @@ void Player::drawDashboard(bool paused)
 	dashboard.at(7).setString(to_string(*tickCount / 25));//time value
 	int lapSeconds = (*tickCount - lapStart) / 25;
 	int lapCentiseconds = ((*tickCount - lapStart) % 25) * 4;
-<<<<<<< HEAD
 	if (lapCentiseconds != 0&&!paused)
-=======
-  
-	if (lapCentiseconds != 0&&!paused)
-     
-	if (lapCentiseconds != 0 && !paused)
-    
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 		lapCentiseconds += rand() % 4;
 	dashboard.at(8).setString(
     (lapSeconds < 10 ? "0" : "") + to_string(lapSeconds) +

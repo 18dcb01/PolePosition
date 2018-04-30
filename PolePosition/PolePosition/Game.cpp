@@ -5,13 +5,7 @@
 #include <fstream>
 #include <string>
 
-<<<<<<< HEAD
 Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
-=======
-
-Game::Game(sf::RenderWindow *w) : p(w, &tickCount, 3)
-    
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
@@ -34,19 +28,10 @@ Game::Game(sf::RenderWindow *w) : p(w, &tickCount, 3)
 		backgroundSprite.setTexture(background);
 	}
 
-<<<<<<< HEAD
 	//Map is initialized to all straight for now.
 	loadTrack();
 
 	road = Road(w, map);
-=======
-  
-	//Map is initialized to all straight for now.
-	loadTrack();
-
-	road = Road(w);
-    
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 }
 
 
@@ -67,7 +52,6 @@ void Game::play()
 	//second race
 	if (window->isOpen())
 	{
-		//One racer for testing.
 		for (int i = 0; i < 1; i++)
 			r.push_back(Racer(window, &road, &p, 0));
 
@@ -81,21 +65,7 @@ void Game::play()
 	if (window->isOpen())
 		race();
 
-<<<<<<< HEAD
 
-=======
-  
-
-     
-	//second race
-	if (window->isOpen())
-	{
-		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window, 0);
-		race();
-	}
-    
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 	//Calls race (twice bc two races)
 	tick();
 }
@@ -137,16 +107,23 @@ void Game::tick()
 
 	tickCount++;
 	p.tick();
-	if (r.at(0).getPosy() > -1000)
+	try
 	{
-
-		for (int i = 0; i < r.size(); i++)
+		if (r.at(0).getPosy() > -1000)
 		{
-			r.at(i).setRoadRef(&road);
-			r.at(i).tick();
+
+			for (int i = 0; i < r.size(); i++)
+			{
+				r.at(i).setRoadRef(&road);
+				r.at(i).tick();
+			}
 		}
 	}
-	
+	catch(std::out_of_range& oor)
+	{
+		std::cout << "?\n";
+	}
+
 	
 }
 
@@ -160,15 +137,7 @@ void Game::render()
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
-<<<<<<< HEAD
 	road.edit(p.getPosx(), p.getSpdy(), 10);
-=======
-  
-	road.edit(p.getPosx(), p.getSpdy(), 10);
-     
-	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
-    
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 	road.draw();
 
 	//Then signs, racers, and the player
@@ -267,7 +236,7 @@ void Game::drawPause()
 	window->draw(pauseText);
 }
 
-/*
+
 void Game::loadTrack()
 {
 	std::fstream stream;
@@ -278,4 +247,3 @@ void Game::loadTrack()
 		map.push_back(stod(str));
 	}
 }
-*/

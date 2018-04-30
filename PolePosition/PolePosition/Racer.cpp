@@ -29,22 +29,18 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 
 	speed[0] = 0;
 	speed[1] = 1;
-	sf::Vector2f pos(position[0], position[1]);
-	hitbox.setPosition(carPtr->getPosx(),carPtr->getPosy());
-	sprite.setPosition(carPtr->getPosx(), carPtr->getPosy());
+	
+	hitbox.setPosition(sf::Vector2f(position[0], position[1]));
+	sprite.setPosition(position[0],position[1]);
 
 	//Gets distance from player for scaling/ mapping purposes.
-	xPlayerOffset = carPtr->getScreenPosition().x - position[0];
-	yPlayerOffset = carPtr->getScreenPosition().y - position[1];
+	xPlayerOffset = carPtr->getPosx() - position[0];
+	yPlayerOffset = carPtr->getPosy() - position[1];
 }
 
 Racer::~Racer()
 {
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 }
 
 void Racer::render()
@@ -67,17 +63,16 @@ void Racer::tick()
 	if (isOnScreen)
 	{
 		//Update speed[0] to adjust for road turning.
-		speed[0] = roadPtr->getCurrentRoadCurve();
+		//speed[0] = roadPtr->getCurrentRoadCurve();
 
 		//Update Sprite to show turning depending on speed[0].
 		handleScaling();
 
 		//If player crashes into a racer.
-		//Racer's hitbox doesn't work for some reason.
 		if (hitbox.getGlobalBounds().intersects(carPtr->getHitbox().getGlobalBounds()) &&
 			yPlayerOffset == 0)
 		{
-			std::cout << "Crash & burn\n";
+			//Explode racer.
 		}
 
 	}
@@ -99,8 +94,8 @@ void Racer::updateEntitys()
 	hitbox.setPosition(position[0], position[1]);
 	sprite.setPosition(hitbox.getPosition());
 	//Gets distance from player for scaling/ mapping purposes.
-	xPlayerOffset = carPtr->getScreenPosition().x - position[0];
-	yPlayerOffset = carPtr->getScreenPosition().y - position[1];
+	xPlayerOffset = carPtr->getPosx() - position[0];
+	yPlayerOffset = carPtr->getPosy() - position[1];
 
 	return;
 }
