@@ -37,6 +37,7 @@ Game::~Game()
 }
 
 
+
 void Game::play()
 {
 	openingMenu();
@@ -45,19 +46,21 @@ void Game::play()
 	if (pState < 0)
 		pState += 128;
 
+	//second race
+	if (window->isOpen())
+	{
+		for (int i = 0; i < 1; i++)
+			r.push_back( Racer(window,&road,&p, 0));
+		race();
+	}
+
 	//start vroom noises
 	p.playSound();
 	//qualifying round
 	if (window->isOpen())
 		race();
 
-	//second race
-	if (window->isOpen())
-	{
-		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window, 0);
-		race();
-	}
+	
 	//Calls race (twice bc two races)
 	tick();
 }
@@ -95,10 +98,10 @@ void Game::tick()
 {
 	tickCount++;
 	p.tick();
-	if (r[0].getPosy() > -1000)
+	if (r.at(0).getPosy() > -1000)
 	{
-		for (int i = 0; i < 7; i++)
-			r[i].tick();
+		for (int i = 0; i < r.size(); i++)
+			r.at(i).tick();
 	}
 	render();
 	//Calls render, updates player and racers
@@ -122,6 +125,9 @@ void Game::render()
 	if (GetKeyState(80) != pState)
 		drawPause();
 	p.render();
+
+	for (int i = 0; i < r.size(); i++)
+		r.at(i).render();
 
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());

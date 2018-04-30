@@ -13,6 +13,7 @@ public:
 	double getPosx();
 	double getPosy();
 
+	sf::RectangleShape getHitbox();
 protected:
 	static sf::Texture SignTextures;
 	static sf::Texture CarTextures;

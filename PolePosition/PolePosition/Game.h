@@ -22,7 +22,7 @@ private:
 
 	//
 	Player p;
-	Racer r[7];
+	std::vector<Racer> r;
 
 	//road object; contains the map
 	Road road;

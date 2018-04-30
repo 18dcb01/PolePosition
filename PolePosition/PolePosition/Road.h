@@ -3,6 +3,7 @@
 #include <iostream>
 #include <math.h>
 #include <fstream>
+#include <stdexcept>
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\VertexArray.hpp>
 
@@ -16,6 +17,7 @@ public:
 	void draw();
 	void edit(double, double, int);
 
+	double getCurrentRoadCurve();
 private:
 	//drawing functions
 	void editRoad(double, double);
