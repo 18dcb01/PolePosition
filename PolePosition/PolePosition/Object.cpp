@@ -74,3 +74,8 @@ double Object::getPosy()
 {
 	return position[1];
 }
+
+sf::RectangleShape Object::getHitbox()
+{
+	return hitbox;
+}

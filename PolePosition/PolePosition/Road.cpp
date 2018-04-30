@@ -66,6 +66,18 @@ void Road::edit(double position, double speed, int carPos)
 	return;
 }
 
+double Road::getCurrentRoadCurve()
+{
+	try
+	{
+		return roadCurve.at(lastTrackUsed);
+	}
+	catch(const std::out_of_range& oor)
+	{
+		return 0.0;
+	}
+}
+
 
 //need to fix first two points being set on the wrong spot
 //implement rotation after turns
@@ -146,7 +158,7 @@ void Road::editRoad(double offset, double playerSpeed)
 		//*
 		//tilting segments in respect to curves
 		//derivative is x = 0.001(curves[i-1])(height^curves[i-1]-1)
-		double tanSlo0pe = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
+		double tanSlope = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
 
 		if (tanSlope != 0)
 		{
