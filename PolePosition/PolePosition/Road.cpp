@@ -13,9 +13,6 @@ Road::Road(sf::RenderWindow *window)
 {
 	//assigning window and storing the race track
 	windowPtr = window;
-	roadCurve = track;
-	lastTrackUsed = 0;
-
 	loadTrack();
 	lastTrackUsed = 0;
 
@@ -25,13 +22,11 @@ Road::Road(sf::RenderWindow *window)
 	roadPiece.setFillColor(sf::Color(64, 64, 64));
 	roadPiece.setPointCount(4);
 
-	//pushing roadPiece into roadShape, number of shapes is adjustable
 	//pushing roadPiece into roadShape
 	//number of shapes is adjustable; must be multiple of 224 though
 	for (int i = 0; i < 28; i++)
 		roadShape.push_back(roadPiece);
 
-	std::cout << roadShape.size() << std::endl;
 	//setting the height for all points
 	resetLineHeight(&roadShape);
 
@@ -52,9 +47,7 @@ void Road::draw()
 {
 	//draw Road
 	for (int i = 0; i < roadShape.size(); i++)
-	{
 		windowPtr->draw(roadShape.at(i));
-	}
 
 	//Draw middleLine
 	for (int i = 0; i < middleLine.size(); i += 2)
@@ -84,7 +77,6 @@ double Road::getCurrentRoadCurve()
 
 void Road::edit(double position, double speed, int carPos)
 {
-	editRoad(position);
 	editRoad(position, speed);
 	editCenterLine(position, speed, carPos);
 	editOutsideLines(position, speed);
@@ -92,37 +84,10 @@ void Road::edit(double position, double speed, int carPos)
 
 	return;
 }
-<<<<<<< HEAD
+  
 
 
 //issue with lastTrack used not transitioning usefully
-//
-//
-void Road::editRoad(double offset)
-{
-	int width, height;
-
-	//turn right
-	if (roadCurve.at(0) >= 0)
-	{
-		//calculating initial width
-		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
-		width = 0.001 * pow(height, abs(roadCurve.at(0))) + offset;
-
-	}
-	
-	//keeps track of where we are on the track
-	int j = lastTrackUsed;
-
-	for (int i = 0; i < roadShape.size(); i++)
-	{
-		//check if j is out of bounds
-		if (j >= roadCurve.size())
-			j = 0;
-
-		//turn right
-		if (roadCurve.at(j) >= 0)
-
 
 //need to fix first two points being set on the wrong spot
 //implement rotation after turns
@@ -145,6 +110,7 @@ void Road::editRoad(double offset, double playerSpeed)
 	{
 		//turn right
 		if (roadCurve.at(curves[i]) >= 0)
+    
 		{
 			//calculating initial width
 			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
@@ -155,6 +121,7 @@ void Road::editRoad(double offset, double playerSpeed)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
 			if (i == 0)
 			{
+  
 
 				roadShape.at(i).setPoint(0, sf::Vector2f(width + height / 1,
 					roadShape.at(i).getPoint(0).y));
@@ -163,8 +130,10 @@ void Road::editRoad(double offset, double playerSpeed)
 
 				editX(&roadShape, i, 0, width + height);
 				editX(&roadShape, i, 1, width + roadShape.at(i).getPoint(1).y + 50);
+     
 				editX(&roadShape, i, 3, offset - 8);
 				editX(&roadShape, i, 2, offset + roadShape.at(i).getPoint(2).y + 58);
+    
 			}
 			else
 			{
@@ -172,6 +141,7 @@ void Road::editRoad(double offset, double playerSpeed)
 				roadShape.at(i).setPoint(2, roadShape.at(i - 1).getPoint(1));
 			}
 
+  
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
 			width = 0.001 * pow(height, abs(roadCurve.at(j))) + offset;
@@ -187,6 +157,7 @@ void Road::editRoad(double offset, double playerSpeed)
 			//calculating initial width
 			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
 			width = -0.001 * pow(height, abs(roadCurve.at(j))) + offset;
+     
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
@@ -203,6 +174,7 @@ void Road::editRoad(double offset, double playerSpeed)
 			//calculating initial width
 			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
 			width = -0.001 * pow(height, abs(curves[j])) + offset;
+    
 
 
 			//setting A and B points (the top two for the shape)
@@ -220,19 +192,24 @@ void Road::editRoad(double offset, double playerSpeed)
 
 			//changing width and height to deal with point C, D
 			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
+  
 			width = -0.001 * pow(height, abs(roadCurve.at(j))) + offset;
+     
 			width = -0.001 * pow(height, abs(curves[j])) + offset;
+    
 
 			//Setting D and C shapes (the bottom two points)
 			editX(&roadShape, i, 3, width + height);
 			editX(&roadShape, i, 2, width + roadShape.at(i).getPoint(2).y / 1 + 50);
 
+  
+     
 		}
 
 		//*
 		//tilting segments in respect to curves
 		//derivative is x = 0.001(curves[i-1])(height^curves[i-1]-1)
-		double tanSlo0pe = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
+		double tanSlope = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
 
 		if (tanSlope != 0)
 		{
@@ -241,12 +218,14 @@ void Road::editRoad(double offset, double playerSpeed)
 			//move top two points of shape i over shift amount
 			editX(&roadShape, i, 2, roadShape.at(i).getPoint(2).x + tanSlope);
 			editX(&roadShape, i, 3, roadShape.at(i).getPoint(3).x + tanSlope);
+    
 		}
 
 		//increment j
 		j++;
 	}
 
+  
 	//update lastTrackUsed
 	lastTrackUsed = j;
 	//draw Road
@@ -257,12 +236,14 @@ void Road::editRoad(double offset, double playerSpeed)
 		
 	}
 	roadCurve.at(0) -= .0001;
+     
 	//Move Curve down
 	if (roadSpeedTimer.getElapsedTime().asMilliseconds() > 500 - playerSpeed && playerSpeed > 0)
 	{
 	}
 
 
+    
 	return;
 }
 
@@ -434,15 +415,3 @@ void Road::loadTrack()
 	}
 }
 
-
-//UTILITY FUNCTIONS
-void Road::editX(std::vector<sf::ConvexShape> *shapeList, int shape, int point, int newX)
-{
-	shapeList->at(shape).setPoint(point, sf::Vector2f(newX, shapeList->at(shape).getPoint(point).y));
-}
-
-
-void Road::editY(std::vector<sf::ConvexShape> *shapeList, int shape, int point, int newY)
-{
-	shapeList->at(shape).setPoint(point, sf::Vector2f(shapeList->at(shape).getPoint(point).x, newY));
-}

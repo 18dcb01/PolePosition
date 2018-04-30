@@ -5,7 +5,9 @@
 #include <fstream>
 #include <string>
 
-Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
+
+Game::Game(sf::RenderWindow *w) : p(w, &tickCount, 3)
+    
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
@@ -28,11 +30,12 @@ Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 		backgroundSprite.setTexture(background);
 	}
 
+  
 	//Map is initialized to all straight for now.
 	loadTrack();
 
-	road = Road(w, map);
 	road = Road(w);
+    
 }
 
 
@@ -53,6 +56,7 @@ void Game::play()
 	//second race
 	if (window->isOpen())
 	{
+		//One racer for testing.
 		for (int i = 0; i < 1; i++)
 			r.push_back(Racer(window, &road, &p, 0));
 
@@ -66,7 +70,9 @@ void Game::play()
 	if (window->isOpen())
 		race();
 
+  
 
+     
 	//second race
 	if (window->isOpen())
 	{
@@ -74,6 +80,7 @@ void Game::play()
 			r[i] = Racer(window, 0);
 		race();
 	}
+    
 	//Calls race (twice bc two races)
 	tick();
 }
@@ -138,8 +145,11 @@ void Game::render()
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
+  
 	road.edit(p.getPosx(), p.getSpdy(), 10);
+     
 	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
+    
 	road.draw();
 
 	//Then signs, racers, and the player
@@ -238,7 +248,7 @@ void Game::drawPause()
 	window->draw(pauseText);
 }
 
-
+/*
 void Game::loadTrack()
 {
 	std::fstream stream;
@@ -249,3 +259,4 @@ void Game::loadTrack()
 		map.push_back(stod(str));
 	}
 }
+*/

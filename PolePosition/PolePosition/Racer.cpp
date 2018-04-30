@@ -41,10 +41,10 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 Racer::~Racer()
 {
 
+
 }
 
 void Racer::render()
-Racer::Racer(sf::RenderWindow* w, int color) : Car(w, color)
 {
 	if (isOnScreen)
 	{
