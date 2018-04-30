@@ -72,6 +72,8 @@ void Road::edit(double position, double speed, int carPos)
 void Road::editRoad(double offset, double playerSpeed)
 {
 	int width, height;
+	double width, height;
+	double curveAdjustment = 0;	//tracks the turns
 
 	//used curves
 	double curves[28];	//size should equal roadShape's size
@@ -90,6 +92,7 @@ void Road::editRoad(double offset, double playerSpeed)
 		if (roadCurve.at(curves[i]) >= 0)
 		{
 			//setting A and B points (the top two for the shape)
+			//setting A and B points (the bottom points)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
 			if (i == 0)
 			{
@@ -109,6 +112,8 @@ void Road::editRoad(double offset, double playerSpeed)
 
 			//Setting D and C shapes (the bottom two points)
 			editX(&roadShape, i, 0, width + height);
+			//Setting D and C shapes (the top points)
+			editX(&roadShape, i, 0, width + height + curveAdjustment);
 			editX(&roadShape, i, 1, width + roadShape.at(i).getPoint(2).y + 50);
 
 		}
@@ -156,6 +161,15 @@ void Road::editRoad(double offset, double playerSpeed)
 			editX(&roadShape, i, 2, roadShape.at(i).getPoint(2).x + tanSlope);
 			editX(&roadShape, i, 3, roadShape.at(i).getPoint(3).x + tanSlope);
 		}
+		/*
+		tilting road portions to repect turns
+		derivative is x = 0.001(curves[i])(height^curves[i]-1) ### f(y), DOES NOT WORK
+		need two different values for left an right sides?
+		value of slope is absurdly since it is close to 0 difference
+		divide f(y) by 8 instead of 8/f(y)?
+		*/
+		curveAdjustment += (0.001 * (curves[i]) * pow(height, curves[i] - 1)) / 8;
+		//*/
 	}
 
 
