@@ -18,6 +18,9 @@ class Racer : public Car
 {
 public:
 	Racer(sf::RenderWindow*, Road*,Player *,int);
+	Racer();
+	Racer(sf::RenderWindow*, int);
+	Racer(int);
 	~Racer();
 	void render();
 	void tick();

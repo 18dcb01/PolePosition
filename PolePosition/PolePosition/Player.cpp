@@ -98,7 +98,6 @@ void Player::tick()
 	//Turn right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		speed[0] += .25;
-	//If overturned, crash
 	if (speed[0] > 9 || speed[0] < -9)
 		isCrashing = true;
 	if (isCrashing)

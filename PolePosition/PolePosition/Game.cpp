@@ -32,6 +32,7 @@ Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 	loadTrack();
 
 	road = Road(w, map);
+	road = Road(w);
 }
 
 
