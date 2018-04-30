@@ -71,8 +71,7 @@ void Road::edit(double position, double speed, int carPos)
 //implement rotation after turns
 void Road::editRoad(double offset, double playerSpeed)
 {
-	int width, height;
-	double width, height;
+	double width, height, newAdjustment;
 	double curveAdjustment = 0;	//tracks the turns
 
 	//used curves
@@ -114,7 +113,7 @@ void Road::editRoad(double offset, double playerSpeed)
 			editX(&roadShape, i, 0, width + height);
 			//Setting D and C shapes (the top points)
 			editX(&roadShape, i, 0, width + height + curveAdjustment);
-			editX(&roadShape, i, 1, width + roadShape.at(i).getPoint(2).y + 50);
+			editX(&roadShape, i, 1, width + roadShape.at(i).getPoint(2).y + 50 + curveAdjustment);
 
 		}
 		//turn left
@@ -148,36 +147,38 @@ void Road::editRoad(double offset, double playerSpeed)
 
 		}
 
-		//*
-		//tilting segments in respect to curves
-		//derivative is x = 0.001(curves[i-1])(height^curves[i-1]-1)
-		double tanSlo0pe = 0.001 * curves[i - 1] * pow(height, curves[i - 1] - 1);
-
-		if (tanSlope != 0)
-		{
-			//move the points over 8/tanSlope pixels
-			tanSlope = 8 / tanSlope;
-			//move top two points of shape i over shift amount
-			editX(&roadShape, i, 2, roadShape.at(i).getPoint(2).x + tanSlope);
-			editX(&roadShape, i, 3, roadShape.at(i).getPoint(3).x + tanSlope);
-		}
 		/*
 		tilting road portions to repect turns
-		derivative is x = 0.001(curves[i])(height^curves[i]-1) ### f(y), DOES NOT WORK
-		need two different values for left an right sides?
-		value of slope is absurdly since it is close to 0 difference
-		divide f(y) by 8 instead of 8/f(y)?
+		It wobbles because of offset, try adding -offset to this equation
 		*/
-		curveAdjustment += (0.001 * (curves[i]) * pow(height, curves[i] - 1)) / 8;
-		//*/
+		if (curves[i] != 0)
+		{
+			if (width < 0)	//making sure width is positive
+				width *= -1;
+
+			newAdjustment = (pow(10, 2 / 3) * (pow(width, curves[i] - 1) / curves[i]));
+			if (curves[i] < 0)
+				curveAdjustment -= newAdjustment;
+			else
+				curveAdjustment += newAdjustment;
+		}
 	}
 
 
 	//Move Curve down
+	/*
 	if (roadSpeedTimer.getElapsedTime().asMilliseconds() > 500 - playerSpeed && playerSpeed > 0)
 	{
-	}
+		for (int i = 0; i < roadShape.size() - 1; i++)
+		{
+			curves[i] = curves[i + 1];
+		}
 
+		j++;
+		if (j >= roadCurve.size()))
+			curves[roadShape.size() - 1] = roadCurve.at(j);
+	}
+	*/
 
 	return;
 }
