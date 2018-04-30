@@ -5,13 +5,13 @@
 #include <fstream>
 #include <string>
 
-Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
+Game::Game(sf::RenderWindow *w) : p(w, &tickCount, 3)
 {
 	tickCount = 0;
 	for (int i = 0; i < 500; i++)
 	{
 		Object obj(w, true);
-		obj.setPos(-300, 15000*i);
+		obj.setPos(-300, 15000 * i);
 		signs.push_back(obj);
 	}
 
@@ -28,10 +28,7 @@ Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 		backgroundSprite.setTexture(background);
 	}
 
-	//Map is initialized to all straight for now.
-	loadTrack();
-
-	road = Road(w, map);
+	road = Road(w);
 }
 
 
@@ -40,9 +37,9 @@ Game::~Game()
 }
 
 
+
 void Game::play()
 {
-
 	openingMenu();
 
 	pState = GetKeyState(80);//log current p state for pauses
@@ -53,9 +50,7 @@ void Game::play()
 	if (window->isOpen())
 	{
 		for (int i = 0; i < 1; i++)
-			r.push_back(Racer(window, &road, &p, 0));
-
-		//r.at(2).setPos(80, 80);
+			r.push_back( Racer(window,&road,&p, 0));
 		race();
 	}
 
@@ -65,7 +60,7 @@ void Game::play()
 	if (window->isOpen())
 		race();
 
-
+	
 	//Calls race (twice bc two races)
 	tick();
 }
@@ -101,51 +96,39 @@ void Game::race()
 
 void Game::tick()
 {
+	tickCount++;
+	p.tick();
+	if (r.at(0).getPosy() > -1000)
+	{
+		for (int i = 0; i < r.size(); i++)
+			r.at(i).tick();
+	}
 	render();
 	//Calls render, updates player and racers
 	render();
-
-	tickCount++;
-	p.tick();
-	try
-	{
-		if (r.at(0).getPosy() > -1000)
-		{
-
-			for (int i = 0; i < r.size(); i++)
-			{
-				r.at(i).setRoadRef(&road);
-				r.at(i).tick();
-			}
-		}
-	}
-	catch(std::out_of_range& oor)
-	{
-		std::cout << "?\n";
-	}
-
-	
 }
 
 
 void Game::render()
 {
 	window->clear();
-	
+
 	//First, drawBackground
 	drawBackground();
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
-	road.edit(p.getPosx(), p.getSpdy(), 10);
+	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
 	road.draw();
 
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
 		drawPause();
-	p.render(14);
+	p.render();
 
-	r.at(0).render();
+	for (int i = 0; i < r.size(); i++)
+		r.at(i).render();
+
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());
 	window->display();
@@ -174,10 +157,10 @@ void Game::drawBackground()
 	//draw sprite
 	window->draw(backgroundSprite);
 
-	
+
 	//Draw the grass
 	sf::RectangleShape grass(windowSize);
-	
+
 	//Set grass position and color
 	grass.setPosition(0, windowSize.y / 2);
 	grass.setFillColor(sf::Color::Color(67, 157, 14, 255));
@@ -234,16 +217,4 @@ void Game::drawPause()
 	pauseText.setCharacterSize(16);
 	pauseText.setFillColor(sf::Color(255, 250, 103));
 	window->draw(pauseText);
-}
-
-
-void Game::loadTrack()
-{
-	std::fstream stream;
-	stream.open("Basic Track.txt", std::ios::in);
-	std::string str;
-	while (getline(stream, str))
-	{
-		map.push_back(stod(str));
-	}
 }

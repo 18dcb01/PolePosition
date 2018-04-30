@@ -9,6 +9,7 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 	roadPtr = roadAdr;
 	window = w;
 
+	//Will be modified later.
 	position[0] = window->getSize().x / 2.;
 	position[1] = window->getSize().y - 80;
 
@@ -63,7 +64,11 @@ void Racer::tick()
 	if (isOnScreen)
 	{
 		//Update speed[0] to adjust for road turning.
-		//speed[0] = roadPtr->getCurrentRoadCurve();
+		speed[0] = roadPtr->getCurrentRoadCurve();
+
+		//Update turn sprite texture.
+		///Need to talk to Valerie about sprite stuff.
+		sprite.setTexture(*sprites.at((int)speed[0]).getTexture());
 
 		//Update Sprite to show turning depending on speed[0].
 		handleScaling();

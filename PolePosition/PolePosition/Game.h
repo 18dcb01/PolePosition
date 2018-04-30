@@ -22,12 +22,9 @@ private:
 
 	//
 	Player p;
-	//Pretty sure this has to be a vector.
 	std::vector<Racer> r;
 
-	//vector that contains all of the the directions that
-	//the track is going to turn.
-	std::vector<double> map;
+	//road object; contains the map
 	Road road;
 
 	std::vector<Object> signs;
@@ -40,5 +37,4 @@ private:
 	void drawBackground();
 	void openingMenu();
 	void drawPause();
-	void loadTrack();
 };

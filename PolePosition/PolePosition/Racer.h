@@ -6,13 +6,6 @@
 #include "Road.h"
 #include "Player.h"
 
-/*
-TODO:
-	1. Handle changing sprites.
-	2. Follow the road.
-*/
-
-const double RACER_SPEED = 10;
 
 class Racer : public Car
 {

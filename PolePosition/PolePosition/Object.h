@@ -12,6 +12,7 @@ public:
 	void setPos(int, int);
 	double getPosx();
 	double getPosy();
+
 	sf::RectangleShape getHitbox();
 protected:
 	static sf::Texture SignTextures;
@@ -19,8 +20,6 @@ protected:
 	sf::Sprite sprite;
 	double position[2];
 	sf::RenderWindow* window;
+
 	sf::RectangleShape hitbox;
-	//Represents the position on the map
-	//that a object is at.
-	int mapPos;
 };
