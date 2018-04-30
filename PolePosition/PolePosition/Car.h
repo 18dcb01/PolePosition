@@ -19,4 +19,11 @@ protected:
 	std::vector<sf::Sprite> spritesTwo;
 	double speed[2];
 	unsigned short spinny;
+<<<<<<< HEAD
+=======
+
+	int crashing;
+	bool isCrashing;
+
+>>>>>>> 7b7edef0cd929140cbb4bbbc8fcbfa0d408f1637
 };
