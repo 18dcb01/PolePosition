@@ -4,18 +4,17 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <time.h>
 
 Game::Game(sf::RenderWindow *w): p(w,&tickCount)
 {
+	srand(std::time(NULL));
+
 	tickCount = 0;
-	for (int i = 0; i < 500; i++)
-	{
-		Object obj(w, true);
-		obj.setPos(-300, 15000*i);
-		signs.push_back(obj);
-	}
 
 	window = w;
+
+	loadObjects();
 
 	//creating background texture
 	if (!background.loadFromFile("PolePositionMtFuji.png"))
@@ -50,6 +49,30 @@ void Game::play()
 
 	//start vroom noises
 	p.playSound();
+
+	//run start sign
+	clock_t time = clock();
+	int nextState = 0;
+	while (window->isOpen()&&time>clock()-4000)
+	{
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window->close();
+		}
+		render();
+
+		//advance light
+		if (time <= clock() - 1000 * nextState)
+		{
+			char str[11] = "start0.png";
+			str[5] += nextState;
+			signs.at(0).setTexture(str);
+			nextState++;
+		}
+	}
+
 	//qualifying round
 	if (window->isOpen())
 		race();
@@ -121,12 +144,14 @@ void Game::render()
 	road.draw(100, p.getSpdy(), p.getPosy());
 
 	//Then signs, racers, and the player
-	if (GetKeyState(80) != pState)
-		drawPause();
-	p.render(14);
 
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());
+
+	p.render(14);
+
+	if (GetKeyState(80) != pState)
+		drawPause();
 	window->display();
 
 }
@@ -136,8 +161,7 @@ void Game::render()
 void Game::drawBackground()
 {
 	//Grabbing window size and converting into the right type of vector
-	sf::Vector2u tempSize = window->getSize();
-	sf::Vector2f windowSize(tempSize.x, tempSize.y);
+	sf::Vector2f windowSize = window->getView().getSize();
 
 
 	//create background sprite
@@ -209,22 +233,47 @@ void Game::drawPause()
 	sf::Text pauseText;
 	pauseText.setFont(aClassic);
 	pauseText.setString("PAUSE");
-	pauseText.setPosition(sf::Vector2f(216, 240));
+	pauseText.setPosition(sf::Vector2f(216, 240));//middle
 	pauseText.setCharacterSize(16);
-	pauseText.setFillColor(sf::Color(255, 250, 103));
+	pauseText.setFillColor(sf::Color(255, 250, 103));//yellowish
 	window->draw(pauseText);
 }
 
 
 void Game::loadTrack()
 {
+	//open stream
 	std::fstream stream;
 	stream.open("Basic Track.txt", std::ios::in);
 	std::string str;
+
+	//import tract into vector
 	while (getline(stream, str))
 	{
 		map.push_back(stod(str));
 	}
+	//make sure the map isnt empty
 	if (map.size() == 0)
 		map.push_back(0);
+}
+
+void Game::loadObjects()
+{
+
+	Object start(window, "Start0.png");
+	start.setPos(50, 0);
+	signs.push_back(start);
+	signs.at(0).setTexture("Start0.png");
+
+	for (int i = 1; i < 100; i++)
+	{
+		Object obj(window, &road);
+		obj.setPos(rand() % 2 == 0 ? -30 : 130, 15000 * i);
+		signs.push_back(obj);
+	}
+
+	Object namco(window, "Namco.png");
+	namco.setPos(50, 20000);
+	signs.push_back(namco);
+	signs.back().assignTexture();
 }

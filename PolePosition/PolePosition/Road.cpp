@@ -15,7 +15,6 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 	windowPtr = window;
 	roadCurve = track;
 
-
 	//Creating Road
 	//creating a convex shape with four points and color to add to the roadShape
 	sf::ConvexShape roadPiece;
@@ -28,25 +27,18 @@ Road::Road(sf::RenderWindow *window, std::vector<double> track)
 
 	//setting the height for all points
 	resetLineHeight(&roadShape);
-
-
-	//Creating Striped Center Line
-	sf::ConvexShape stripe;
-	stripe.setPointCount(4);
-
-	for (int i = 0; i < 9; i++)
-		middleLine.push_back(stripe);
-	
-	resetLineHeight(&middleLine);
 }
 
 
 void Road::draw(double position, double speed, double carpos)
 {
+	calcRoad(position, carpos);
 	drawOuterLine(position, speed, carpos);
-	drawRoad(position, carpos);
+
+	for (int i = 0; i < roadShape.size(); i++)
+		windowPtr->draw(roadShape.at(i));
+
 	drawCenterLine(position, speed, carpos);
-	drawOutsideLines(position, speed);
 	drawThinLines(position, speed);
 
 	//roadCurve.at(0) += .001;
@@ -55,7 +47,7 @@ void Road::draw(double position, double speed, double carpos)
 }
 
 
-void Road::drawRoad(double position, int carpos)
+void Road::calcRoad(double position, int carpos)
 {
 	int width, height, offset;
 	carpos = (carpos / 1000) % roadCurve.size();
@@ -67,7 +59,7 @@ void Road::drawRoad(double position, int carpos)
 	if (roadCurve.at(carpos) >= 0)
 	{			
 		//calculating initial width
-		height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
+		height = windowPtr->getView().getSize().y - roadShape.at(0).getPoint(0).y;
 		width = 0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 		for (int i = 0; i < roadShape.size(); i++)
@@ -88,7 +80,7 @@ void Road::drawRoad(double position, int carpos)
 			}
 			
 			//changing width and height to deal with point C, D
-			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
+			height = windowPtr->getView().getSize().y - roadShape.at(i).getPoint(2).y;
 			width = 0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 			//Setting D and C shapes (the bottom two points)
@@ -106,7 +98,7 @@ void Road::drawRoad(double position, int carpos)
 		for (int i = 0; i < roadShape.size(); i++)
 		{
 
-			height = windowPtr->getSize().y - roadShape.at(i).getPoint(0).y;
+			height = windowPtr->getView().getSize().y - roadShape.at(i).getPoint(0).y;
 			width = -0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 			//setting A and B points (the top two for the shape)
 			//if the shape isn't the first shape, than the x-position of A, B are the same as C, D of the shape before.
@@ -117,7 +109,7 @@ void Road::drawRoad(double position, int carpos)
 					roadShape.at(i).getPoint(1).y));
 
 			//changing width and height to deal with point C, D
-			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
+			height = windowPtr->getView().getSize().y - roadShape.at(i).getPoint(2).y;
 			width = -0.001 * pow(height, abs(roadCurve.at(carpos))) + offset;
 
 			//Setting D and C shapes (the bottom two points)
@@ -130,33 +122,25 @@ void Road::drawRoad(double position, int carpos)
 
 
 	//draw Road
-	for (int i = 0; i < roadShape.size(); i++)
-		windowPtr->draw(roadShape.at(i));
 
 	//roadCurve.at(0) -= .0001;
-	return;
 }
 
 
 void Road::drawCenterLine(double position, double speed, int carpos)
 {
 	double mult = 900;
-	int width, height;
-	double offset;
 
 	//gets the y values
-
 	middleLine.clear();
-	for (int i = (carpos / 1500) * 1500; mult / (i-carpos) > 0.03||carpos>i; i+=1500)
-	{
+	for (int i = (carpos / 1500) * 1500; mult / (i-carpos) > 0.1||carpos>i; i+=1500)
 		if (i>carpos-750)
 		{
-
 			sf::ConvexShape shape;
 			shape.setPointCount(4);
-			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 750 - carpos) * 245)));//top
+			shape.setPoint(0, sf::Vector2f(0, (199 + mult / (i + 750 - carpos) * 245)));//top
 			if (i > carpos)
-				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));//bottom
+				shape.setPoint(2, sf::Vector2f(0, (199 + mult / (i - carpos) * 245)));//bottom
 
 			//if its off the screen
 			if (shape.getPoint(2).y > 448|| shape.getPoint(2).y <=0)
@@ -165,6 +149,8 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 			if (shape.getPoint(0).y > 448 || shape.getPoint(0).y <=0)
 				shape.setPoint(0, sf::Vector2f(0, 448));
 
+			else if (shape.getPoint(0).y <224)
+				shape.setPoint(0, sf::Vector2f(0, 224));
 			
 			//other side
 			shape.setPoint(1, shape.getPoint(0));
@@ -172,27 +158,21 @@ void Road::drawCenterLine(double position, double speed, int carpos)
 			
 			middleLine.push_back(shape);
 		}
-	}
 
 	//Setting X values
 	for (int i = 0; i < middleLine.size(); i++)
 	{
-		double ypos = middleLine.at(i).getPoint(0).y;
-		//top
+		double ypos = middleLine.at(i).getPoint(0).y;//top
 		middleLine.at(i).setPoint(0, sf::Vector2f(getXVal(ypos, 0.485), ypos));
 		middleLine.at(i).setPoint(1, sf::Vector2f(getXVal(ypos, 0.515), ypos));
 
-		ypos = middleLine.at(i).getPoint(2).y;
-		//bottom
+		ypos = middleLine.at(i).getPoint(2).y;//bottom
 		middleLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, 0.485), ypos));
 		middleLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 0.515), ypos));
 	}
 
-	//Draw middleLine
 	for (int i = 0; i < middleLine.size(); i++)
-		windowPtr->draw(middleLine.at(i));
-
-	return;
+		windowPtr->draw(middleLine.at(i));//draw everything
 }
 
 
@@ -201,28 +181,29 @@ void Road::drawOuterLine(double position, double speed, int carpos)
 	std::vector<sf::ConvexShape> outerLine;
 	double mult = 900;
 
-
-
 	//gets the y values
-	for (int i = (carpos / 1500) * 1500; mult / (i - carpos) > 0.03 || carpos>i; i += 750)
-	{
+	for (int i = (carpos / 1500) * 1500; mult / (i - carpos) > 0.1 || carpos>i; i += 750)
 		if (i>carpos - 750)
 		{
-
 			sf::ConvexShape shape;
 			shape.setPointCount(4);
 			//top
-			shape.setPoint(0, sf::Vector2f(0, (216.5 + mult / (i + 750 - carpos) * 245)));
+			shape.setPoint(0, sf::Vector2f(0, (199 + mult / (i + 750 - carpos) * 245)));
 			//bottom
 			if (i > carpos)
-				shape.setPoint(2, sf::Vector2f(0, (216.5 + mult / (i - carpos) * 245)));
+				shape.setPoint(2, sf::Vector2f(0, (199 + mult / (i - carpos) * 245)));
 
 			if (shape.getPoint(2).y > 448 || shape.getPoint(2).y <= 0)
 				shape.setPoint(2, sf::Vector2f(0, 448));
 
+			else if (shape.getPoint(2).y <224)
+				shape.setPoint(2, sf::Vector2f(0, 224));
+
 			if (shape.getPoint(0).y > 448 || shape.getPoint(0).y <= 0)
 				shape.setPoint(0, sf::Vector2f(0, 448));
 
+			else if (shape.getPoint(0).y <224)
+				shape.setPoint(0, sf::Vector2f(0, 224));
 
 
 			//other side
@@ -236,18 +217,15 @@ void Road::drawOuterLine(double position, double speed, int carpos)
 
 			outerLine.push_back(shape);
 		}
-	}
 
 	//Setting X values
 	for (int i = 0; i < outerLine.size(); i++)
 	{
-		double ypos = outerLine.at(i).getPoint(0).y;
-		//draws both sides at once, behind the road
+		double ypos = outerLine.at(i).getPoint(0).y;//draws both sides at once, behind the road
 		outerLine.at(i).setPoint(0, sf::Vector2f(getXVal(ypos, -0.1), ypos));
 		outerLine.at(i).setPoint(1, sf::Vector2f(getXVal(ypos, 1.1), ypos));
 
-		ypos = outerLine.at(i).getPoint(2).y;
-		//finding the bottom
+		ypos = outerLine.at(i).getPoint(2).y;//finding the bottom
 		outerLine.at(i).setPoint(3, sf::Vector2f(getXVal(ypos, -0.1), ypos));
 		outerLine.at(i).setPoint(2, sf::Vector2f(getXVal(ypos, 1.1), ypos));
 	}
@@ -255,20 +233,11 @@ void Road::drawOuterLine(double position, double speed, int carpos)
 	//Draw outerLine
 	for (int i = 0; i < outerLine.size(); i++)
 		windowPtr->draw(outerLine.at(i));
-
-	return;
-}
-
-
-void Road::drawOutsideLines(double position, double speed)
-{
-
 }
 
 
 void Road::drawThinLines(double position, double speed)
 {
-
 }
 
 

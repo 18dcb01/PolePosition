@@ -24,16 +24,15 @@ public:
 
 	//everything in here
 	void draw(double, double, double);
+	double getXVal(double, double);
 
 private:
 	//drawing functions
-	void drawRoad(double,int);
+	void calcRoad(double,int);
 	void drawCenterLine(double, double, int);
 	void drawOuterLine(double, double, int);
-	void drawOutsideLines(double, double);
 	void drawThinLines(double, double);
 	void resetLineHeight(std::vector<sf::ConvexShape>*);
-	double getXVal(double, double);
 
 	//variables
 	std::vector<double> roadCurve;	//race track

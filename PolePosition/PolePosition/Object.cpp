@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Object.h"
+#include "Road.h"
 
 sf::Texture Object::SignTextures;
 sf::Texture Object::CarTextures;
 
+Road* Object::road;
 
 Object::Object()
 {
@@ -15,12 +17,24 @@ Object::Object(sf::RenderWindow* w)
 	window = w;
 }
 
-
-Object::Object(sf::RenderWindow* win, bool val)
+Object::Object(sf::RenderWindow * w, const char fileName[])
 {
-	window = win;
+	window = w;
+
+	localTexture.loadFromFile(fileName);
+	sprite.setOrigin(localTexture.getSize().x / 2, localTexture.getSize().y);
+}
+
+
+Object::Object(sf::RenderWindow* w, Road * r)
+{
+	window = w;
+	road = r;
+
+	//if textures are unloaded, load them
 	if (SignTextures.getSize().x == 0)
 		SignTextures.loadFromFile("Pole Position sign sprites.png");
+
 	int signVal = rand() % 19;
 
 	if (signVal < 16)
@@ -34,6 +48,8 @@ Object::Object(sf::RenderWindow* win, bool val)
 		sprite.setOrigin(64, 46);
 	}
 	sprite.setTexture(SignTextures);
+
+	
 }
 
 
@@ -44,12 +60,13 @@ Object::~Object()
 
 void Object::render(int carPos)
 {
-	int dist = position[1] - carPos;//distance to sign
-	double mult = 300;//arbitrarily chosen, looks about right
+	int dist = position[1] - carPos+1100;//distance to sign
+	double mult = 900;//arbitrarily chosen, looks about right
 	mult /= dist;//size is inversely proportional to distance
+	double ypos = 199 + mult * 245;
 	if (mult > 0.05)//far too small
 	{
-		sprite.setPosition(mult*position[0] + 256, 216.5 + mult * 245);
+		sprite.setPosition(road->getXVal(ypos,position[0]/100.0),ypos);
 		sprite.setScale(2 * mult, 2 * mult);//looks better?
 		if (sprite.getPosition().y > 224 && sprite.getPosition().y < 800)//within the draw space
 			window->draw(sprite);
@@ -73,4 +90,17 @@ double Object::getPosx()
 double Object::getPosy()
 {
 	return position[1];
+}
+
+
+//reassign texture after copying
+void Object::assignTexture()
+{
+	sprite.setTexture(localTexture);
+}
+
+void Object::setTexture(const char texture[])
+{
+	localTexture.loadFromFile(texture);
+	sprite.setTexture(localTexture);
 }

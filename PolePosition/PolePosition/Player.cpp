@@ -46,7 +46,7 @@ Player::Player(sf::RenderWindow* w, int * tickCount_) : Car(w)
 		topScore, score, time, lap, speed};
 	initializeDashboard();
 
-	position[1] = -10;
+	position[1] = -500;
 }
 
 
@@ -61,6 +61,7 @@ Player::~Player()
 
 void Player::playSound()
 {
+	//if not playing, play
 	if (vroom.getStatus() != 2)
 		vroom.play();
 }
@@ -68,6 +69,7 @@ void Player::playSound()
 
 void Player::pauseSound()
 {
+	//if not paused, pause
 	if (vroom.getStatus() != 1)
 		vroom.pause();
 }
@@ -146,7 +148,7 @@ void Player::tick()
 	position[1] += speed[1];
 	updateSound();
 
-	score = position[1]+10;
+	score = position[1]+500;
 }
 
 
@@ -154,6 +156,7 @@ void Player::tick()
 void Player::updateSound()
 {
 	soundPitch = (.4 * (speed[1] / 300)) + .8;
+	//sound is lower when in high gear
 	if (clutch)
 		soundPitch -= .1;
 	vroom.setPitch(soundPitch);

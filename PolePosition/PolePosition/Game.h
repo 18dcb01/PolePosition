@@ -40,4 +40,5 @@ private:
 	void openingMenu();
 	void drawPause();
 	void loadTrack();
+	void loadObjects();
 };
