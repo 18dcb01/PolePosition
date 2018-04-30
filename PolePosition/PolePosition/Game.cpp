@@ -107,23 +107,16 @@ void Game::tick()
 
 	tickCount++;
 	p.tick();
-	try
+	if (r.at(0).getPosy() > -1000)
 	{
-		if (r.at(0).getPosy() > -1000)
-		{
 
-			for (int i = 0; i < r.size(); i++)
-			{
-				r.at(i).setRoadRef(&road);
-				r.at(i).tick();
-			}
+		for (int i = 0; i < r.size(); i++)
+		{
+			r.at(i).setRoadRef(&road);
+			r.at(i).tick();
 		}
 	}
-	catch(std::out_of_range& oor)
-	{
-		std::cout << "?\n";
-	}
-
+	
 	
 }
 

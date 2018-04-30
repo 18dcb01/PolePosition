@@ -66,7 +66,15 @@ double Road::getRoadSize()
 
 double Road::getCurrentRoadCurve()
 {
-	return roadCurve.at(lastTrackUsed);
+	//Try catch block to prevent error when there is not a last track.
+	try
+	{
+		return roadCurve.at(lastTrackUsed);
+	}
+	catch (const std::out_of_range& oor)
+	{
+		return 0.0;
+	}
 }
 
 void Road::edit(double position, double speed, int carPos)

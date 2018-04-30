@@ -75,6 +75,11 @@ double Object::getPosy()
 	return position[1];
 }
 
+sf::Vector2f Object::getScreenPosition()
+{
+	return hitbox.getPosition();
+}
+
 sf::RectangleShape Object::getHitbox()
 {
 	return hitbox;
