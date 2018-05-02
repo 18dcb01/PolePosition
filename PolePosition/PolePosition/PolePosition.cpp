@@ -14,8 +14,6 @@
 #include <SFML\Audio.hpp>
 #include <vector>
 
-using namespace std;
-
 
 int main()
 {

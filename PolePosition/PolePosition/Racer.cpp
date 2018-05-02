@@ -2,7 +2,6 @@
 #include "Racer.h"
 
 
-//TODO: fix use of empty Racer constructer.
 Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(w, color)
 {
 	carPtr = car;
@@ -13,11 +12,17 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 	position[0] = window->getSize().x / 2.;
 	position[1] = window->getSize().y - 80;
 
-	//Choose a random "enemy" sprite.
-	//initializeSprites(color);
-	sprite = sf::Sprite(sprites.at(6));
+	//sprite
+	sprite = sprites.at(14);
 	hitbox.setSize(sf::Vector2f(sprite.getGlobalBounds().width,
 		sprite.getGlobalBounds().height));
+
+	//Makes rectangle shape have a origin that matches up with
+	//the sprite for transformations.
+	double originX, originY;
+	originX = hitbox.getSize().x / 2;
+	originY = hitbox.getSize().y / 2;
+	hitbox.setOrigin(originX,originY);
 
 	//For scale later.
 	xReal = hitbox.getSize().x;
@@ -29,11 +34,11 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 	hitbox.setFillColor(sf::Color::Transparent);
 
 	speed[0] = 0;
-	speed[1] = 1;
+	speed[1] = 2;
+	
 	
 	hitbox.setPosition(sf::Vector2f(position[0], position[1]));
 	sprite.setPosition(position[0],position[1]);
-
 	//Gets distance from player for scaling/ mapping purposes.
 	xPlayerOffset = carPtr->getPosx() - position[0];
 	yPlayerOffset = carPtr->getPosy() - position[1];
@@ -65,10 +70,9 @@ void Racer::tick()
 	{
 		//Update speed[0] to adjust for road turning.
 		speed[0] = roadPtr->getCurrentRoadCurve();
-
+		//std::cout << roadPtr->getCurrentRoadCurve() << '\n';
 		//Update turn sprite texture.
 		///Need to talk to Valerie about sprite stuff.
-		sprite.setTexture(*sprites.at((int)speed[0]).getTexture());
 
 		//Update Sprite to show turning depending on speed[0].
 		handleScaling();
@@ -77,7 +81,7 @@ void Racer::tick()
 		if (hitbox.getGlobalBounds().intersects(carPtr->getHitbox().getGlobalBounds()) &&
 			yPlayerOffset == 0)
 		{
-			//Explode racer.
+			std::cout << "Collision\n";
 		}
 
 	}
@@ -110,10 +114,19 @@ void Racer::handleScaling()
 	
 	//Make distance from 'camera' a percentage that we can use in a scale factor.
 	//Distance to middle of screen.
-	double scalar = (position[1] - window->getSize().y / 2) / 144;
+
+
+	double scalar = ((position[1] - window->getSize().y / 2) + 20) / 144;
+	if (scalar > 1)
+		scalar = 1;
 	sprite.setScale(scalar * 2.5, scalar * 2.5);
 	
 	//Update hitbox size with scale factor used for sprite.
 	hitbox.setSize(sf::Vector2f(xReal * scalar, yReal * scalar));
+
+	double originX, originY;
+	originX = hitbox.getSize().x / 2;
+	originY = hitbox.getSize().y / 2;
+	hitbox.setOrigin(originX, originY);
 	return;
 }

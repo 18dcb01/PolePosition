@@ -24,7 +24,7 @@ Car::Car(sf::RenderWindow* w, int color) : Object(w)
 //It's not currently being used, but will need to be implemented
 void Car::initializeSprites(int x)
 {
-	int offset = x * 64;
+	int offset = x * 65;
 	sf::Sprite s(CarTextures);
 	s.setPosition(256, 392);
 	for (int i = 911; i > 65; i -= 65)
@@ -67,6 +67,7 @@ Car::~Car()
 //Should probably eventually be passed horizontal speed which is a double
 void Car::render()
 {
+	
 	int x = 0;
 	if (!isCrashing)
 	{
