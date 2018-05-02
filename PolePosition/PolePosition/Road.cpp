@@ -66,6 +66,17 @@ void Road::edit(double position, double speed, int carPos)
 	return;
 }
 
+double Road::getCurrentRoadCurve()
+{
+	try {
+		return roadCurve.at(lastTrackUsed);
+	}
+	catch (const std::out_of_range& oor)
+	{
+		return 0.0;
+	}
+}
+
 
 //need to fix first two points being set on the wrong spot
 //implement rotation after turns
