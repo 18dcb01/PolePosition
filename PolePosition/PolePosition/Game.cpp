@@ -6,7 +6,7 @@
 #include <string>
 #include <time.h>
 
-Game::Game(sf::RenderWindow *w): p(w,&tickCount)
+Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 {
 	srand(std::time(NULL));
 
@@ -27,10 +27,7 @@ Game::Game(sf::RenderWindow *w): p(w,&tickCount)
 		backgroundSprite.setTexture(background);
 	}
 
-	//Map is initialized to all straight for now.
-	loadTrack();
-
-	road = Road(w, map);
+	road = Road(w);
 }
 
 
@@ -50,6 +47,7 @@ void Game::play()
 	//start vroom noises
 	p.playSound();
 
+<<<<<<< HEAD
 	//run start sign
 	clock_t time = clock();
 	int nextState = 0;
@@ -81,22 +79,51 @@ void Game::play()
 	boopBuffer.loadFromFile("go.wav");
 	boop.play();
 
+=======
+>>>>>>> Game-mechanics
 	//qualifying round
 	if (window->isOpen())
 		race();
 
-	//second race
+	//real race
 	if (window->isOpen())
-	{
-		for (int i = 0; i < 7; i++)
-			r[i] = Racer(window);
 		race();
-	}
-	//Calls race (twice bc two races)
-	tick();
+	//tick();
 }
 
 
+//Runs qualifying race
+void Game::qualify()
+{
+	while (window->isOpen() && p.getPosy() < 250000 && p.getRaceTime() > 0)
+	{
+		clock_t time = clock();
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window->close();
+		}
+		if (GetKeyState(80) == pState)
+		{
+			p.playSound();
+			tick();
+		}
+		else
+		{
+			p.pauseSound();
+			render();
+			window->display();
+		}
+		while (time > clock() - 40) {}
+	}
+	p.setPos(0, 0);
+	p.setSpdy(0);
+	p.setSpdx(0);
+}
+
+
+//Runs 'real' race once player has qualified
 void Game::race()
 {
 	while (window->isOpen())
@@ -118,6 +145,7 @@ void Game::race()
 		else {
 			p.pauseSound();
 			render();
+			window->display();
 		}
 		while (time > clock() - 20) {}
 	}
@@ -125,9 +153,12 @@ void Game::race()
 }
 
 
+//Ticks, calls tick functions for player and racers, and calls render
 void Game::tick()
 {
 	tickCount++;
+	if (tickCount % 25 == 0)
+		p.decrementRaceTime();
 	p.tick();
 	if (r[0].getPosy() > -1000)
 	{
@@ -135,11 +166,11 @@ void Game::tick()
 			r[i].tick();
 	}
 	render();
-	//Calls render, updates player and racers
-	render();
+	window->display();
 }
 
 
+//Renders player, dashboard, road, and signs
 void Game::render()
 {
 	window->clear();
@@ -149,6 +180,7 @@ void Game::render()
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
+<<<<<<< HEAD
 	road.draw(100, p.getSpdy(), p.getPosy());
 
 	//Then signs, racers, and the player
@@ -162,6 +194,21 @@ void Game::render()
 		drawPause();
 	window->display();
 
+=======
+	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
+	road.draw();
+
+	p.drawClutch();
+
+	//Then signs, racers, and the player
+	if (GetKeyState(80) != pState)
+		drawPause();
+	p.render();
+
+	for (int i = 0; i < signs.size(); i++)
+		signs.at(i).render(p.getPosy());
+	//window->display();
+>>>>>>> Game-mechanics
 }
 
 
@@ -196,6 +243,7 @@ void Game::drawBackground()
 }
 
 
+//Makes opening menu screen
 void Game::openingMenu()
 {
 	sf::Texture t;
@@ -229,6 +277,8 @@ void Game::openingMenu()
 	}
 }
 
+
+//Draws "PAUSE" to screen when game is paused
 void Game::drawPause()
 {
 	sf::Font aClassic;
@@ -248,8 +298,10 @@ void Game::drawPause()
 }
 
 
-void Game::loadTrack()
+//Blimp w/ banner crosses screen before races
+void Game::flyBanner(bool qualifying)
 {
+<<<<<<< HEAD
 	//open stream
 	std::fstream stream;
 	stream.open("Basic Track.txt", std::ios::in);
@@ -257,8 +309,31 @@ void Game::loadTrack()
 
 	//import tract into vector
 	while (getline(stream, str))
+=======
+	sf::Texture t;
+	t.loadFromFile("misc.png");
+	sf::Sprite s;
+	s.setTexture(t);
+	if (qualifying)
+		s.setTextureRect(sf::IntRect(0, 145, 271, 16));
+	else
+		s.setTextureRect(sf::IntRect(0, 128, 239, 16));
+	s.setScale(2, 2);
+	s.setPosition(448, 125);
+
+	while (window->isOpen() && s.getPosition().x > -350)
+>>>>>>> Game-mechanics
 	{
-		map.push_back(stod(str));
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window->close();
+		}
+		render();
+		window->draw(s);
+		window->display();
+		s.setPosition(s.getPosition().x - 4, 125);
 	}
 	//make sure the map isnt empty
 	if (map.size() == 0)
