@@ -1,17 +1,2 @@
-﻿  PolePosition.cpp
-  Player.cpp
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(154): warning C4244: '+=': conversion from 'double' to 'unsigned short', possible loss of data
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(162): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(164): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\player.cpp(211): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Game.cpp
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(159): warning C4018: '<': signed/unsigned mismatch
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(160): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(170): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(177): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(204): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\18vrb01\desktop\poleposition\poleposition\poleposition\game.cpp(208): warning C4305: 'argument': truncation from 'double' to 'float'
-  Generating Code...
-  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.exe
+﻿  PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18vrb01\Desktop\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

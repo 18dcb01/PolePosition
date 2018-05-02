@@ -194,6 +194,13 @@ int Player::getRaceTime()
 }
 
 
+//Decrements race time
+void Player::decrementRaceTime()
+{
+	raceTime--;
+}
+
+
 //Draws the dashboard text at the top of the screen
 void Player::drawDashboard(bool paused)
 {
