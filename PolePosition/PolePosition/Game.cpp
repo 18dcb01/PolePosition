@@ -47,7 +47,6 @@ void Game::play()
 	//start vroom noises
 	p.playSound();
 
-<<<<<<< HEAD
 	//run start sign
 	clock_t time = clock();
 	int nextState = 0;
@@ -79,8 +78,6 @@ void Game::play()
 	boopBuffer.loadFromFile("go.wav");
 	boop.play();
 
-=======
->>>>>>> Game-mechanics
 	//qualifying round
 	if (window->isOpen())
 		race();
@@ -164,8 +161,6 @@ void Game::tick()
 	render();
 	window->display();
 	//Calls render, updates player and racers
-	render();
-	window->display();
 }
 
 
@@ -178,20 +173,6 @@ void Game::render()
 	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
-<<<<<<< HEAD
-	road.draw(100, p.getSpdy(), p.getPosy());
-
-	//Then signs, racers, and the player
-
-	for (int i = 0; i < signs.size(); i++)
-		signs.at(i).render(p.getPosy());
-
-	p.render(14);
-
-	if (GetKeyState(80) != pState)
-		drawPause();
-	window->display();
-=======
 	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), 10);
 	road.draw();
 
@@ -202,8 +183,9 @@ void Game::render()
 
 	for (int i = 0; i < signs.size(); i++)
 		signs.at(i).render(p.getPosy());
-	//window->display();
->>>>>>> Game-mechanics
+
+	if (GetKeyState(80) != pState)
+		drawPause();
 
 }
 
@@ -293,15 +275,6 @@ void Game::drawPause()
 
 void Game::flyBanner()
 {
-<<<<<<< HEAD
-	//open stream
-	std::fstream stream;
-	stream.open("Basic Track.txt", std::ios::in);
-	std::string str;
-
-	//import tract into vector
-	while (getline(stream, str))
-=======
 	sf::Texture t;
 	t.loadFromFile("misc.png");
 	sf::Sprite s;
@@ -311,7 +284,6 @@ void Game::flyBanner()
 	s.setPosition(448, 125);
 
 	while (window->isOpen() && s.getPosition().x > -350)
->>>>>>> Game-mechanics
 	{
 		sf::Event event;
 		while (window->pollEvent(event))
@@ -324,9 +296,6 @@ void Game::flyBanner()
 		window->display();
 		s.setPosition(s.getPosition().x - 3, 125);
 	}
-	//make sure the map isnt empty
-	if (map.size() == 0)
-		map.push_back(0);
 }
 
 void Game::loadObjects()

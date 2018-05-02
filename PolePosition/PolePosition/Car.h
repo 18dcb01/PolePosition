@@ -7,11 +7,7 @@ class Car :
 {
 public:
 	Car();
-<<<<<<< HEAD
-	Car(sf::RenderWindow * w);
-=======
 	Car(sf::RenderWindow*, int);
->>>>>>> Game-mechanics
 	~Car();
 	void initializeSprites(int);
 	virtual void render();

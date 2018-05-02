@@ -40,9 +40,5 @@ private:
 	void render();
 	void drawBackground();
 	void drawPause();
-<<<<<<< HEAD
-	void loadTrack();
 	void loadObjects();
-=======
->>>>>>> Game-mechanics
 };

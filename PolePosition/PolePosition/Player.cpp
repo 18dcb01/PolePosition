@@ -150,14 +150,9 @@ void Player::tick()
 	position[0] += speed[0];
 	position[1] += speed[1];
 	updateSound();
-<<<<<<< HEAD
-
-	score = position[1]+500;
-=======
 	
 	spinny += 80 * speed[1];
 	awardPoints(0.05 * speed[1]);
->>>>>>> Game-mechanics
 }
 
 
