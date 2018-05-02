@@ -53,6 +53,10 @@ void Game::play()
 	//run start sign
 	clock_t time = clock();
 	int nextState = 0;
+	sf::Sound boop;
+	sf::SoundBuffer boopBuffer;
+	boopBuffer.loadFromFile("boop.wav");
+	boop.setBuffer(boopBuffer);
 	while (window->isOpen()&&time>clock()-4000)
 	{
 		sf::Event event;
@@ -70,8 +74,12 @@ void Game::play()
 			str[5] += nextState;
 			signs.at(0).setTexture(str);
 			nextState++;
+			if(nextState!=1&&nextState!=5)
+				boop.play();
 		}
 	}
+	boopBuffer.loadFromFile("go.wav");
+	boop.play();
 
 	//qualifying round
 	if (window->isOpen())

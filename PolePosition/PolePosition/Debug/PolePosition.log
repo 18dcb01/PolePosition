@@ -1,7 +1,2 @@
-﻿  Player.cpp
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(151): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(158): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(161): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\player.cpp(179): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
+﻿  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)
