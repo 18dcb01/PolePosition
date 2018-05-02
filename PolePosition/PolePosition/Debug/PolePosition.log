@@ -1,8 +1,11 @@
-﻿  Player.cpp
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(149): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(152): warning C4244: '+=': conversion from 'double' to 'unsigned short', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(153): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(160): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(162): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\player.cpp(182): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+﻿  Racer.cpp
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(25): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(55): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(117): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(137): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\racer.cpp(145): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
+  PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

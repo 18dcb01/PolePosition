@@ -33,4 +33,7 @@ private:
 	//Actual size for scaling.
 	double xReal;
 	double yReal;
+
+	//Actual speed for calculating things.
+	double speedReal[2];
 };

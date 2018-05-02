@@ -34,8 +34,9 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 	hitbox.setFillColor(sf::Color::Transparent);
 
 	speed[0] = 0;
-	speed[1] = 2;
-	
+	speed[1] = 1;
+	speedReal[0] = speed[0];
+	speedReal[1] = speed[1];
 	
 	hitbox.setPosition(sf::Vector2f(position[0], position[1]));
 	sprite.setPosition(position[0],position[1]);
@@ -51,6 +52,16 @@ Racer::~Racer()
 
 void Racer::render()
 {
+	int x = (speed[0] * 1.5) + 14;
+	if (x < 3)
+		x = 3;
+	else if (x > 25)
+		x = 25;
+	sf::Sprite temp = sprite;
+	sprite = sprites.at(x);
+	sprite.setOrigin(temp.getOrigin());
+	sprite.setPosition(temp.getPosition());
+	sprite.setScale(temp.getScale());
 	if (isOnScreen)
 	{
 		//within the draw space
@@ -69,7 +80,8 @@ void Racer::tick()
 	if (isOnScreen)
 	{
 		//Update speed[0] to adjust for road turning.
-		speed[0] = roadPtr->getCurrentRoadCurve();
+		//speed[0] = roadPtr->getCurrentRoadCurve();
+		//speed[0] += 0.1;
 		//std::cout << roadPtr->getCurrentRoadCurve() << '\n';
 		//Update turn sprite texture.
 		///Need to talk to Valerie about sprite stuff.
@@ -97,10 +109,13 @@ void Racer::setRoadRef(Road * ref)
 
 void Racer::updateEntitys()
 {
+	//Will handle when the car catches up to the racer, needs polishing.
+	speed[1] = speedReal[1] - (carPtr->getSpdy()) / 50.;
 	position[0] += speed[0];
 	position[1] -= speed[1];
 
 	hitbox.setPosition(position[0], position[1]);
+
 	sprite.setPosition(hitbox.getPosition());
 	//Gets distance from player for scaling/ mapping purposes.
 	xPlayerOffset = carPtr->getPosx() - position[0];
@@ -117,7 +132,7 @@ void Racer::handleScaling()
 
 
 	double scalar = ((position[1] - window->getSize().y / 2) + 20) / 144;
-	if (scalar > 1)
+	if (scalar > 2)
 		scalar = 1;
 	sprite.setScale(scalar * 2.5, scalar * 2.5);
 	

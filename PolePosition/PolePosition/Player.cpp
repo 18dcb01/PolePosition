@@ -47,6 +47,7 @@ Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
 	initializeDashboard();
 
 	position[1] = -10;
+
 }
 
 
@@ -146,9 +147,6 @@ void Player::tick()
 	position[1] += speed[1];
 	updateSound();
 
-	hitbox.setPosition(position[0], position[1]);
-	hitbox.setFillColor(sf::Color::Green);
-	window->draw(hitbox);
 	spinny += 80 * speed[1];
 	awardPoints(0.05 * speed[1]);
 }
