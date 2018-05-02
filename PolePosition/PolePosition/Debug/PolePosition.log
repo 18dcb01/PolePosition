@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  stdafx.cpp
   Road.cpp
 c:\users\18maa02\documents\poleposition\poleposition\poleposition\road.cpp(48): warning C4018: '<': signed/unsigned mismatch
@@ -74,3 +75,46 @@ c:\users\18maa02\documents\poleposition\poleposition\poleposition\car.cpp(49): w
 c:\users\18maa02\documents\poleposition\poleposition\poleposition\car.cpp(54): warning C4018: '<': signed/unsigned mismatch
 c:\users\18maa02\documents\poleposition\poleposition\poleposition\car.cpp(73): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   Generating Code...
+=======
+﻿  Road.cpp
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(48): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(52): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(74): warning C4101: 'oor': unreferenced local variable
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(91): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(94): warning C4018: '>=': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(99): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(102): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(109): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(110): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(124): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(142): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(156): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(219): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(221): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(223): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(230): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(239): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(240): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(244): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(251): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(252): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(254): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(261): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(270): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(271): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(275): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(282): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(286): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(287): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(292): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(315): warning C4018: '<': signed/unsigned mismatch
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(321): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(322): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(344): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\19i9m01\documents\github\poleposition\poleposition\poleposition\road.cpp(350): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  PolePosition.vcxproj -> C:\Users\19I9M01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
+>>>>>>> efec6d694616f53d99237c78ca5c0987d594ed49
