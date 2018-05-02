@@ -164,17 +164,14 @@ void Road::editRoad(double offset, double playerSpeed)
 		*/
 		if (curves[i] != 0)
 		{
-			if (width < 0)	//making sure width is positive
-				width *= -1;
-
-			newAdjustment = (pow(10, 2 / 3) * (pow(width, curves[i] - 1) / curves[i]));
+			newAdjustment = (pow(10, 2 / 3) * (pow(abs(width - offset), curves[i] - 1) / curves[i]));
 			if (curves[i] < 0)
 				curveAdjustment -= newAdjustment;
 			else
 				curveAdjustment += newAdjustment;
 		}
 	}
-
+	double testVal = width - offset;
 
 	//Move Curve down
 	/*
