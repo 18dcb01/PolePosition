@@ -9,7 +9,7 @@ class Player :
 {
 public:
 	Player();
-	Player(sf::RenderWindow*, int*);
+	Player(sf::RenderWindow*, int*, int);
 	~Player();
 	void tick();
 	void drawDashboard(bool);
@@ -18,6 +18,12 @@ public:
 	void pauseSound();
 	void awardPoints(int);
 	int getScore();
+	void decrementRaceTime();
+	void setRaceTime(int);
+	void addRaceTime(int);
+	int getLapSeconds();
+	int getLapCentiSeconds();
+	void resetLapTime();
 
 private:
 	sf::Sound vroom;
@@ -32,4 +38,6 @@ private:
 	void initializeDashboard();
 	int * tickCount;
 	int lapStart;
+	int raceTime;
+	double lapTime;
 };

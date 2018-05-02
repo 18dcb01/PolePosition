@@ -13,6 +13,10 @@ public:
 	Game(sf::RenderWindow*);
 	~Game();
 	void play();
+	void qualify();
+	void race();
+	void openingMenu();
+	void flyBanner();
 
 private:
 	//Variables for rendering
@@ -24,21 +28,21 @@ private:
 	Player p;
 	Racer r[7];
 
-	//vector that contains all of the the directions that
-	//the track is going to turn.
-	std::vector<double> map;
+	//road object; contains the map
 	Road road;
 
 	std::vector<Object> signs;
 	double time;
 	short pState;
 	int tickCount;
-	void race();
+	
 	void tick();
 	void render();
 	void drawBackground();
-	void openingMenu();
 	void drawPause();
+<<<<<<< HEAD
 	void loadTrack();
 	void loadObjects();
+=======
+>>>>>>> Game-mechanics
 };
