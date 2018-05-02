@@ -47,6 +47,7 @@ void Game::play()
 	//start vroom noises
 	p.playSound();
 
+<<<<<<< HEAD
 	//run start sign
 	clock_t time = clock();
 	int nextState = 0;
@@ -78,6 +79,8 @@ void Game::play()
 	boopBuffer.loadFromFile("go.wav");
 	boop.play();
 
+=======
+>>>>>>> Game-mechanics
 	//qualifying round
 	if (window->isOpen())
 		race();
