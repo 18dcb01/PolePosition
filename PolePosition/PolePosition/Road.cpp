@@ -49,8 +49,11 @@ void Road::draw()
 		windowPtr->draw(roadShape.at(i));
 
 	//Draw middleLine
-	for (int i = 0; i < middleLine.size(); i += 2)
+	for (int i = 0; i < middleLine.size(); i++)
 		windowPtr->draw(middleLine.at(i));
+
+	for (int i = 0; i < stripedLine.size(); i++)
+		windowPtr->draw(stripedLine.at(i));
 
 	return;
 }
@@ -99,7 +102,7 @@ void Road::editRoad(double offset, double playerSpeed)
 	for (int i = 0; i < roadShape.size(); i++)
 	{
 		//turn right
-		if (roadCurve.at(curves[i]) >= 0)
+		if (curves[i] >= 0)
 		{
 			//setting A and B points (the top two for the shape)
 			//setting A and B points (the bottom points)
@@ -236,6 +239,7 @@ void Road::editCenterLine(double position, double speed, int carPos)
 
 void Road::editOutsideLines(double position, double speed, int carPos)
 {
+	stripedLine.clear();
 	double mult = 900;
 
 	//gets the y values
@@ -356,7 +360,7 @@ double Road::getXVal(double height, double percentAcross)
 {
 	int i = 0;
 	//find the relevant road shape
-	while (roadShape.at(i).getPoint(2).y < height&&i<roadShape.size() - 1)
+	while (roadShape.at(i).getPoint(2).y > height&&i<roadShape.size() - 1)
 		i++;
 	sf::Shape * curShape = &roadShape.at(i);
 
