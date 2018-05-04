@@ -17,6 +17,7 @@ Racer::Racer(sf::RenderWindow* w, Road* roadAdr, Player * car, int color) : Car(
 	hitbox.setSize(sf::Vector2f(sprite.getGlobalBounds().width,
 		sprite.getGlobalBounds().height));
 
+	sprite.setScale(1, 1);
 	//Makes rectangle shape have a origin that matches up with
 	//the sprite for transformations.
 	double originX, originY;
@@ -77,6 +78,9 @@ void Racer::tick()
 	isOnScreen = position[1] < window->getSize().y &&
 		position[1] > window->getSize().y/2;
 
+	if (sprite.getScale().x > 1 || sprite.getScale().y > 1)
+		sprite.setScale(1, 1);
+
 	if (isOnScreen)
 	{
 		//Update speed[0] to adjust for road turning.
@@ -90,8 +94,7 @@ void Racer::tick()
 		handleScaling();
 
 		//If player crashes into a racer.
-		if (hitbox.getGlobalBounds().intersects(carPtr->getHitbox().getGlobalBounds()) &&
-			yPlayerOffset == 0)
+		if (hitbox.getGlobalBounds().intersects(carPtr->getHitbox().getGlobalBounds()))
 		{
 			std::cout << "Collision\n";
 		}
@@ -129,11 +132,8 @@ void Racer::handleScaling()
 	
 	//Make distance from 'camera' a percentage that we can use in a scale factor.
 	//Distance to middle of screen.
-
-
 	double scalar = ((position[1] - window->getSize().y / 2) + 20) / 144;
-	if (scalar > 2)
-		scalar = 1;
+
 	sprite.setScale(scalar * 2.5, scalar * 2.5);
 	
 	//Update hitbox size with scale factor used for sprite.

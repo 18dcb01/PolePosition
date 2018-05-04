@@ -48,6 +48,19 @@ Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
 
 	position[1] = -10;
 
+	hitbox = sf::RectangleShape();
+	hitbox.setSize(sf::Vector2f(sprite.getLocalBounds().width + 20, sprite.getLocalBounds().height + 20));
+	std::cout << hitbox.getSize().x << ',' << hitbox.getSize().y << std::endl;
+	//Makes rectangle shape have a origin that matches up with
+	//the sprite for transformations.
+	double originX, originY;
+	originX = hitbox.getSize().x / 2;
+	originY = hitbox.getSize().y / 2;
+	hitbox.setOrigin(originX, originY);
+	hitbox.setPosition(sprite.getPosition());
+	hitbox.setOutlineThickness(1);
+	hitbox.setOutlineColor(sf::Color::Cyan);
+	hitbox.setFillColor(sf::Color::Transparent);
 }
 
 
@@ -91,6 +104,8 @@ int Player::getScore()
 
 void Player::tick()
 {
+	window->draw(hitbox);
+	
 	//Controls
 	//Turn left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -232,3 +247,4 @@ void Player::initializeDashboard()
 
 	dashboard.at(9).setPosition(464, 48);//speed value, white
 }
+

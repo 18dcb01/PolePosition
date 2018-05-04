@@ -56,6 +56,8 @@ void Car::initializeSprites(int x)
 		spritesTwo.at(i).setOrigin(32, 15);
 		spritesTwo.at(i).setScale(2, 2);
 	}
+
+	sprite = s;
 }
 
 
@@ -128,6 +130,7 @@ void Car::render()
 		crashing++;
 		window->draw(sprites.at(x));
 	}
+	window->draw(hitbox);
 }
 
 
