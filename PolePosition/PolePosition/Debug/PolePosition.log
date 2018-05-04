@@ -1,2 +1,10 @@
-﻿  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
+﻿  Game.cpp
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(11): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(176): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(184): warning C4018: '<': signed/unsigned mismatch
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(185): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(204): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(231): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\18dcb01\documents\github\poleposition\poleposition\poleposition\game.cpp(235): warning C4305: 'argument': truncation from 'double' to 'float'
+  PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.exe
   PolePosition.vcxproj -> C:\Users\18dcb01\Documents\GitHub\PolePosition\PolePosition\Debug\PolePosition.pdb (Partial PDB)

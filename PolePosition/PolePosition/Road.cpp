@@ -24,7 +24,7 @@ Road::Road(sf::RenderWindow *window)
 
 	//pushing roadPiece into roadShape
 	//number of shapes is adjustable; must be multiple of 224 though
-	for (int i = 0; i < 56; i++)
+	for (int i = 0; i < 224; i++)
 		roadShape.push_back(roadPiece);
 
 	//setting the height for all points
@@ -44,6 +44,9 @@ Road::Road(sf::RenderWindow *window)
 
 void Road::draw()
 {
+
+	for (int i = 0; i < stripedLine.size(); i++)
+		windowPtr->draw(stripedLine.at(i));
 	//draw Road
 	for (int i = 0; i < roadShape.size(); i++)
 		windowPtr->draw(roadShape.at(i));
@@ -51,9 +54,6 @@ void Road::draw()
 	//Draw middleLine
 	for (int i = 0; i < middleLine.size(); i++)
 		windowPtr->draw(middleLine.at(i));
-
-	for (int i = 0; i < stripedLine.size(); i++)
-		windowPtr->draw(stripedLine.at(i));
 
 	return;
 }
@@ -89,7 +89,7 @@ void Road::editRoad(double offset, double playerSpeed)
 	double curveAdjustment = 0;	//tracks the turns
 
 								//used curves
-	double curves[56];	//size should equal roadShape's size
+	double curves[224];	//size should equal roadShape's size
 	int j = lastTrackUsed;	//j = 0
 	for (int i = 0; i < roadShape.size(); i++)
 	{
@@ -178,7 +178,7 @@ void Road::editRoad(double offset, double playerSpeed)
 
 
 	//Move Curve down
-	if (roadSpeedTimer.getElapsedTime().asMilliseconds() > 500 - playerSpeed && playerSpeed > 0)
+	if (roadSpeedTimer.getElapsedTime().asMilliseconds() > 100 - playerSpeed && playerSpeed > 0)
 	{
 		lastTrackUsed++;
 		if (lastTrackUsed >= roadCurve.size())
