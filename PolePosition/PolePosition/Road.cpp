@@ -24,7 +24,7 @@ Road::Road(sf::RenderWindow *window)
 
 	//pushing roadPiece into roadShape
 	//number of shapes is adjustable; must be multiple of 224 though
-	for (int i = 0; i < 224; i++)
+	for (int i = 0; i < 56; i++)
 		roadShape.push_back(roadPiece);
 
 	//setting the height for all points
@@ -89,7 +89,7 @@ void Road::editRoad(double offset, double playerSpeed)
 	double curveAdjustment = 0;	//tracks the turns
 
 								//used curves
-	double curves[224];	//size should equal roadShape's size
+	double curves[56];	//size should equal roadShape's size
 	int j = lastTrackUsed;	//j = 0
 	for (int i = 0; i < roadShape.size(); i++)
 	{
@@ -120,7 +120,7 @@ void Road::editRoad(double offset, double playerSpeed)
 
 
 			//changing width and height to deal with point C, D
-			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
+			height = windowPtr->getView().getSize().y - roadShape.at(i).getPoint(2).y;
 			width = 0.001 * pow(height, abs(curves[i])) + offset;
 
 			//Setting D and C shapes (the bottom two points)
@@ -134,7 +134,7 @@ void Road::editRoad(double offset, double playerSpeed)
 		else if (curves[i] < 0)
 		{
 			//calculating initial width
-			height = windowPtr->getSize().y - roadShape.at(0).getPoint(0).y;
+			height = windowPtr->getView().getSize().y - roadShape.at(0).getPoint(0).y;
 			width = -0.001 * pow(height, abs(curves[j])) + offset;
 
 
@@ -152,7 +152,7 @@ void Road::editRoad(double offset, double playerSpeed)
 			}
 
 			//changing width and height to deal with point C, D
-			height = windowPtr->getSize().y - roadShape.at(i).getPoint(2).y;
+			height = windowPtr->getView().getSize().y - roadShape.at(i).getPoint(2).y;
 			width = -0.001 * pow(height, abs(curves[j])) + offset;
 
 			//Setting D and C shapes (the bottom two points)
@@ -302,7 +302,7 @@ void Road::editThinLines(double position, double speed)
 
 void Road::resetLineHeight(std::vector<sf::ConvexShape> *line)
 {
-	int halfWindowHeight = windowPtr->getSize().y / 2;
+	int halfWindowHeight = windowPtr->getView().getSize().y / 2;
 
 	for (int i = 0; i < line->size(); i++)
 	{

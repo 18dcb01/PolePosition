@@ -149,6 +149,7 @@ void Player::tick()
 	//Update pos
 	position[0] += speed[0];
 	position[1] += speed[1];
+	position[0] -= road->getCurrentRoadCurve();
 	updateSound();
 	
 	spinny += 80 * speed[1];

@@ -36,6 +36,10 @@ Object::Object(sf::RenderWindow* w, Road * r)
 		SignTextures.loadFromFile("Pole Position sign sprites.png");
 
 	int signVal = rand() % 19;
+	while (signVal == 6 || signVal == 7 || signVal == 14 || signVal == 15)
+	{
+		signVal = rand() % 19;
+	}
 
 	if (signVal < 16)
 	{
@@ -50,6 +54,15 @@ Object::Object(sf::RenderWindow* w, Road * r)
 	sprite.setTexture(SignTextures);
 
 	
+}
+
+
+Object::Object(sf::RenderWindow * w, int i)
+{
+	window = w;
+
+	sprite.setTextureRect(sf::IntRect(i * 96, 0, 95, 78));
+	sprite.setOrigin(48, 78);
 }
 
 

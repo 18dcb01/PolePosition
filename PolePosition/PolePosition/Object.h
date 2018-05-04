@@ -7,6 +7,7 @@ class Object
 public:
 	Object();
 	Object(sf::RenderWindow *, Road*);
+	Object(sf::RenderWindow * w, int i);
 	Object(sf::RenderWindow *);
 	Object(sf::RenderWindow *, const char[]);
 	~Object();

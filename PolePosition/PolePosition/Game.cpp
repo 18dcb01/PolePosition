@@ -15,6 +15,7 @@ Game::Game(sf::RenderWindow *w): p(w, &tickCount, 3)
 	window = w;
 
 	loadObjects();
+	signs.at(0).assignTexture();
 
 	//creating background texture
 	if (!background.loadFromFile("PolePositionMtFuji.png"))
@@ -39,6 +40,7 @@ Game::~Game()
 void Game::play()
 {
 	openingMenu();
+	flyBanner();
 
 	pState = GetKeyState(80);//log current p state for pauses
 	if (pState < 0)
@@ -63,6 +65,7 @@ void Game::play()
 				window->close();
 		}
 		render();
+		window->display();
 
 		//advance light
 		if (time <= clock() - 1000 * nextState)
@@ -80,7 +83,7 @@ void Game::play()
 
 	//qualifying round
 	if (window->isOpen())
-		race();
+		qualify();
 
 	//real race
 	if (window->isOpen())
@@ -312,6 +315,10 @@ void Game::loadObjects()
 		obj.setPos(rand() % 2 == 0 ? -30 : 130, 15000 * i);
 		signs.push_back(obj);
 	}
+
+	Object obj(window, 7);
+	obj.setPos(-30, 80000);
+	signs.push_back(obj);
 
 	Object namco(window, "Namco.png");
 	namco.setPos(50, 20000);
