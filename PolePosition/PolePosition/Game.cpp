@@ -40,7 +40,8 @@ Game::~Game()
 void Game::play()
 {
 	openingMenu();
-	flyBanner();
+	road.edit(-p.getPosx(), p.getSpdy(), p.getPosy());
+	flyBanner(false);
 
 	pState = GetKeyState(80);//log current p state for pauses
 	if (pState < 0)
@@ -85,16 +86,22 @@ void Game::play()
 	if (window->isOpen())
 		qualify();
 
-	//real race
-	if (window->isOpen())
+	p.setSpdx(0);
+	p.setSpdy(0);
+	p.setPos(0, 0);
+	p.setClutch(false);
+
+	if (window->isOpen() && time > p.getRaceTime() > 0)
+	{
+		flyBanner(true);
 		race();
-	//tick();
+	}
 }
 
 
 void Game::qualify()
 {
-	while (window->isOpen() && p.getPosy() < 250000)
+	while (window->isOpen() && p.getPosy() < 208334)
 	{
 		clock_t time = clock();
 		sf::Event event;
@@ -123,7 +130,7 @@ void Game::qualify()
 
 void Game::race()
 {
-	while (window->isOpen())
+	while (window->isOpen() && p.getRaceTime() > 0)
 	{
 		clock_t time = clock();
 		//sfml overhead
@@ -145,8 +152,12 @@ void Game::race()
 			window->display();
 		}
 		while (time > clock() - 20) {}
+		if (p.getPosy() > 209000)
+		{
+			p.setPos(p.getPosx(), 666);
+			p.addRaceTime(35);
+		}
 	}
-	//A loop - continually calls tick
 }
 
 
@@ -161,6 +172,7 @@ void Game::tick()
 		for (int i = 0; i < 7; i++)
 			r[i].tick();
 	}
+	road.edit(-p.getPosx(), p.getSpdy(), p.getPosy());
 	render();
 	window->display();
 	//Calls render, updates player and racers
@@ -173,11 +185,12 @@ void Game::render()
 	
 	//First, drawBackground
 	drawBackground();
-	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Draw Road
-	road.edit(-p.getPosx() * (p.getSpdy() / 50), p.getSpdy(), p.getPosy());
+	
 	road.draw();
+
+	p.drawDashboard(GetKeyState(80) != pState);
 
 	//Then signs, racers, and the player
 	if (GetKeyState(80) != pState)
@@ -276,13 +289,16 @@ void Game::drawPause()
 }
 
 
-void Game::flyBanner()
+void Game::flyBanner(bool race)
 {
 	sf::Texture t;
 	t.loadFromFile("misc.png");
 	sf::Sprite s;
 	s.setTexture(t);
-	s.setTextureRect(sf::IntRect(0, 145, 271, 16));
+	if (!race)
+		s.setTextureRect(sf::IntRect(0, 145, 271, 16));
+	else
+		s.setTextureRect(sf::IntRect(0, 128, 239, 16));
 	s.setScale(2, 2);
 	s.setPosition(448, 125);
 
@@ -321,7 +337,7 @@ void Game::loadObjects()
 	signs.push_back(obj);
 
 	Object namco(window, "Namco.png");
-	namco.setPos(50, 20000);
+	namco.setPos(50, 200000);
 	signs.push_back(namco);
 	signs.back().assignTexture();
 }

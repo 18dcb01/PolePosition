@@ -23,7 +23,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(512, 448), "Pole Position");
 	window.setFramerateLimit(60);
 
-	Game game(&window);
+	//Game game(&window);
 
 	while (window.isOpen())
 	{
@@ -35,26 +35,15 @@ int main()
 		}
 		window.clear();
 
-		//Pre qualifying things
+		Game game(&window);
 
-		//qualifying race
 		game.play();
 
-		//end screen things
-
-		//reset as needed
-
-		//if qualified, begin things for race
-
-		//pre race things
-
-		//game.race();
-
-		//end screen things
-
-		//make sure score is handled
-
 		window.display();
+
+		//game.~Game();
+
+		//game = Game(&window);
 	}
 
 	return 0;

@@ -42,9 +42,9 @@ Player::Player(sf::RenderWindow* w, int * tickCount_, int color) : Car(w, color)
 		cout << "Didn't work dude" << endl;
 	}
 	sf::Text tTop, tScore, tTime, tLap, tSpeed,
-		topScore, score, time, lap, speed;
+		topScore, score, time, lap, speed, gear;
 	dashboard = {tTop, tScore, tTime, tLap, tSpeed,
-		topScore, score, time, lap, speed};
+		topScore, score, time, lap, speed, gear};
 	initializeDashboard();
 
 	position[1] = -500;
@@ -114,7 +114,7 @@ void Player::tick()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && speed[1] < 225)
 	{
 		double accel = 0;
-		double num = exp(-.04*(speed[1]-150));
+		double num = exp(-.04*(speed[1] - 150));
 		if (!clutch)
 		{
 			//Accel faster if slow
@@ -134,6 +134,16 @@ void Player::tick()
 		if (speed[1] < 0)
 			speed[1] = 0;
 	}
+
+	if (position[0] > 200 || position[0] < -200)
+	{
+		if (speed[1] > 2)
+			speed[1] -= 2;
+		else
+			speed[1] = 0;
+		if (speed[1] == 0)
+			isCrashing = true;
+	}
 	//Clutch
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0))
 	{
@@ -147,7 +157,7 @@ void Player::tick()
 		lapStart = *tickCount;
 
 	//Update pos
-	position[0] += speed[0];
+	position[0] += (speed[0] * (speed[1] / 50));
 	position[1] += speed[1];
 	position[0] -= road->getCurrentRoadCurve();
 	updateSound();
@@ -189,6 +199,18 @@ void Player::addRaceTime(int t)
 }
 
 
+int Player::getRaceTime()
+{
+	return raceTime;
+}
+
+
+void Player::setClutch(bool c)
+{
+	clutch = c;
+}
+
+
 void Player::drawDashboard(bool paused)
 {
 	//Set the strings for the second half
@@ -207,11 +229,15 @@ void Player::drawDashboard(bool paused)
 	
 	int ySpeed = speed[1];
 	dashboard.at(9).setString(to_string(ySpeed));//speed value
+	if (clutch)
+		dashboard.at(10).setString("HI");
+	else
+		dashboard.at(10).setString("LO");
 	for (int i = 5; i < 10; i++)
 	{
 		dashboard.at(i).setOrigin(dashboard.at(i).getLocalBounds().width, 0);
 	}
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i <= 10; i++)
 		window->draw(dashboard.at(i));
 }
 
@@ -224,7 +250,7 @@ should add mph/km
 */
 void Player::initializeDashboard()
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i <= 10; i++)
 	{
 		dashboard.at(i).setFont(aClassic);
 		dashboard.at(i).setCharacterSize(16);
@@ -259,4 +285,6 @@ void Player::initializeDashboard()
 	dashboard.at(8).setFillColor(sf::Color(141, 238, 105));//green
 
 	dashboard.at(9).setPosition(464, 48);//speed value, white
+
+	dashboard.at(10).setPosition(480, 432);
 }

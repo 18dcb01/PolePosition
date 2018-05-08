@@ -16,7 +16,7 @@ public:
 	void qualify();
 	void race();
 	void openingMenu();
-	void flyBanner();
+	void flyBanner(bool);
 
 private:
 	//Variables for rendering

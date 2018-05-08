@@ -21,9 +21,8 @@ public:
 	void decrementRaceTime();
 	void setRaceTime(int);
 	void addRaceTime(int);
-	int getLapSeconds();
-	int getLapCentiSeconds();
-	void resetLapTime();
+	int getRaceTime();
+	void setClutch(bool);
 
 private:
 	sf::Sound vroom;
